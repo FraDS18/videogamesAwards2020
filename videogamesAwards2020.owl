@@ -57,12 +57,8 @@
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Exclusive
 :Exclusive rdf:type owl:Class ;
-           owl:equivalentClass [ rdf:type owl:Restriction ;
-                                 owl:onProperty :hasPlatform ;
-                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onClass :Platform
-                               ] ;
-           rdfs:subClassOf :Videogame .
+           rdfs:subClassOf :Videogame ;
+           owl:disjointWith :Multiplatform .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Genre
@@ -95,7 +91,15 @@
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Videogame
-:Videogame rdf:type owl:Class .
+:Videogame rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasPlatform ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :Platform
+                               ] ;
+           owl:disjointUnionOf ( :Exclusive
+                                 :Multiplatform
+                               ) .
 
 
 #################################################################
@@ -113,7 +117,7 @@
 ###  http://www.videogamesAwards.org/videogamesAwards2020#metin2
 :metin2 rdf:type owl:NamedIndividual ,
                  :Videogame ;
-        :hasPlatform :playstation4 .
+        :hasPlatform :personalComputer .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#personalComputer

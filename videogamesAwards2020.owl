@@ -13,17 +13,14 @@
 #    Object Properties
 #################################################################
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#assignedByNewspaper
-:assignedByNewspaper rdf:type owl:ObjectProperty ;
-                     owl:inverseOf :awardsAssignedBy ;
-                     owl:propertyChainAxiom ( :awardsAssignedBy
-                                              :isPartOf
-                                            ) .
+###  http://www.videogamesAwards.org/videogamesAwards2020#awardAssignedByBoard
+:awardAssignedByBoard rdf:type owl:ObjectProperty ;
+                      owl:inverseOf :boardAssignAward .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#awardsAssignedBy
-:awardsAssignedBy rdf:type owl:ObjectProperty ;
-                  owl:inverseOf :boardAssignAward .
+###  http://www.videogamesAwards.org/videogamesAwards2020#awardAssignedByNewspaper
+:awardAssignedByNewspaper rdf:type owl:ObjectProperty ;
+                          owl:inverseOf :newspaperAssignAward .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#boardAssignAward
@@ -32,9 +29,11 @@
                   rdfs:range :Award .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#contains
-:contains rdf:type owl:ObjectProperty ;
-          owl:inverseOf :isPartOf .
+###  http://www.videogamesAwards.org/videogamesAwards2020#boardIsPartOfNewspaper
+:boardIsPartOfNewspaper rdf:type owl:ObjectProperty ;
+                        owl:inverseOf :newspaperContainsBoard ;
+                        rdfs:domain :Board ;
+                        rdfs:range :Newspaper .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAwardSet
@@ -87,21 +86,8 @@
                     rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#isPartOf
-:isPartOf rdf:type owl:ObjectProperty ;
-          rdfs:domain :Board ;
-          rdfs:range :Newspaper .
-
-
 ###  http://www.videogamesAwards.org/videogamesAwards2020#isPlatformRoleOf
 :isPlatformRoleOf rdf:type owl:ObjectProperty .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#makeExpertReview
-:makeExpertReview rdf:type owl:ObjectProperty ;
-                  rdfs:subPropertyOf :makeReview ;
-                  rdfs:domain :Expert ;
-                  rdfs:range :ExpertReview .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#makeReview
@@ -110,15 +96,21 @@
             rdfs:range :Review .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#makeVideoGamerReview
-:makeVideoGamerReview rdf:type owl:ObjectProperty ;
-                      rdfs:subPropertyOf :makeReview ;
-                      rdfs:domain :Videogamer ;
-                      rdfs:range :VideoGamerReview .
-
-
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaperAssignAward
-:newspaperAssignAward rdf:type owl:ObjectProperty .
+:newspaperAssignAward rdf:type owl:ObjectProperty ;
+                      owl:propertyChainAxiom ( :newspaperContainsBoard
+                                               :boardAssignAward
+                                             ) .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#newspaperContainsBoard
+:newspaperContainsBoard rdf:type owl:ObjectProperty .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#reviewIsAbout
+:reviewIsAbout rdf:type owl:ObjectProperty ;
+               rdfs:domain :Review ;
+               rdfs:range :Videogame .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#roleFor
@@ -137,7 +129,7 @@
 ###  http://www.videogamesAwards.org/videogamesAwards2020#worksForNewspaper
 :worksForNewspaper rdf:type owl:ObjectProperty ;
                    owl:propertyChainAxiom ( :worksForBoard
-                                            :isPartOf
+                                            :boardIsPartOfNewspaper
                                           ) .
 
 
@@ -214,9 +206,8 @@
                                                      owl:someValuesFrom :GameReviewer
                                                    ]
                                                    [ rdf:type owl:Restriction ;
-                                                     owl:onProperty :makeExpertReview ;
-                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                     owl:onClass :ExpertReview
+                                                     owl:onProperty :makeReview ;
+                                                     owl:someValuesFrom :ExpertReview
                                                    ]
                                                  ) ;
                               rdf:type owl:Class
@@ -226,7 +217,8 @@
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#ExpertReview
 :ExpertReview rdf:type owl:Class ;
-              rdfs:subClassOf :Review .
+              rdfs:subClassOf :Review ;
+              owl:disjointWith :VideoGamerReview .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#GameReviewer
@@ -235,14 +227,7 @@
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Genre
-:Genre rdf:type owl:Class ;
-       owl:equivalentClass [ rdf:type owl:Class ;
-                             owl:oneOf ( :action
-                                         :horror
-                                         :mmorpg
-                                         :shooter
-                                       )
-                           ] .
+:Genre rdf:type owl:Class .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#HomeConsole
@@ -258,11 +243,6 @@
                               owl:onClass :Genre
                             ] ;
         rdfs:subClassOf :Videogame .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#Journalist
-:Journalist rdf:type owl:Class ;
-            rdfs:subClassOf :WorkerRole .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Multiplatform
@@ -295,7 +275,10 @@
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Review
-:Review rdf:type owl:Class .
+:Review rdf:type owl:Class ;
+        owl:disjointUnionOf ( :ExpertReview
+                              :VideoGamerReview
+                            ) .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#User
@@ -316,6 +299,10 @@
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Videogamer
 :Videogamer rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                  owl:onProperty :makeReview ;
+                                  owl:someValuesFrom :VideoGamerReview
+                                ] ;
             rdfs:subClassOf :User .
 
 
@@ -336,98 +323,13 @@
 #    Individuals
 #################################################################
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#IGN
-:IGN rdf:type owl:NamedIndividual ,
-              :Newspaper ;
-     :contains :redazione1 ,
-               :redazione2 .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#action
-:action rdf:type owl:NamedIndividual .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#gameOfTheYear
-:gameOfTheYear rdf:type owl:NamedIndividual ,
-                        :Award ;
-               :awardsAssignedBy :redazione1 .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#giornalista1
-:giornalista1 rdf:type owl:NamedIndividual ,
-                       :Journalist ;
-              :roleFor :redazione1 .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#giornalista2
-:giornalista2 rdf:type owl:NamedIndividual ,
-                       :Journalist ;
-              :roleFor :redazione2 .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#horror
-:horror rdf:type owl:NamedIndividual .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#metin2-award-set
-:metin2-award-set rdf:type owl:NamedIndividual ;
-                  :hasMemberAward :gameOfTheYear .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#mmorpg
-:mmorpg rdf:type owl:NamedIndividual .
-
-
 ###  http://www.videogamesAwards.org/videogamesAwards2020#pippo
 :pippo rdf:type owl:NamedIndividual ;
-       :hasWorkerRole :giornalista1 ,
-                      :recensore2 .
+       :makeReview :review .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#pluto
-:pluto rdf:type owl:NamedIndividual ;
-       :hasWorkerRole :giornalista2 .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#recensore1
-:recensore1 rdf:type owl:NamedIndividual ,
-                     :GameReviewer .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#recensore2
-:recensore2 rdf:type owl:NamedIndividual ,
-                     :GameReviewer ;
-            :roleFor :redazione2 .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#redazione1
-:redazione1 rdf:type owl:NamedIndividual .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#redazione2
-:redazione2 rdf:type owl:NamedIndividual .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#review1
-:review1 rdf:type owl:NamedIndividual ,
-                  :Review .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#shooter
-:shooter rdf:type owl:NamedIndividual .
-
-
-#################################################################
-#    General axioms
-#################################################################
-
-[ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( :action
-                        :horror
-                        :mmorpg
-                        :shooter
-                      )
-] .
+###  http://www.videogamesAwards.org/videogamesAwards2020#review
+:review rdf:type owl:NamedIndividual .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

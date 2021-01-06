@@ -6,15 +6,41 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @base <http://www.videogamesAwards.org/videogamesAwards2020> .
 
-<http://www.videogamesAwards.org/videogamesAwards2020> rdf:type owl:Ontology .
+<http://www.videogamesAwards.org/videogamesAwards2020> rdf:type owl:Ontology ;
+                                                        owl:imports <http://www.ontologydesignpatterns.org/cp/owl/set.owl> .
 
 #################################################################
 #    Object Properties
 #################################################################
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#assignedByNewspaper
+:assignedByNewspaper rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :awardsAssignedBy ;
+                     owl:propertyChainAxiom ( :awardsAssignedBy
+                                              :isPartOf
+                                            ) .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#awardsAssignedBy
+:awardsAssignedBy rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :boardAssignAward .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#boardAssignAward
+:boardAssignAward rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Board ;
+                  rdfs:range :Award .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#contains
 :contains rdf:type owl:ObjectProperty ;
           owl:inverseOf :isPartOf .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#hasAwardSet
+:hasAwardSet rdf:type owl:ObjectProperty ;
+             rdfs:domain :Videogame ;
+             rdfs:range :AwardSet .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasExclusivePlatform
@@ -29,6 +55,14 @@
 :hasGenre rdf:type owl:ObjectProperty ;
           rdfs:domain :Videogame ;
           rdfs:range :Genre .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#hasMemberAward
+:hasMemberAward rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> ;
+                owl:inverseOf :isMemberOfAwardSet ;
+                rdfs:domain :AwardSet ;
+                rdfs:range :Award .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasPlatform
@@ -46,6 +80,11 @@
 :hasWorkerRole rdf:type owl:ObjectProperty ;
                rdfs:domain :Worker ;
                rdfs:range :WorkerRole .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#isMemberOfAwardSet
+:isMemberOfAwardSet rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#isPartOf
@@ -78,6 +117,10 @@
                       rdfs:range :VideoGamerReview .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#newspaperAssignAward
+:newspaperAssignAward rdf:type owl:ObjectProperty .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#roleFor
 :roleFor rdf:type owl:ObjectProperty ;
          rdfs:domain :WorkerRole ;
@@ -102,6 +145,12 @@
 #    Data properties
 #################################################################
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#awardHasYear
+:awardHasYear rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Award ;
+              rdfs:range xsd:positiveInteger .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasDescription
 :hasDescription rdf:type owl:DatatypeProperty ;
                 rdfs:domain :Videogame ;
@@ -123,6 +172,15 @@
 #################################################################
 #    Classes
 #################################################################
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#Award
+:Award rdf:type owl:Class .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#AwardSet
+:AwardSet rdf:type owl:Class ;
+          rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> .
+
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Board
 :Board rdf:type owl:Class .
@@ -289,6 +347,12 @@
 :action rdf:type owl:NamedIndividual .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#gameOfTheYear
+:gameOfTheYear rdf:type owl:NamedIndividual ,
+                        :Award ;
+               :awardsAssignedBy :redazione1 .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#giornalista1
 :giornalista1 rdf:type owl:NamedIndividual ,
                        :Journalist ;
@@ -303,6 +367,11 @@
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#horror
 :horror rdf:type owl:NamedIndividual .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#metin2-award-set
+:metin2-award-set rdf:type owl:NamedIndividual ;
+                  :hasMemberAward :gameOfTheYear .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#mmorpg

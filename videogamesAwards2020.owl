@@ -26,7 +26,7 @@
 ###  http://www.videogamesAwards.org/videogamesAwards2020#boardAssignAward
 :boardAssignAward rdf:type owl:ObjectProperty ;
                   rdfs:domain :Board ;
-                  rdfs:range :Award .
+                  rdfs:range :GameAward .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#boardIsPartOfNewspaper
@@ -38,8 +38,9 @@
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAwardSet
 :hasAwardSet rdf:type owl:ObjectProperty ;
+             owl:inverseOf <https://www.wikidata.org/wiki/Q613354#isAwardSetOf> ;
              rdfs:domain :Videogame ;
-             rdfs:range :AwardSet .
+             rdfs:range :GameAwardSet .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasExclusivePlatform
@@ -60,19 +61,15 @@
 :hasMemberAward rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> ;
                 owl:inverseOf :isMemberOfAwardSet ;
-                rdfs:domain :AwardSet ;
-                rdfs:range :Award .
+                rdfs:domain :GameAwardSet ;
+                rdfs:range :GameAward .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasPlatform
 :hasPlatform rdf:type owl:ObjectProperty ;
+             owl:inverseOf <https://www.wikidata.org/wiki/Q613354#isPlatformFor> ;
              rdfs:domain :Videogame ;
              rdfs:range :Platform .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#hasPlatformRole
-:hasPlatformRole rdf:type owl:ObjectProperty ;
-                 owl:inverseOf :isPlatformRoleOf .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasWorkerRole
@@ -84,10 +81,6 @@
 ###  http://www.videogamesAwards.org/videogamesAwards2020#isMemberOfAwardSet
 :isMemberOfAwardSet rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#isPlatformRoleOf
-:isPlatformRoleOf rdf:type owl:ObjectProperty .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#makeReview
@@ -119,18 +112,37 @@
          rdfs:range :Board .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#worksForBoard
-:worksForBoard rdf:type owl:ObjectProperty ;
-               owl:propertyChainAxiom ( :hasWorkerRole
-                                        :roleFor
-                                      ) .
+###  https://www.wikidata.org/wiki/Q613354#categoryAwardRefersTo
+<https://www.wikidata.org/wiki/Q613354#categoryAwardRefersTo> rdf:type owl:ObjectProperty ;
+                                                              rdfs:domain <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
+                                                              rdfs:range :Genre .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#worksForNewspaper
-:worksForNewspaper rdf:type owl:ObjectProperty ;
-                   owl:propertyChainAxiom ( :worksForBoard
-                                            :boardIsPartOfNewspaper
-                                          ) .
+###  https://www.wikidata.org/wiki/Q613354#gameHasAward
+<https://www.wikidata.org/wiki/Q613354#gameHasAward> rdf:type owl:ObjectProperty ;
+                                                     owl:propertyChainAxiom ( :hasAwardSet
+                                                                              :hasMemberAward
+                                                                            ) .
+
+
+###  https://www.wikidata.org/wiki/Q613354#gameHasAward2
+<https://www.wikidata.org/wiki/Q613354#gameHasAward2> rdf:type owl:ObjectProperty ;
+                                                      rdfs:subPropertyOf <https://www.wikidata.org/wiki/Q613354#gameHasAward> ;
+                                                      rdfs:domain :Videogame ;
+                                                      rdfs:range :GameAward .
+
+
+###  https://www.wikidata.org/wiki/Q613354#isAwardSetOf
+<https://www.wikidata.org/wiki/Q613354#isAwardSetOf> rdf:type owl:ObjectProperty .
+
+
+###  https://www.wikidata.org/wiki/Q613354#isPlatformFor
+<https://www.wikidata.org/wiki/Q613354#isPlatformFor> rdf:type owl:ObjectProperty .
+
+
+###  https://www.wikidata.org/wiki/Q613354#worksFor
+<https://www.wikidata.org/wiki/Q613354#worksFor> rdf:type owl:ObjectProperty ,
+                                                          owl:TransitiveProperty .
 
 
 #################################################################
@@ -139,7 +151,7 @@
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardHasYear
 :awardHasYear rdf:type owl:DatatypeProperty ;
-              rdfs:domain :Award ;
+              rdfs:domain :GameAward ;
               rdfs:range xsd:positiveInteger .
 
 
@@ -164,15 +176,6 @@
 #################################################################
 #    Classes
 #################################################################
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#Award
-:Award rdf:type owl:Class .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#AwardSet
-:AwardSet rdf:type owl:Class ;
-          rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> .
-
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Board
 :Board rdf:type owl:Class .
@@ -221,6 +224,15 @@
               owl:disjointWith :VideoGamerReview .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#GameAward
+:GameAward rdf:type owl:Class .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#GameAwardSet
+:GameAwardSet rdf:type owl:Class ;
+              rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#GameReviewer
 :GameReviewer rdf:type owl:Class ;
               rdfs:subClassOf :WorkerRole .
@@ -233,16 +245,6 @@
 ###  http://www.videogamesAwards.org/videogamesAwards2020#HomeConsole
 :HomeConsole rdf:type owl:Class ;
              rdfs:subClassOf :Console .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#Hybrid
-:Hybrid rdf:type owl:Class ;
-        owl:equivalentClass [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasGenre ;
-                              owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-                              owl:onClass :Genre
-                            ] ;
-        rdfs:subClassOf :Videogame .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Multiplatform
@@ -266,7 +268,10 @@
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Platform
-:Platform rdf:type owl:Class .
+:Platform rdf:type owl:Class ;
+          owl:disjointUnionOf ( :Physical
+                                :Virtual
+                              ) .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#PortableConsole
@@ -319,17 +324,60 @@
 :WorkerRole rdf:type owl:Class .
 
 
+###  https://www.wikidata.org/wiki/Q613354#CategoryGameAward
+<https://www.wikidata.org/wiki/Q613354#CategoryGameAward> rdf:type owl:Class ;
+                                                          rdfs:subClassOf :GameAward .
+
+
+###  https://www.wikidata.org/wiki/Q613354#GameOfTheYear
+<https://www.wikidata.org/wiki/Q613354#GameOfTheYear> rdf:type owl:Class ;
+                                                      rdfs:subClassOf <https://www.wikidata.org/wiki/Q613354#SpecialGameAward> .
+
+
+###  https://www.wikidata.org/wiki/Q613354#MustHave
+<https://www.wikidata.org/wiki/Q613354#MustHave> rdf:type owl:Class ;
+                                                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://www.wikidata.org/wiki/Q613354#gameHasAward2> ;
+                                                                       owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                       owl:onClass :GameAward
+                                                                     ] ;
+                                                 rdfs:subClassOf :Videogame .
+
+
+###  https://www.wikidata.org/wiki/Q613354#SpecialGameAward
+<https://www.wikidata.org/wiki/Q613354#SpecialGameAward> rdf:type owl:Class ;
+                                                         rdfs:subClassOf :GameAward .
+
+
+###  https://www.wikidata.org/wiki/Q613354#SuccessPlatform
+<https://www.wikidata.org/wiki/Q613354#SuccessPlatform> rdf:type owl:Class ;
+                                                        owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <https://www.wikidata.org/wiki/Q613354#isPlatformFor> ;
+                                                                              owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                                                              owl:onClass <https://www.wikidata.org/wiki/Q613354#MustHave>
+                                                                            ] ;
+                                                        rdfs:subClassOf :Platform .
+
+
 #################################################################
 #    Individuals
 #################################################################
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#pippo
-:pippo rdf:type owl:NamedIndividual ;
-       :makeReview :review .
+###  https://www.wikidata.org/wiki/Q613354#ign
+<https://www.wikidata.org/wiki/Q613354#ign> rdf:type owl:NamedIndividual ,
+                                                     :Newspaper .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#review
-:review rdf:type owl:NamedIndividual .
+###  https://www.wikidata.org/wiki/Q613354#pippo
+<https://www.wikidata.org/wiki/Q613354#pippo> rdf:type owl:NamedIndividual ,
+                                                       :Worker ;
+                                              <https://www.wikidata.org/wiki/Q613354#worksFor> <https://www.wikidata.org/wiki/Q613354#redazione> .
+
+
+###  https://www.wikidata.org/wiki/Q613354#redazione
+<https://www.wikidata.org/wiki/Q613354#redazione> rdf:type owl:NamedIndividual ,
+                                                           :Board ;
+                                                  <https://www.wikidata.org/wiki/Q613354#worksFor> <https://www.wikidata.org/wiki/Q613354#ign> .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

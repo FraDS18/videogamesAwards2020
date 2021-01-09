@@ -13,18 +13,25 @@
 #    Object Properties
 #################################################################
 
+###  http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf
+<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> rdf:type owl:FunctionalProperty .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardAssignedByBoard
 :awardAssignedByBoard rdf:type owl:ObjectProperty ;
-                      owl:inverseOf :boardAssignAward .
+                      owl:inverseOf :boardAssignAward ;
+                      rdf:type owl:InverseFunctionalProperty .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardAssignedByNewspaper
 :awardAssignedByNewspaper rdf:type owl:ObjectProperty ;
-                          owl:inverseOf :newspaperAssignAward .
+                          owl:inverseOf :newspaperAssignAward ;
+                          rdf:type owl:InverseFunctionalProperty .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#boardAssignAward
-:boardAssignAward rdf:type owl:ObjectProperty ;
+:boardAssignAward rdf:type owl:ObjectProperty ,
+                           owl:FunctionalProperty ;
                   rdfs:domain :Board ;
                   rdfs:range :GameAward .
 
@@ -32,6 +39,7 @@
 ###  http://www.videogamesAwards.org/videogamesAwards2020#boardIsPartOfNewspaper
 :boardIsPartOfNewspaper rdf:type owl:ObjectProperty ;
                         owl:inverseOf :newspaperContainsBoard ;
+                        rdf:type owl:FunctionalProperty ;
                         rdfs:domain :Board ;
                         rdfs:range :Newspaper .
 
@@ -39,16 +47,9 @@
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAwardSet
 :hasAwardSet rdf:type owl:ObjectProperty ;
              owl:inverseOf <https://www.wikidata.org/wiki/Q613354#isAwardSetOf> ;
+             rdf:type owl:FunctionalProperty ;
              rdfs:domain :Videogame ;
              rdfs:range :GameAwardSet .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#hasExclusivePlatform
-:hasExclusivePlatform rdf:type owl:ObjectProperty ;
-                      rdfs:subPropertyOf :hasPlatform ;
-                      rdf:type owl:FunctionalProperty ;
-                      rdfs:domain :Exclusive ;
-                      rdfs:range :Platform .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasGenre
@@ -102,18 +103,26 @@
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#reviewIsAbout
 :reviewIsAbout rdf:type owl:ObjectProperty ;
+               owl:inverseOf :videogameHasReview ;
+               rdf:type owl:FunctionalProperty ;
                rdfs:domain :Review ;
                rdfs:range :Videogame .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#roleFor
-:roleFor rdf:type owl:ObjectProperty ;
+:roleFor rdf:type owl:ObjectProperty ,
+                  owl:FunctionalProperty ;
          rdfs:domain :WorkerRole ;
          rdfs:range :Board .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#videogameHasReview
+:videogameHasReview rdf:type owl:ObjectProperty .
+
+
 ###  https://www.wikidata.org/wiki/Q613354#categoryAwardRefersTo
-<https://www.wikidata.org/wiki/Q613354#categoryAwardRefersTo> rdf:type owl:ObjectProperty ;
+<https://www.wikidata.org/wiki/Q613354#categoryAwardRefersTo> rdf:type owl:ObjectProperty ,
+                                                                       owl:FunctionalProperty ;
                                                               rdfs:domain <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
                                                               rdfs:range :Genre .
 
@@ -125,15 +134,9 @@
                                                                             ) .
 
 
-###  https://www.wikidata.org/wiki/Q613354#gameHasAward2
-<https://www.wikidata.org/wiki/Q613354#gameHasAward2> rdf:type owl:ObjectProperty ;
-                                                      rdfs:subPropertyOf <https://www.wikidata.org/wiki/Q613354#gameHasAward> ;
-                                                      rdfs:domain :Videogame ;
-                                                      rdfs:range :GameAward .
-
-
 ###  https://www.wikidata.org/wiki/Q613354#isAwardSetOf
-<https://www.wikidata.org/wiki/Q613354#isAwardSetOf> rdf:type owl:ObjectProperty .
+<https://www.wikidata.org/wiki/Q613354#isAwardSetOf> rdf:type owl:ObjectProperty ,
+                                                              owl:InverseFunctionalProperty .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#isPlatformFor
@@ -155,10 +158,10 @@
               rdfs:range xsd:positiveInteger .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#hasDescription
-:hasDescription rdf:type owl:DatatypeProperty ;
-                rdfs:domain :Videogame ;
-                rdfs:range xsd:string .
+###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRating
+:hasAverageRating rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Videogame ;
+                  rdfs:range xsd:integer .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasReleaseDate
@@ -167,38 +170,98 @@
                 rdfs:range xsd:dateTime .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#hasScore
+:hasScore rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdfs:domain :Review ;
+          rdfs:range xsd:integer .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasTitle
 :hasTitle rdf:type owl:DatatypeProperty ;
           rdfs:domain :Videogame ;
           rdfs:range xsd:string .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#platformName
+:platformName rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Platform ;
+              rdfs:range xsd:string .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#requiredMinBandiwith
+:requiredMinBandiwith rdf:type owl:DatatypeProperty ;
+                      rdfs:domain :VirtualPlattform ;
+                      rdfs:range xsd:integer .
+
+
 #################################################################
 #    Classes
 #################################################################
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#BadVideoGame
+:BadVideoGame rdf:type owl:Class ;
+              owl:equivalentClass [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasAverageRating ;
+                                    owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                         owl:onDatatype xsd:integer ;
+                                                         owl:withRestrictions ( [ xsd:maxExclusive 6
+                                                                                ]
+                                                                              )
+                                                       ]
+                                  ] ;
+              rdfs:subClassOf :ReviewedVideoGame .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Board
-:Board rdf:type owl:Class .
+:Board rdf:type owl:Class ;
+       rdfs:comment "Rappresenta la redazione che lavora per una testata giornalistica. Essa è di solito formata da un team di lavoratori, ognuno con uno specifico ruolo. Più redazioni confluiscono in una testata giornalistica. Solitamente ogni redazione è specializzata in un settore."@en ;
+       rdfs:label "Board"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Computer
 :Computer rdf:type owl:Class ;
-          rdfs:subClassOf :Physical .
+          rdfs:subClassOf :PhysicalPlatform ;
+          rdfs:comment "Macchina automatizzata programmabile in grado di eseguire sia complessi calcoli matematici (calcolatore) sia altri tipi di elaborazioni. Tra le varie elaborazioni risulta anche l'esecuzione di un videogioco."@en ;
+          rdfs:label "Computer"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Console
 :Console rdf:type owl:Class ;
-         rdfs:subClassOf :Physical .
+         rdfs:subClassOf :PhysicalPlatform ;
+         rdfs:comment "Hardware dedicato principalmente per l'esecuzione dei videogiochi. Ciò che la distingue da un computer è il fatto che una console non permette di eseguire altri programmi che non siano videogochi, essendo un hardware solitamente altamente specializzato."@en ;
+         rdfs:label "Console"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#DecentVideogame
+:DecentVideogame rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasAverageRating ;
+                                       owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                            owl:onDatatype xsd:integer ;
+                                                            owl:withRestrictions ( [ xsd:minExclusive 6
+                                                                                   ]
+                                                                                   [ xsd:maxExclusive 7.5
+                                                                                   ]
+                                                                                 )
+                                                          ]
+                                     ] ;
+                 rdfs:subClassOf :ReviewedVideoGame .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#Digital
+:Digital rdf:type owl:Class ;
+         rdfs:subClassOf :Videogame .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Exclusive
 :Exclusive rdf:type owl:Class ;
-           owl:equivalentClass [ rdf:type owl:Restriction ;
-                                 owl:onProperty :hasExclusivePlatform ;
-                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                 owl:onClass :Platform
-                               ] ;
-           rdfs:subClassOf :Videogame ;
+           rdfs:subClassOf :Videogame ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasPlatform ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass :Platform
+                           ] ;
            owl:disjointWith :Multiplatform .
 
 
@@ -225,12 +288,16 @@
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#GameAward
-:GameAward rdf:type owl:Class .
+:GameAward rdf:type owl:Class ;
+           rdfs:comment "Premio assegnato da una redazione ad un videogioco."@en ;
+           rdfs:label "GameAward"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#GameAwardSet
 :GameAwardSet rdf:type owl:Class ;
-              rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> .
+              rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ;
+              rdfs:comment "Insieme dei premi assegnati da una o più redazioni ad un videogioco specifico."@en ;
+              rdfs:label "GameAwardSet"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#GameReviewer
@@ -239,12 +306,69 @@
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Genre
-:Genre rdf:type owl:Class .
+:Genre rdf:type owl:Class ;
+       owl:equivalentClass [ rdf:type owl:Class ;
+                             owl:oneOf ( :action
+                                         :fps
+                                         :gdr
+                                         :tps
+                                       )
+                           ] ;
+       rdfs:comment "Genere di un videogioco, che caratterizza solitamente il tipo di esperienza e il modo di giocare (gameplay) dello stesso."@en ;
+       rdfs:label "Genre"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#GoodVideoGame
+:GoodVideoGame rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasAverageRating ;
+                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                          owl:onDatatype xsd:integer ;
+                                                          owl:withRestrictions ( [ xsd:minExclusive 7.5
+                                                                                 ]
+                                                                                 [ xsd:maxExclusive 9
+                                                                                 ]
+                                                                               )
+                                                        ]
+                                   ] ;
+               rdfs:subClassOf :ReviewedVideoGame .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#HomeConsole
 :HomeConsole rdf:type owl:Class ;
-             rdfs:subClassOf :Console .
+             rdfs:subClassOf :Console ;
+             rdfs:comment "Console fissa, che necessita di una postazione e di un collegamento alla presa elettrica e/o al monitor/tv."@en ;
+             rdfs:label "HomeConsole"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#Masterpiece
+:Masterpiece rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasAverageRating ;
+                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                        owl:onDatatype xsd:integer ;
+                                                        owl:withRestrictions ( [ xsd:minInclusive 9
+                                                                               ]
+                                                                             )
+                                                      ]
+                                 ] ;
+             rdfs:subClassOf :ReviewedVideoGame .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#Min5GameAwardSet
+:Min5GameAwardSet rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> ;
+                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                             owl:onDatatype xsd:integer ;
+                                                             owl:withRestrictions ( [ xsd:minExclusive 4
+                                                                                    ]
+                                                                                  )
+                                                           ]
+                                      ] ;
+                  rdfs:subClassOf :GameAwardSet ;
+                  rdfs:comment "È un gameawardset con almeno 5 premi. Esso viene usato per classificare un gioco come \"must-have\", ossia un videogioco da avere per forza se si è appassionati."@en ;
+                  rdfs:label "Min5GameAwardSet"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Multiplatform
@@ -257,26 +381,79 @@
                rdfs:subClassOf :Videogame .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#NegativeReview
+:NegativeReview rdf:type owl:Class ;
+                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasScore ;
+                                      owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                           owl:onDatatype xsd:integer ;
+                                                           owl:withRestrictions ( [ xsd:maxExclusive 6
+                                                                                  ]
+                                                                                )
+                                                         ]
+                                    ] ;
+                rdfs:subClassOf :Review .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#NeutralReview
+:NeutralReview rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasScore ;
+                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                          owl:onDatatype xsd:integer ;
+                                                          owl:withRestrictions ( [ xsd:minExclusive 6
+                                                                                 ]
+                                                                                 [ xsd:maxExclusive 7.5
+                                                                                 ]
+                                                                               )
+                                                        ]
+                                   ] ;
+               rdfs:subClassOf :Review .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Newspaper
-:Newspaper rdf:type owl:Class .
+:Newspaper rdf:type owl:Class ;
+           rdfs:comment "È la testata giornalistica che, tra le varie cose, è responsabile delle redazioni che pubblicano recensioni o attribuiscono premi ad un videogioco."@en ;
+           rdfs:label "Newspaper"@en .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#Physical
-:Physical rdf:type owl:Class ;
-          rdfs:subClassOf :Platform ;
-          owl:disjointWith :Virtual .
+###  http://www.videogamesAwards.org/videogamesAwards2020#PhysicalPlatform
+:PhysicalPlatform rdf:type owl:Class ;
+                  rdfs:subClassOf :Platform ;
+                  owl:disjointWith :VirtualPlattform ;
+                  rdfs:comment "Hardware specializzato per la fruizione di un videogioco. Esempi di piattaforme fisiche sono: playstation, xbox, nintendo switch."@en ;
+                  rdfs:label "PhysicalPlatform"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Platform
 :Platform rdf:type owl:Class ;
-          owl:disjointUnionOf ( :Physical
-                                :Virtual
-                              ) .
+          owl:disjointUnionOf ( :PhysicalPlatform
+                                :VirtualPlattform
+                              ) ;
+          rdfs:comment "È il componente (hardware o software) che permette ad un videogioco di essere eseguito."@en ;
+          rdfs:label "Platform"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#PortableConsole
 :PortableConsole rdf:type owl:Class ;
-                 rdfs:subClassOf :Console .
+                 rdfs:subClassOf :Console ;
+                 rdfs:comment """Console dalle dimensioni ridotte, caratterizzata dal fatto che può essere portata in giro. È possibile dunque giocare in mobilità a differenza delle Home Console.
+Un esempio di console portatile è il Nintendo ds, oppure playstation vita."""@en ;
+                 rdfs:label "PortableConsole"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#PositiveReview
+:PositiveReview rdf:type owl:Class ;
+                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                      owl:onProperty :hasScore ;
+                                      owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                           owl:onDatatype xsd:integer ;
+                                                           owl:withRestrictions ( [ xsd:minInclusive 7.5
+                                                                                  ]
+                                                                                )
+                                                         ]
+                                    ] ;
+                rdfs:subClassOf :Review .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Review
@@ -284,6 +461,16 @@
         owl:disjointUnionOf ( :ExpertReview
                               :VideoGamerReview
                             ) .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ReviewedVideoGame
+:ReviewedVideoGame rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Restriction ;
+                                         owl:onProperty :videogameHasReview ;
+                                         owl:minQualifiedCardinality "5"^^xsd:nonNegativeInteger ;
+                                         owl:onClass :Review
+                                       ] ;
+                   rdfs:subClassOf :Videogame .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#User
@@ -311,9 +498,15 @@
             rdfs:subClassOf :User .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#Virtual
-:Virtual rdf:type owl:Class ;
-         rdfs:subClassOf :Platform .
+###  http://www.videogamesAwards.org/videogamesAwards2020#VirtualPlattform
+:VirtualPlattform rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty <https://www.wikidata.org/wiki/Q613354#isPlatformFor> ;
+                                        owl:allValuesFrom :Digital
+                                      ] ;
+                  rdfs:subClassOf :Platform ;
+                  rdfs:comment "Componente esclusivamente software dedicato all'esecuzione di un videogioco. Non si è vincolati all'acquisto di un hardware dedicato esclusivamente al videogioco. Esempi di piattaforma virtuale sono google stadia, geforce now, playstation now e xcloud."@en ;
+                  rdfs:label "VirtualPlatform"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Worker
@@ -326,27 +519,39 @@
 
 ###  https://www.wikidata.org/wiki/Q613354#CategoryGameAward
 <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> rdf:type owl:Class ;
-                                                          rdfs:subClassOf :GameAward .
+                                                          rdfs:subClassOf :GameAward ;
+                                                          rdfs:comment "Premio assegnato in base al genere del videogioco. In questa categoria rientrano i premi del tipo \"Miglior sparatutto\", \"Miglior action\" ecc..."@en ;
+                                                          rdfs:label "CategoryGameAward"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#GameOfTheYear
 <https://www.wikidata.org/wiki/Q613354#GameOfTheYear> rdf:type owl:Class ;
-                                                      rdfs:subClassOf <https://www.wikidata.org/wiki/Q613354#SpecialGameAward> .
+                                                      rdfs:subClassOf <https://www.wikidata.org/wiki/Q613354#SpecialGameAward> ;
+                                                      rdfs:comment "Premio speciale assegnato al migliior gioco di un certo anno, scelto tra tutti i giochi usciti nel medesimo anno."@en ;
+                                                      rdfs:label "GameOfTheYear"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#MustHave
 <https://www.wikidata.org/wiki/Q613354#MustHave> rdf:type owl:Class ;
-                                                 owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                                       owl:onProperty <https://www.wikidata.org/wiki/Q613354#gameHasAward2> ;
-                                                                       owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
-                                                                       owl:onClass :GameAward
+                                                 owl:equivalentClass [ rdf:type owl:Class ;
+                                                                       owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                                                       owl:onProperty :hasAwardSet ;
+                                                                                       owl:someValuesFrom :Min5GameAwardSet
+                                                                                     ]
+                                                                                     [ rdf:type owl:Restriction ;
+                                                                                       owl:onProperty <https://www.wikidata.org/wiki/Q613354#gameHasAward> ;
+                                                                                       owl:someValuesFrom <https://www.wikidata.org/wiki/Q613354#SpecialGameAward>
+                                                                                     ]
+                                                                                   )
                                                                      ] ;
                                                  rdfs:subClassOf :Videogame .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#SpecialGameAward
 <https://www.wikidata.org/wiki/Q613354#SpecialGameAward> rdf:type owl:Class ;
-                                                         rdfs:subClassOf :GameAward .
+                                                         rdfs:subClassOf :GameAward ;
+                                                         rdfs:comment "È un premio speciale, separato dagli altri premi in quanto ha importanza maggiore. Tra questi premi rientrano ad esempio quelli come \"Miglior gioco dell'anno\", \"Miglior gioco della generazione\"; \"Miglior gioco su console\" ecc"@en ;
+                                                         rdfs:label "SpecialGameAward"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#SuccessPlatform
@@ -356,28 +561,29 @@
                                                                               owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
                                                                               owl:onClass <https://www.wikidata.org/wiki/Q613354#MustHave>
                                                                             ] ;
-                                                        rdfs:subClassOf :Platform .
+                                                        rdfs:subClassOf :Platform ;
+                                                        rdfs:comment "Piattaforma (fisica o virtuale) che ha come gioco almeno 3 giochi classificati come must have. Si tratta di piattaforme imprescindibili per qualsiasi appassionato del media."@en ;
+                                                        rdfs:label "SuccessPlatform"@en .
 
 
 #################################################################
 #    Individuals
 #################################################################
 
-###  https://www.wikidata.org/wiki/Q613354#ign
-<https://www.wikidata.org/wiki/Q613354#ign> rdf:type owl:NamedIndividual ,
-                                                     :Newspaper .
+###  http://www.videogamesAwards.org/videogamesAwards2020#action
+:action rdf:type owl:NamedIndividual .
 
 
-###  https://www.wikidata.org/wiki/Q613354#pippo
-<https://www.wikidata.org/wiki/Q613354#pippo> rdf:type owl:NamedIndividual ,
-                                                       :Worker ;
-                                              <https://www.wikidata.org/wiki/Q613354#worksFor> <https://www.wikidata.org/wiki/Q613354#redazione> .
+###  http://www.videogamesAwards.org/videogamesAwards2020#fps
+:fps rdf:type owl:NamedIndividual .
 
 
-###  https://www.wikidata.org/wiki/Q613354#redazione
-<https://www.wikidata.org/wiki/Q613354#redazione> rdf:type owl:NamedIndividual ,
-                                                           :Board ;
-                                                  <https://www.wikidata.org/wiki/Q613354#worksFor> <https://www.wikidata.org/wiki/Q613354#ign> .
+###  http://www.videogamesAwards.org/videogamesAwards2020#gdr
+:gdr rdf:type owl:NamedIndividual .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#tps
+:tps rdf:type owl:NamedIndividual .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

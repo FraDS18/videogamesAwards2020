@@ -14,26 +14,32 @@
 #################################################################
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf
-<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> rdf:type owl:FunctionalProperty .
+<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> rdf:type owl:FunctionalProperty ;
+                                                                               rdfs:comment "qualsiasi cosa può essere membro di una collezione." .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardAssignedByBoard
 :awardAssignedByBoard rdf:type owl:ObjectProperty ;
                       owl:inverseOf :boardAssignAward ;
-                      rdf:type owl:InverseFunctionalProperty .
+                      rdf:type owl:InverseFunctionalProperty ;
+                      rdfs:comment "Un premio è assegnato da una redazione. È l'inverso di \"boardAssignAward\"."@it ;
+                      rdfs:label "awardAssignedByBoard"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardAssignedByNewspaper
 :awardAssignedByNewspaper rdf:type owl:ObjectProperty ;
                           owl:inverseOf :newspaperAssignAward ;
-                          rdf:type owl:InverseFunctionalProperty .
+                          rdfs:comment "Un premio è assegnato da una redazione che lavora per una testata giornalistica, per cui si conclude che il premio è assegnato anche dalla testata giornalistica presso cui la redazione lavora."@it ;
+                          rdfs:label "awardAssignedByNewspaper"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#boardAssignAward
 :boardAssignAward rdf:type owl:ObjectProperty ,
                            owl:FunctionalProperty ;
                   rdfs:domain :Board ;
-                  rdfs:range :GameAward .
+                  rdfs:range :GameAward ;
+                  rdfs:comment "Una redazione può assegnare un premio ad un gioco. È l'inverso della property \"awardAssignedByBoard\"."@it ;
+                  rdfs:label "boardAssignAward"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#boardIsPartOfNewspaper
@@ -41,7 +47,9 @@
                         owl:inverseOf :newspaperContainsBoard ;
                         rdf:type owl:FunctionalProperty ;
                         rdfs:domain :Board ;
-                        rdfs:range :Newspaper .
+                        rdfs:range :Newspaper ;
+                        rdfs:comment "Una redazione (board) appartiene ad una testata giornalistica (newspaper). È l'inverso di \"newspaperContainersBoard\""@it ;
+                        rdfs:label "boardsPartOfNewspaper"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAwardSet
@@ -49,13 +57,17 @@
              owl:inverseOf <https://www.wikidata.org/wiki/Q613354#isAwardSetOf> ;
              rdf:type owl:FunctionalProperty ;
              rdfs:domain :Videogame ;
-             rdfs:range :GameAwardSet .
+             rdfs:range :GameAwardSet ;
+             rdfs:comment "Esprime la relazione secondo la quale un videogioco ha un insieme di premi (gameAwardSet). È l'inverso di \"isAwardSetOf\"."@it ;
+             rdfs:label "hasAwardSet"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasGenre
 :hasGenre rdf:type owl:ObjectProperty ;
           rdfs:domain :Videogame ;
-          rdfs:range :Genre .
+          rdfs:range :Genre ;
+          rdfs:comment "Un videogioco appartiene a uno o più generi videoludici."@it ;
+          rdfs:label "hasGenre"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasMemberAward
@@ -63,42 +75,58 @@
                 rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> ;
                 owl:inverseOf :isMemberOfAwardSet ;
                 rdfs:domain :GameAwardSet ;
-                rdfs:range :GameAward .
+                rdfs:range :GameAward ;
+                rdfs:comment "Relazione più specifica tra un insieme di premi (gameAwardSet) e un premio (gameAward). Un gameAward set può avere come membro uno o più gameAward."@it ;
+                rdfs:label "hasMemberAward"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasPlatform
 :hasPlatform rdf:type owl:ObjectProperty ;
              owl:inverseOf <https://www.wikidata.org/wiki/Q613354#isPlatformFor> ;
              rdfs:domain :Videogame ;
-             rdfs:range :Platform .
+             rdfs:range :Platform ;
+             rdfs:comment "Un videogioco viene pubblicato su una piattaforma. È l'inverso di \"isPlatformFor\"."@it ;
+             rdfs:label "hasPlatform"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasWorkerRole
 :hasWorkerRole rdf:type owl:ObjectProperty ;
                rdfs:domain :Worker ;
-               rdfs:range :WorkerRole .
+               rdfs:range :WorkerRole ;
+               rdfs:comment "Un lavoratore (worker) ha un ruolo all'interno di una redazione."@it ;
+               rdfs:label "hasWorkerRole"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#isMemberOfAwardSet
 :isMemberOfAwardSet rdf:type owl:ObjectProperty ;
-                    rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> .
+                    rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> ;
+                    rdf:type owl:FunctionalProperty ;
+                    rdfs:comment "Un premio è membro di un award-set (insieme di premi)."@it ;
+                    rdfs:label "isMemberOfAwardSet"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#makeReview
 :makeReview rdf:type owl:ObjectProperty ;
+            owl:inverseOf :reviewMadeBy ;
             rdfs:domain :User ;
-            rdfs:range :Review .
+            rdfs:range :Review ;
+            rdfs:comment "Un utente effettua una recensione per un gioco." ;
+            rdfs:label "makeReview"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaperAssignAward
 :newspaperAssignAward rdf:type owl:ObjectProperty ;
                       owl:propertyChainAxiom ( :newspaperContainsBoard
                                                :boardAssignAward
-                                             ) .
+                                             ) ;
+                      rdfs:comment "Permette di stabilire quali sono i premi assegnati da una testata giornalistica ad uno specifico gioco." ;
+                      rdfs:label "newspaperAssignAward"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaperContainsBoard
-:newspaperContainsBoard rdf:type owl:ObjectProperty .
+:newspaperContainsBoard rdf:type owl:ObjectProperty ;
+                        rdfs:comment "Esprime la relazione secondo cui una testata giornalistica (newspaper) contiene diverse redazioni che lavorano per essa." ;
+                        rdfs:label "newspaperContainsBoard"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#reviewIsAbout
@@ -106,46 +134,69 @@
                owl:inverseOf :videogameHasReview ;
                rdf:type owl:FunctionalProperty ;
                rdfs:domain :Review ;
-               rdfs:range :Videogame .
+               rdfs:range :Videogame ;
+               rdfs:comment "La recensione riguarda un gioco in particolare." ;
+               rdfs:label "reviewIsAbout"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#reviewMadeBy
+:reviewMadeBy rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:comment "Una review è effettuata da un utente. È l'inverso di \"makeReview\"."@it ;
+              rdfs:label "reviewMadeBy"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#roleFor
 :roleFor rdf:type owl:ObjectProperty ,
                   owl:FunctionalProperty ;
          rdfs:domain :WorkerRole ;
-         rdfs:range :Board .
+         rdfs:range :Board ;
+         rdfs:comment "Il ruolo viene svolto per una specifica redazione."@it ;
+         rdfs:label "roleFor"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogameHasReview
-:videogameHasReview rdf:type owl:ObjectProperty .
+:videogameHasReview rdf:type owl:ObjectProperty ;
+                    rdfs:comment "Videogioco ha una (o più) recensioni effettuate da utenti."@it ;
+                    rdfs:label "videogameHasReview"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#categoryAwardRefersTo
 <https://www.wikidata.org/wiki/Q613354#categoryAwardRefersTo> rdf:type owl:ObjectProperty ,
                                                                        owl:FunctionalProperty ;
                                                               rdfs:domain <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
-                                                              rdfs:range :Genre .
+                                                              rdfs:range :Genre ;
+                                                              rdfs:comment "Relazione che permette al categoryGameAward di riferirsi ad un genere specifico."@it ;
+                                                              rdfs:label "categoryAwardRefersTo"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#gameHasAward
 <https://www.wikidata.org/wiki/Q613354#gameHasAward> rdf:type owl:ObjectProperty ;
                                                      owl:propertyChainAxiom ( :hasAwardSet
                                                                               :hasMemberAward
-                                                                            ) .
+                                                                            ) ;
+                                                     rdfs:comment "La relazione permette di ricavare i premi di uno specifico gioco. La relazione è realizzata attraverso la property chain \"hasAwarSet o hasMemberAward\"."@it ;
+                                                     rdfs:label "gameHasAward"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#isAwardSetOf
 <https://www.wikidata.org/wiki/Q613354#isAwardSetOf> rdf:type owl:ObjectProperty ,
-                                                              owl:InverseFunctionalProperty .
+                                                              owl:InverseFunctionalProperty ;
+                                                     rdfs:comment "Un award set appartiene ad un videogioco. È ottenuto come inverso di \"hasAwardSet\"." ;
+                                                     rdfs:label "isAwardSetOf"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#isPlatformFor
-<https://www.wikidata.org/wiki/Q613354#isPlatformFor> rdf:type owl:ObjectProperty .
+<https://www.wikidata.org/wiki/Q613354#isPlatformFor> rdf:type owl:ObjectProperty ;
+                                                      rdfs:comment "Esprime la piattaforma di un videogioco. È ottenuta come inverso di \"hasPlatform\"." ;
+                                                      rdfs:label "isPlatformFor"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#worksFor
 <https://www.wikidata.org/wiki/Q613354#worksFor> rdf:type owl:ObjectProperty ,
-                                                          owl:TransitiveProperty .
+                                                          owl:TransitiveProperty ;
+                                                 rdfs:comment "Esprime la relazione di lavorare per qualcuno/qualcosa. Ad esempio il redattore lavora per una redazione che a sua volta lavora per una testata giornalistica." ;
+                                                 rdfs:label "worksFor"@en .
 
 
 #################################################################
@@ -211,27 +262,27 @@
                                                        ]
                                   ] ;
               rdfs:subClassOf :ReviewedVideoGame ;
-              rdfs:comment "Un videogioco è classificato come bad se ha un voto medio minore di 6"@en ;
+              rdfs:comment "Un videogioco è classificato come bad se ha un voto medio minore di 6"@it ;
               rdfs:label "BadVideoGame"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Board
 :Board rdf:type owl:Class ;
-       rdfs:comment "Rappresenta la redazione che lavora per una testata giornalistica. Essa è di solito formata da un team di lavoratori, ognuno con uno specifico ruolo. Più redazioni confluiscono in una testata giornalistica. Solitamente ogni redazione è specializzata in un settore."@en ;
+       rdfs:comment "Rappresenta la redazione che lavora per una testata giornalistica. Essa è di solito formata da un team di lavoratori, ognuno con uno specifico ruolo. Più redazioni confluiscono in una testata giornalistica. Solitamente ogni redazione è specializzata in un settore."@it ;
        rdfs:label "Board"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Computer
 :Computer rdf:type owl:Class ;
           rdfs:subClassOf :PhysicalPlatform ;
-          rdfs:comment "Macchina automatizzata programmabile in grado di eseguire sia complessi calcoli matematici (calcolatore) sia altri tipi di elaborazioni. Tra le varie elaborazioni risulta anche l'esecuzione di un videogioco."@en ;
+          rdfs:comment "Macchina automatizzata programmabile in grado di eseguire sia complessi calcoli matematici (calcolatore) sia altri tipi di elaborazioni. Tra le varie elaborazioni risulta anche l'esecuzione di un videogioco."@it ;
           rdfs:label "Computer"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Console
 :Console rdf:type owl:Class ;
          rdfs:subClassOf :PhysicalPlatform ;
-         rdfs:comment "Hardware dedicato principalmente per l'esecuzione dei videogiochi. Ciò che la distingue da un computer è il fatto che una console non permette di eseguire altri programmi che non siano videogochi, essendo un hardware solitamente altamente specializzato."@en ;
+         rdfs:comment "Hardware dedicato principalmente per l'esecuzione dei videogiochi. Ciò che la distingue da un computer è il fatto che una console non permette di eseguire altri programmi che non siano videogochi, essendo un hardware solitamente altamente specializzato."@it ;
          rdfs:label "Console"@en .
 
 
@@ -249,14 +300,14 @@
                                                           ]
                                      ] ;
                  rdfs:subClassOf :ReviewedVideoGame ;
-                 rdfs:comment "Un videogioco è classificato come \"decente\" se ha un voto compreso tra 6 e 7.5 esclusi."@en ;
+                 rdfs:comment "Un videogioco è classificato come \"decente\" se ha un voto compreso tra 6 e 7.5 esclusi."@it ;
                  rdfs:label "DecentVIdeogame"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Digital
 :Digital rdf:type owl:Class ;
          rdfs:subClassOf :Videogame ;
-         rdfs:comment "Per digitale si intende un videogiocho che viene venduto  solo in forma digitale. Può essere quindi acquistato su degli store specifici."@en ;
+         rdfs:comment "Per digitale si intende un videogiocho che viene venduto  solo in forma digitale. Può essere quindi acquistato su degli store specifici."@it ;
          rdfs:label "Digital"@en .
 
 
@@ -269,7 +320,7 @@
                              owl:onClass :Platform
                            ] ;
            owl:disjointWith :Multiplatform ;
-           rdfs:comment "Per esclusiva si intende un videogioco che viene rilasciato per una sola piattaforma di gioco."@en ;
+           rdfs:comment "Per esclusiva si intende un videogioco che viene rilasciato per una sola piattaforma di gioco."@it ;
            rdfs:label "Exclusive"@en .
 
 
@@ -287,35 +338,39 @@
                               rdf:type owl:Class
                             ] ;
         rdfs:subClassOf :User ;
-        rdfs:comment "Per utente esperto si intende colui che lavora per una redazione come recensore di videogiochi e che rilascia quindi recensioni esperte."@en ;
+        rdfs:comment "Per utente esperto si intende colui che lavora per una redazione come recensore di videogiochi e che rilascia quindi recensioni esperte."@it ;
         rdfs:label "Expert"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#ExpertReview
 :ExpertReview rdf:type owl:Class ;
+              owl:equivalentClass [ rdf:type owl:Restriction ;
+                                    owl:onProperty :reviewMadeBy ;
+                                    owl:allValuesFrom :Expert
+                                  ] ;
               rdfs:subClassOf :Review ;
               owl:disjointWith :VideoGamerReview ;
-              rdfs:comment "Recensione rilasciata solo dagli utenti esperti, ovvero quelli che lavorano per una redazione come recensori di videogiochi"@en ;
+              rdfs:comment "Recensione rilasciata solo dagli utenti esperti, ovvero quelli che lavorano per una redazione come recensori di videogiochi"@it ;
               rdfs:label "ExpertReview"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#GameAward
 :GameAward rdf:type owl:Class ;
-           rdfs:comment "Premio assegnato da una redazione ad un videogioco."@en ;
+           rdfs:comment "Premio assegnato da una redazione ad un videogioco."@it ;
            rdfs:label "GameAward"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#GameAwardSet
 :GameAwardSet rdf:type owl:Class ;
               rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ;
-              rdfs:comment "Insieme dei premi assegnati da una o più redazioni ad un videogioco specifico."@en ;
+              rdfs:comment "Insieme dei premi assegnati da una o più redazioni ad un videogioco specifico."@it ;
               rdfs:label "GameAwardSet"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#GameReviewer
 :GameReviewer rdf:type owl:Class ;
               rdfs:subClassOf :WorkerRole ;
-              rdfs:comment "Il recensore di videogame è un ruolo preciso che si può svolgere in una redazione. Questo ruolo prevede di scrivere recensioni per i videogiochi della piattaforma."@en ;
+              rdfs:comment "Il recensore di videogame è un ruolo preciso che si può svolgere in una redazione. Questo ruolo prevede di scrivere recensioni per i videogiochi della piattaforma."@it ;
               rdfs:label "GameReviewer"@en .
 
 
@@ -328,7 +383,7 @@
                                          :tps
                                        )
                            ] ;
-       rdfs:comment "Genere di un videogioco, che caratterizza solitamente il tipo di esperienza e il modo di giocare (gameplay) dello stesso."@en ;
+       rdfs:comment "Genere di un videogioco, che caratterizza solitamente il tipo di esperienza e il modo di giocare (gameplay) dello stesso."@it ;
        rdfs:label "Genre"@en .
 
 
@@ -346,14 +401,14 @@
                                                         ]
                                    ] ;
                rdfs:subClassOf :ReviewedVideoGame ;
-               rdfs:comment "Un videogioco è classificato come \"good\" se ha un voto compreso tra 7.5 e 9 esclusi"@en ;
+               rdfs:comment "Un videogioco è classificato come \"good\" se ha un voto compreso tra 7.5 e 9 esclusi"@it ;
                rdfs:label "GoodVideoGame"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#HomeConsole
 :HomeConsole rdf:type owl:Class ;
              rdfs:subClassOf :Console ;
-             rdfs:comment "Console fissa, che necessita di una postazione e di un collegamento alla presa elettrica e/o al monitor/tv."@en ;
+             rdfs:comment "Console fissa, che necessita di una postazione e di un collegamento alla presa elettrica e/o al monitor/tv."@it ;
              rdfs:label "HomeConsole"@en .
 
 
@@ -369,7 +424,7 @@
                                                       ]
                                  ] ;
              rdfs:subClassOf :ReviewedVideoGame ;
-             rdfs:comment "Un videogioco è classificato come \"masterpiece\" se ha un voto maggiore di 9"@en ;
+             rdfs:comment "Un videogioco è classificato come \"masterpiece\" se ha un voto maggiore di 9"@it ;
              rdfs:label "Masterpiece"@en .
 
 
@@ -385,7 +440,7 @@
                                                            ]
                                       ] ;
                   rdfs:subClassOf :GameAwardSet ;
-                  rdfs:comment "È un gameawardset con almeno 5 premi. Esso viene usato per classificare un gioco come \"must-have\", ossia un videogioco da avere per forza se si è appassionati."@en ;
+                  rdfs:comment "È un gameawardset con almeno 5 premi. Esso viene usato per classificare un gioco come \"must-have\", ossia un videogioco da avere per forza se si è appassionati."@it ;
                   rdfs:label "Min5GameAwardSet"@en .
 
 
@@ -397,7 +452,7 @@
                                      owl:onClass :Platform
                                    ] ;
                rdfs:subClassOf :Videogame ;
-               rdfs:comment "per multipiattaforma si intende un vidieogioco che viene rilasciato su più di una piattaforma di gioco, ad esempio può essere acquistato e giocato sia su Playstation4 che Xbox S."@en ;
+               rdfs:comment "per multipiattaforma si intende un vidieogioco che viene rilasciato su più di una piattaforma di gioco, ad esempio può essere acquistato e giocato sia su Playstation4 che Xbox S."@it ;
                rdfs:label "Mltiplatform"@en .
 
 
@@ -413,7 +468,7 @@
                                                          ]
                                     ] ;
                 rdfs:subClassOf :Review ;
-                rdfs:comment "Recensione il cui voto è minore di 6"@en ;
+                rdfs:comment "Recensione il cui voto è minore di 6"@it ;
                 rdfs:label "NegativeReview"@en .
 
 
@@ -431,13 +486,13 @@
                                                         ]
                                    ] ;
                rdfs:subClassOf :Review ;
-               rdfs:comment "Recensione con un voto compreso tra 6 e 7.5 esclusi."@en ;
+               rdfs:comment "Recensione con un voto compreso tra 6 e 7.5 esclusi."@it ;
                rdfs:label "NeutralReview"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Newspaper
 :Newspaper rdf:type owl:Class ;
-           rdfs:comment "È la testata giornalistica che, tra le varie cose, è responsabile delle redazioni che pubblicano recensioni o attribuiscono premi ad un videogioco."@en ;
+           rdfs:comment "È la testata giornalistica che, tra le varie cose, è responsabile delle redazioni che pubblicano recensioni o attribuiscono premi ad un videogioco."@it ;
            rdfs:label "Newspaper"@en .
 
 
@@ -445,7 +500,7 @@
 :PhysicalPlatform rdf:type owl:Class ;
                   rdfs:subClassOf :Platform ;
                   owl:disjointWith :VirtualPlattform ;
-                  rdfs:comment "Hardware specializzato per la fruizione di un videogioco. Esempi di piattaforme fisiche sono: playstation, xbox, nintendo switch."@en ;
+                  rdfs:comment "Hardware specializzato per la fruizione di un videogioco. Esempi di piattaforme fisiche sono: playstation, xbox, nintendo switch."@it ;
                   rdfs:label "PhysicalPlatform"@en .
 
 
@@ -454,7 +509,7 @@
           owl:disjointUnionOf ( :PhysicalPlatform
                                 :VirtualPlattform
                               ) ;
-          rdfs:comment "È il componente (hardware o software) che permette ad un videogioco di essere eseguito."@en ;
+          rdfs:comment "È il componente (hardware o software) che permette ad un videogioco di essere eseguito."@it ;
           rdfs:label "Platform"@en .
 
 
@@ -462,7 +517,7 @@
 :PortableConsole rdf:type owl:Class ;
                  rdfs:subClassOf :Console ;
                  rdfs:comment """Console dalle dimensioni ridotte, caratterizzata dal fatto che può essere portata in giro. È possibile dunque giocare in mobilità a differenza delle Home Console.
-Un esempio di console portatile è il Nintendo ds, oppure playstation vita."""@en ;
+Un esempio di console portatile è il Nintendo ds, oppure playstation vita."""@it ;
                  rdfs:label "PortableConsole"@en .
 
 
@@ -478,7 +533,7 @@ Un esempio di console portatile è il Nintendo ds, oppure playstation vita."""@e
                                                          ]
                                     ] ;
                 rdfs:subClassOf :Review ;
-                rdfs:comment "Recensione con un voto superiore a 7.5"@en ;
+                rdfs:comment "Recensione con un voto superiore a 7.5"@it ;
                 rdfs:label "PositiveReview"@en .
 
 
@@ -500,7 +555,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                                          owl:onClass :Review
                                        ] ;
                    rdfs:subClassOf :Videogame ;
-                   rdfs:comment "Per videogiochi recensiti si intendono quei videogiochi che hanno ricevuto almeno recensioni (sia da videogiocatori che da esperti)."@en ;
+                   rdfs:comment "Per videogiochi recensiti si intendono quei videogiochi che hanno ricevuto almeno recensioni (sia da videogiocatori che da esperti)."@it ;
                    rdfs:label "ReviewdVideGame"@en .
 
 
@@ -513,7 +568,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#VideoGamerReview
 :VideoGamerReview rdf:type owl:Class ;
                   rdfs:subClassOf :Review ;
-                  rdfs:comment "Recensione rilasciata dai videogiocatori appassionati, che non sono esperti del settore e non lavorano quindi per nessuna testata giornalistica."@en ;
+                  rdfs:comment "Recensione rilasciata dai videogiocatori appassionati, che non sono esperti del settore e non lavorano quindi per nessuna testata giornalistica."@it ;
                   rdfs:label "VideoGamerReview"@en .
 
 
@@ -533,7 +588,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                                   owl:someValuesFrom :VideoGamerReview
                                 ] ;
             rdfs:subClassOf :User ;
-            rdfs:comment "Per videogiocatore si intende un utente appassionato di videogiochi che si registra alla piattaforma per vedere alcuni contenuti e rilasciare semplici recensioni. Esso non lavora per alcuna testata giornalistica"@en ;
+            rdfs:comment "Per videogiocatore si intende un utente appassionato di videogiochi che si registra alla piattaforma per vedere alcuni contenuti e rilasciare semplici recensioni. Esso non lavora per alcuna testata giornalistica"@it ;
             rdfs:label "Videogamer"@en .
 
 
@@ -544,33 +599,33 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                                         owl:allValuesFrom :Digital
                                       ] ;
                   rdfs:subClassOf :Platform ;
-                  rdfs:comment "Componente esclusivamente software dedicato all'esecuzione di un videogioco. Non si è vincolati all'acquisto di un hardware dedicato esclusivamente al videogioco. Esempi di piattaforma virtuale sono google stadia, geforce now, playstation now e xcloud."@en ;
+                  rdfs:comment "Componente esclusivamente software dedicato all'esecuzione di un videogioco. Non si è vincolati all'acquisto di un hardware dedicato esclusivamente al videogioco. Esempi di piattaforma virtuale sono google stadia, geforce now, playstation now e xcloud."@it ;
                   rdfs:label "VirtualPlatform"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Worker
 :Worker rdf:type owl:Class ;
-        rdfs:comment "Per worker di intende una persoa che lavora per una o più redazioni di una qualche testata giornalistica. Esso potrà svolgere un ruolo specifico a seconda della redazione in cui lavoriamo."@en ;
+        rdfs:comment "Per worker di intende una persoa che lavora per una o più redazioni di una qualche testata giornalistica. Esso potrà svolgere un ruolo specifico a seconda della redazione in cui lavoriamo."@it ;
         rdfs:label "Worker"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#WorkerRole
 :WorkerRole rdf:type owl:Class ;
-            rdfs:comment "Questa classe rappresenta i ruoli che si possono avere all'interno di una testata giornalistica, ad esempio: giornalista, recensore di videogame, redattore, ecc..."@en ;
+            rdfs:comment "Questa classe rappresenta i ruoli che si possono avere all'interno di una testata giornalistica, ad esempio: giornalista, recensore di videogame, redattore, ecc..."@it ;
             rdfs:label "WorkerRole"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#CategoryGameAward
 <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> rdf:type owl:Class ;
                                                           rdfs:subClassOf :GameAward ;
-                                                          rdfs:comment "Premio assegnato in base al genere del videogioco. In questa categoria rientrano i premi del tipo \"Miglior sparatutto\", \"Miglior action\" ecc..."@en ;
+                                                          rdfs:comment "Premio assegnato in base al genere del videogioco. In questa categoria rientrano i premi del tipo \"Miglior sparatutto\", \"Miglior action\" ecc..."@it ;
                                                           rdfs:label "CategoryGameAward"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#GameOfTheYear
 <https://www.wikidata.org/wiki/Q613354#GameOfTheYear> rdf:type owl:Class ;
                                                       rdfs:subClassOf <https://www.wikidata.org/wiki/Q613354#SpecialGameAward> ;
-                                                      rdfs:comment "Premio speciale assegnato al migliior gioco di un certo anno, scelto tra tutti i giochi usciti nel medesimo anno."@en ;
+                                                      rdfs:comment "Premio speciale assegnato al migliior gioco di un certo anno, scelto tra tutti i giochi usciti nel medesimo anno."@it ;
                                                       rdfs:label "GameOfTheYear"@en .
 
 
@@ -588,14 +643,14 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                                                                                    )
                                                                      ] ;
                                                  rdfs:subClassOf :Videogame ;
-                                                 rdfs:comment "Un gioco è classificato come \"musthave\" quando ha vinto almento 5 premi generici oppure un solo premio speciale. Questi tipi di giochi sono quindi consigliati."@en ;
+                                                 rdfs:comment "Un gioco è classificato come \"musthave\" quando ha vinto almento 5 premi generici oppure un solo premio speciale. Questi tipi di giochi sono quindi consigliati."@it ;
                                                  rdfs:label "MustHave"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#SpecialGameAward
 <https://www.wikidata.org/wiki/Q613354#SpecialGameAward> rdf:type owl:Class ;
                                                          rdfs:subClassOf :GameAward ;
-                                                         rdfs:comment "È un premio speciale, separato dagli altri premi in quanto ha importanza maggiore. Tra questi premi rientrano ad esempio quelli come \"Miglior gioco dell'anno\", \"Miglior gioco della generazione\"; \"Miglior gioco su console\" ecc"@en ;
+                                                         rdfs:comment "È un premio speciale, separato dagli altri premi in quanto ha importanza maggiore. Tra questi premi rientrano ad esempio quelli come \"Miglior gioco dell'anno\", \"Miglior gioco della generazione\"; \"Miglior gioco su console\" ecc"@it ;
                                                          rdfs:label "SpecialGameAward"@en .
 
 
@@ -607,7 +662,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                                                                               owl:onClass <https://www.wikidata.org/wiki/Q613354#MustHave>
                                                                             ] ;
                                                         rdfs:subClassOf :Platform ;
-                                                        rdfs:comment "Piattaforma (fisica o virtuale) che ha come gioco almeno 3 giochi classificati come must have. Si tratta di piattaforme imprescindibili per qualsiasi appassionato del media."@en ;
+                                                        rdfs:comment "Piattaforma (fisica o virtuale) che ha come gioco almeno 3 giochi classificati come must have. Si tratta di piattaforme imprescindibili per qualsiasi appassionato del media."@it ;
                                                         rdfs:label "SuccessPlatform"@en .
 
 

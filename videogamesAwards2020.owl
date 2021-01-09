@@ -210,7 +210,9 @@
                                                                               )
                                                        ]
                                   ] ;
-              rdfs:subClassOf :ReviewedVideoGame .
+              rdfs:subClassOf :ReviewedVideoGame ;
+              rdfs:comment "Un videogioco è classificato come bad se ha un voto medio minore di 6"@en ;
+              rdfs:label "BadVideoGame"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Board
@@ -246,12 +248,16 @@
                                                                                  )
                                                           ]
                                      ] ;
-                 rdfs:subClassOf :ReviewedVideoGame .
+                 rdfs:subClassOf :ReviewedVideoGame ;
+                 rdfs:comment "Un videogioco è classificato come \"decente\" se ha un voto compreso tra 6 e 7.5 esclusi."@en ;
+                 rdfs:label "DecentVIdeogame"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Digital
 :Digital rdf:type owl:Class ;
-         rdfs:subClassOf :Videogame .
+         rdfs:subClassOf :Videogame ;
+         rdfs:comment "Per digitale si intende un videogiocho che viene venduto  solo in forma digitale. Può essere quindi acquistato su degli store specifici."@en ;
+         rdfs:label "Digital"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Exclusive
@@ -262,7 +268,9 @@
                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                              owl:onClass :Platform
                            ] ;
-           owl:disjointWith :Multiplatform .
+           owl:disjointWith :Multiplatform ;
+           rdfs:comment "Per esclusiva si intende un videogioco che viene rilasciato per una sola piattaforma di gioco."@en ;
+           rdfs:label "Exclusive"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Expert
@@ -278,13 +286,17 @@
                                                  ) ;
                               rdf:type owl:Class
                             ] ;
-        rdfs:subClassOf :User .
+        rdfs:subClassOf :User ;
+        rdfs:comment "Per utente esperto si intende colui che lavora per una redazione come recensore di videogiochi e che rilascia quindi recensioni esperte."@en ;
+        rdfs:label "Expert"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#ExpertReview
 :ExpertReview rdf:type owl:Class ;
               rdfs:subClassOf :Review ;
-              owl:disjointWith :VideoGamerReview .
+              owl:disjointWith :VideoGamerReview ;
+              rdfs:comment "Recensione rilasciata solo dagli utenti esperti, ovvero quelli che lavorano per una redazione come recensori di videogiochi"@en ;
+              rdfs:label "ExpertReview"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#GameAward
@@ -302,7 +314,9 @@
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#GameReviewer
 :GameReviewer rdf:type owl:Class ;
-              rdfs:subClassOf :WorkerRole .
+              rdfs:subClassOf :WorkerRole ;
+              rdfs:comment "Il recensore di videogame è un ruolo preciso che si può svolgere in una redazione. Questo ruolo prevede di scrivere recensioni per i videogiochi della piattaforma."@en ;
+              rdfs:label "GameReviewer"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Genre
@@ -331,7 +345,9 @@
                                                                                )
                                                         ]
                                    ] ;
-               rdfs:subClassOf :ReviewedVideoGame .
+               rdfs:subClassOf :ReviewedVideoGame ;
+               rdfs:comment "Un videogioco è classificato come \"good\" se ha un voto compreso tra 7.5 e 9 esclusi"@en ;
+               rdfs:label "GoodVideoGame"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#HomeConsole
@@ -352,7 +368,9 @@
                                                                              )
                                                       ]
                                  ] ;
-             rdfs:subClassOf :ReviewedVideoGame .
+             rdfs:subClassOf :ReviewedVideoGame ;
+             rdfs:comment "Un videogioco è classificato come \"masterpiece\" se ha un voto maggiore di 9"@en ;
+             rdfs:label "Masterpiece"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Min5GameAwardSet
@@ -378,7 +396,9 @@
                                      owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
                                      owl:onClass :Platform
                                    ] ;
-               rdfs:subClassOf :Videogame .
+               rdfs:subClassOf :Videogame ;
+               rdfs:comment "per multipiattaforma si intende un vidieogioco che viene rilasciato su più di una piattaforma di gioco, ad esempio può essere acquistato e giocato sia su Playstation4 che Xbox S."@en ;
+               rdfs:label "Mltiplatform"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#NegativeReview
@@ -392,7 +412,9 @@
                                                                                 )
                                                          ]
                                     ] ;
-                rdfs:subClassOf :Review .
+                rdfs:subClassOf :Review ;
+                rdfs:comment "Recensione il cui voto è minore di 6"@en ;
+                rdfs:label "NegativeReview"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#NeutralReview
@@ -408,7 +430,9 @@
                                                                                )
                                                         ]
                                    ] ;
-               rdfs:subClassOf :Review .
+               rdfs:subClassOf :Review ;
+               rdfs:comment "Recensione con un voto compreso tra 6 e 7.5 esclusi."@en ;
+               rdfs:label "NeutralReview"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Newspaper
@@ -453,14 +477,19 @@ Un esempio di console portatile è il Nintendo ds, oppure playstation vita."""@e
                                                                                 )
                                                          ]
                                     ] ;
-                rdfs:subClassOf :Review .
+                rdfs:subClassOf :Review ;
+                rdfs:comment "Recensione con un voto superiore a 7.5"@en ;
+                rdfs:label "PositiveReview"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Review
 :Review rdf:type owl:Class ;
         owl:disjointUnionOf ( :ExpertReview
                               :VideoGamerReview
-                            ) .
+                            ) ;
+        rdfs:comment """Recensione rilasciata dagli utenti, caratterizzata da un titolo, descrizione e voto.
+Per recensione si intende un'analisi (solitamente in forma testuale) dei punti di forza e di debolezza di un videogioco."""@en ;
+        rdfs:label "Review"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#ReviewedVideoGame
@@ -470,23 +499,31 @@ Un esempio di console portatile è il Nintendo ds, oppure playstation vita."""@e
                                          owl:minQualifiedCardinality "5"^^xsd:nonNegativeInteger ;
                                          owl:onClass :Review
                                        ] ;
-                   rdfs:subClassOf :Videogame .
+                   rdfs:subClassOf :Videogame ;
+                   rdfs:comment "Per videogiochi recensiti si intendono quei videogiochi che hanno ricevuto almeno recensioni (sia da videogiocatori che da esperti)."@en ;
+                   rdfs:label "ReviewdVideGame"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#User
-:User rdf:type owl:Class .
+:User rdf:type owl:Class ;
+      rdfs:comment "Persona iscritta alla piattaforma che ne visualizza i contenuti e partecipa attivamente rilasciando recensioni sui videogiochi."@en ;
+      rdfs:label "User"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#VideoGamerReview
 :VideoGamerReview rdf:type owl:Class ;
-                  rdfs:subClassOf :Review .
+                  rdfs:subClassOf :Review ;
+                  rdfs:comment "Recensione rilasciata dai videogiocatori appassionati, che non sono esperti del settore e non lavorano quindi per nessuna testata giornalistica."@en ;
+                  rdfs:label "VideoGamerReview"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Videogame
 :Videogame rdf:type owl:Class ;
            owl:disjointUnionOf ( :Exclusive
                                  :Multiplatform
-                               ) .
+                               ) ;
+           rdfs:comment "Gioco in forma digitale rilasciato per una piattaforma generica."@en ;
+           rdfs:label "Videogame"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Videogamer
@@ -495,7 +532,9 @@ Un esempio di console portatile è il Nintendo ds, oppure playstation vita."""@e
                                   owl:onProperty :makeReview ;
                                   owl:someValuesFrom :VideoGamerReview
                                 ] ;
-            rdfs:subClassOf :User .
+            rdfs:subClassOf :User ;
+            rdfs:comment "Per videogiocatore si intende un utente appassionato di videogiochi che si registra alla piattaforma per vedere alcuni contenuti e rilasciare semplici recensioni. Esso non lavora per alcuna testata giornalistica"@en ;
+            rdfs:label "Videogamer"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#VirtualPlattform
@@ -510,11 +549,15 @@ Un esempio di console portatile è il Nintendo ds, oppure playstation vita."""@e
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Worker
-:Worker rdf:type owl:Class .
+:Worker rdf:type owl:Class ;
+        rdfs:comment "Per worker di intende una persoa che lavora per una o più redazioni di una qualche testata giornalistica. Esso potrà svolgere un ruolo specifico a seconda della redazione in cui lavoriamo."@en ;
+        rdfs:label "Worker"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#WorkerRole
-:WorkerRole rdf:type owl:Class .
+:WorkerRole rdf:type owl:Class ;
+            rdfs:comment "Questa classe rappresenta i ruoli che si possono avere all'interno di una testata giornalistica, ad esempio: giornalista, recensore di videogame, redattore, ecc..."@en ;
+            rdfs:label "WorkerRole"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#CategoryGameAward
@@ -544,7 +587,9 @@ Un esempio di console portatile è il Nintendo ds, oppure playstation vita."""@e
                                                                                      ]
                                                                                    )
                                                                      ] ;
-                                                 rdfs:subClassOf :Videogame .
+                                                 rdfs:subClassOf :Videogame ;
+                                                 rdfs:comment "Un gioco è classificato come \"musthave\" quando ha vinto almento 5 premi generici oppure un solo premio speciale. Questi tipi di giochi sono quindi consigliati."@en ;
+                                                 rdfs:label "MustHave"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#SpecialGameAward

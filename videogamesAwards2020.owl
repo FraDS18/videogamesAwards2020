@@ -192,6 +192,12 @@
                                                       rdfs:label "isPlatformFor"@en .
 
 
+###  https://www.wikidata.org/wiki/Q613354#refersTo
+<https://www.wikidata.org/wiki/Q613354#refersTo> rdf:type owl:ObjectProperty ;
+                                                 rdfs:domain <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
+                                                 rdfs:range :Genre .
+
+
 ###  https://www.wikidata.org/wiki/Q613354#worksFor
 <https://www.wikidata.org/wiki/Q613354#worksFor> rdf:type owl:ObjectProperty ,
                                                           owl:TransitiveProperty ;
@@ -615,9 +621,63 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
             rdfs:label "WorkerRole"@en .
 
 
+###  https://www.wikidata.org/wiki/Q613354#BestAction
+<https://www.wikidata.org/wiki/Q613354#BestAction> rdf:type owl:Class ;
+                                                   owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://www.wikidata.org/wiki/Q613354#refersTo> ;
+                                                                         owl:hasValue :action
+                                                                       ] ;
+                                                   rdfs:subClassOf <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
+                                                   rdfs:comment "Categoria di premi che si riferisce al genere action. Ad esempio il premio \"bestaction\" si riferisce al genere action. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@en ;
+                                                   rdfs:label "BestAction"@en .
+
+
+###  https://www.wikidata.org/wiki/Q613354#BestFPS
+<https://www.wikidata.org/wiki/Q613354#BestFPS> rdf:type owl:Class ;
+                                                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <https://www.wikidata.org/wiki/Q613354#refersTo> ;
+                                                                      owl:hasValue :fps
+                                                                    ] ;
+                                                rdfs:subClassOf <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
+                                                rdfs:comment "Categoria di premi che si riferisce al genere fps. Ad esempio il premio \"bestfps\" si riferisce al genere fps. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@en ;
+                                                rdfs:label "BestFPS"@en .
+
+
+###  https://www.wikidata.org/wiki/Q613354#BestGDR
+<https://www.wikidata.org/wiki/Q613354#BestGDR> rdf:type owl:Class ;
+                                                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <https://www.wikidata.org/wiki/Q613354#refersTo> ;
+                                                                      owl:hasValue :gdr
+                                                                    ] ;
+                                                rdfs:subClassOf <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
+                                                rdfs:comment "Categoria di premi che si riferisce al genere gdr. Ad esempio il premio \"bestgdr\" si riferisce al genere gdr. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@it ;
+                                                rdfs:label "BestGDR"@en .
+
+
+###  https://www.wikidata.org/wiki/Q613354#BestTPS
+<https://www.wikidata.org/wiki/Q613354#BestTPS> rdf:type owl:Class ;
+                                                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <https://www.wikidata.org/wiki/Q613354#refersTo> ;
+                                                                      owl:hasValue :tps
+                                                                    ] ;
+                                                rdfs:subClassOf <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
+                                                rdfs:comment "Categoria di premi che si riferisce al genere tps. Ad esempio il premio \"besttps\" si riferisce al genere tps. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@it ;
+                                                rdfs:label "BestTPS"@en .
+
+
 ###  https://www.wikidata.org/wiki/Q613354#CategoryGameAward
 <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> rdf:type owl:Class ;
+                                                          owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <https://www.wikidata.org/wiki/Q613354#refersTo> ;
+                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass :Genre
+                                                                              ] ;
                                                           rdfs:subClassOf :GameAward ;
+                                                          owl:disjointUnionOf ( <https://www.wikidata.org/wiki/Q613354#BestAction>
+                                                                                <https://www.wikidata.org/wiki/Q613354#BestFPS>
+                                                                                <https://www.wikidata.org/wiki/Q613354#BestGDR>
+                                                                                <https://www.wikidata.org/wiki/Q613354#BestTPS>
+                                                                              ) ;
                                                           rdfs:comment "Premio assegnato in base al genere del videogioco. In questa categoria rientrano i premi del tipo \"Miglior sparatutto\", \"Miglior action\" ecc..."@it ;
                                                           rdfs:label "CategoryGameAward"@en .
 
@@ -684,6 +744,39 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#tps
 :tps rdf:type owl:NamedIndividual .
+
+
+###  https://www.wikidata.org/wiki/Q613354#bestGDR
+<https://www.wikidata.org/wiki/Q613354#bestGDR> rdf:type owl:NamedIndividual ;
+                                                <https://www.wikidata.org/wiki/Q613354#refersTo> :gdr .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <https://www.wikidata.org/wiki/Q613354#BestAction>
+                <https://www.wikidata.org/wiki/Q613354#BestFPS>
+                <https://www.wikidata.org/wiki/Q613354#BestGDR>
+                <https://www.wikidata.org/wiki/Q613354#BestTPS>
+              )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :action
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :action
+                        :fps
+                        :gdr
+                        :tps
+                      )
+] .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

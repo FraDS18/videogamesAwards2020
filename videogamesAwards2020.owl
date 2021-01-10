@@ -352,7 +352,8 @@
 :ExpertReview rdf:type owl:Class ;
               owl:equivalentClass [ rdf:type owl:Restriction ;
                                     owl:onProperty :reviewMadeBy ;
-                                    owl:allValuesFrom :Expert
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :Expert
                                   ] ;
               rdfs:subClassOf :Review ;
               owl:disjointWith :VideoGamerReview ;
@@ -600,11 +601,11 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#VirtualPlattform
 :VirtualPlattform rdf:type owl:Class ;
-                  owl:equivalentClass [ rdf:type owl:Restriction ;
-                                        owl:onProperty <https://www.wikidata.org/wiki/Q613354#isPlatformFor> ;
-                                        owl:allValuesFrom :Digital
-                                      ] ;
-                  rdfs:subClassOf :Platform ;
+                  rdfs:subClassOf :Platform ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <https://www.wikidata.org/wiki/Q613354#isPlatformFor> ;
+                                    owl:allValuesFrom :Digital
+                                  ] ;
                   rdfs:comment "Componente esclusivamente software dedicato all'esecuzione di un videogioco. Non si è vincolati all'acquisto di un hardware dedicato esclusivamente al videogioco. Esempi di piattaforma virtuale sono google stadia, geforce now, playstation now e xcloud."@it ;
                   rdfs:label "VirtualPlatform"@en .
 
@@ -669,7 +670,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> rdf:type owl:Class ;
                                                           owl:equivalentClass [ rdf:type owl:Restriction ;
                                                                                 owl:onProperty <https://www.wikidata.org/wiki/Q613354#refersTo> ;
-                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                                 owl:onClass :Genre
                                                                               ] ;
                                                           rdfs:subClassOf :GameAward ;
@@ -744,6 +745,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#tps
 :tps rdf:type owl:NamedIndividual .
+
 
 ###  https://www.wikidata.org/wiki/Q613354#google_stadia
 <https://www.wikidata.org/wiki/Q613354#google_stadia> rdf:type owl:NamedIndividual .

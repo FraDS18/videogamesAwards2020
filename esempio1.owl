@@ -180,7 +180,7 @@
 
 ###  https://www.wikidata.org/wiki/Q613354#isAwardSetOf
 <https://www.wikidata.org/wiki/Q613354#isAwardSetOf> rdf:type owl:ObjectProperty ,
-                                                              owl:InverseFunctionalProperty ;
+                                                              owl:FunctionalProperty ;
                                                      rdfs:comment "Un award set appartiene ad un videogioco. È ottenuto come inverso di \"hasAwardSet\"." ;
                                                      rdfs:label "isAwardSetOf"@en .
 
@@ -228,7 +228,6 @@
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasScore
 :hasScore rdf:type owl:DatatypeProperty ;
-          rdfs:subPropertyOf owl:topDataProperty ;
           rdfs:domain :Review ;
           rdfs:range xsd:decimal .
 
@@ -251,16 +250,16 @@
                       rdfs:range xsd:integer .
 
 
+###  https://www.wikidata.org/wiki/Q613354#hasAverageRatingVideogamer
+<https://www.wikidata.org/wiki/Q613354#hasAverageRatingVideogamer> rdf:type owl:DatatypeProperty ;
+                                                                   rdfs:domain :Videogame ;
+                                                                   rdfs:range xsd:decimal .
+
+
 ###  https://www.wikidata.org/wiki/Q613354#hasUsername
 <https://www.wikidata.org/wiki/Q613354#hasUsername> rdf:type owl:DatatypeProperty ;
                                                     rdfs:domain :User ;
                                                     rdfs:range xsd:string .
-
-
-###  https://www.wikidata.org/wiki/Q613354#hasVerageRatingVideogamer
-<https://www.wikidata.org/wiki/Q613354#hasVerageRatingVideogamer> rdf:type owl:DatatypeProperty ;
-                                                                  rdfs:domain :Videogame ;
-                                                                  rdfs:range xsd:decimal .
 
 
 #################################################################
@@ -431,16 +430,16 @@
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Masterpiece
 :Masterpiece rdf:type owl:Class ;
-             rdfs:subClassOf :ReviewedVideoGame ,
-                             [ rdf:type owl:Restriction ;
-                               owl:onProperty :hasAverageRatingExpert ;
-                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                    owl:onDatatype xsd:integer ;
-                                                    owl:withRestrictions ( [ xsd:minInclusive 9
-                                                                           ]
-                                                                         )
-                                                  ]
-                             ] ;
+             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasAverageRatingExpert ;
+                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                        owl:onDatatype xsd:integer ;
+                                                        owl:withRestrictions ( [ xsd:minInclusive 9
+                                                                               ]
+                                                                             )
+                                                      ]
+                                 ] ;
+             rdfs:subClassOf :ReviewedVideoGame ;
              rdfs:comment "Un videogioco è classificato come \"masterpiece\" se ha un voto maggiore di 9"@it ;
              rdfs:label "Masterpiece"@en .
 
@@ -802,7 +801,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                                                                     <https://www.wikidata.org/wiki/Q613354#playstation4> ;
                                                        :hasAverageRatingExpert 5 ;
                                                        :hasTitle "ghost recon wildlands" ;
-                                                       <https://www.wikidata.org/wiki/Q613354#hasVerageRatingVideogamer> 6 .
+                                                       <https://www.wikidata.org/wiki/Q613354#hasAverageRatingVideogamer> 6 .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#ex1_metin2
@@ -812,7 +811,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                                                    :hasPlatform <https://www.wikidata.org/wiki/Q613354#pc_gaming> ;
                                                    :hasAverageRatingExpert 9.5 ;
                                                    :hasTitle "metin2" ;
-                                                   <https://www.wikidata.org/wiki/Q613354#hasVerageRatingVideogamer> 9 .
+                                                   <https://www.wikidata.org/wiki/Q613354#hasAverageRatingVideogamer> 9 .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#ex1_metin2_award_set

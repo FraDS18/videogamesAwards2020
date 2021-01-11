@@ -748,19 +748,28 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 
 ###  https://www.wikidata.org/wiki/Q613354#google_stadia
-<https://www.wikidata.org/wiki/Q613354#google_stadia> rdf:type owl:NamedIndividual .
+<https://www.wikidata.org/wiki/Q613354#google_stadia> rdf:type owl:NamedIndividual ,
+                                                               :VirtualPlattform ;
+                                                      :platformName "google stadia" ;
+                                                      :requiredMinBandiwith 35 .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#nintendo_switch
-<https://www.wikidata.org/wiki/Q613354#nintendo_switch> rdf:type owl:NamedIndividual .
+<https://www.wikidata.org/wiki/Q613354#nintendo_switch> rdf:type owl:NamedIndividual ,
+                                                                 :PortableConsole ;
+                                                        :platformName "Nintendo Switch" .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#pc_gaming
-<https://www.wikidata.org/wiki/Q613354#pc_gaming> rdf:type owl:NamedIndividual .
+<https://www.wikidata.org/wiki/Q613354#pc_gaming> rdf:type owl:NamedIndividual ,
+                                                           :Computer ;
+                                                  :platformName "HP Omen 15" .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#playstation4
-<https://www.wikidata.org/wiki/Q613354#playstation4> rdf:type owl:NamedIndividual .
+<https://www.wikidata.org/wiki/Q613354#playstation4> rdf:type owl:NamedIndividual ,
+                                                              :HomeConsole ;
+                                                     :platformName "Playstation 4" .
 
 
 #################################################################
@@ -787,6 +796,15 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                         :fps
                         :gdr
                         :tps
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://www.wikidata.org/wiki/Q613354#google_stadia>
+                        <https://www.wikidata.org/wiki/Q613354#nintendo_switch>
+                        <https://www.wikidata.org/wiki/Q613354#pc_gaming>
+                        <https://www.wikidata.org/wiki/Q613354#playstation4>
                       )
 ] .
 

@@ -51,9 +51,27 @@
                         rdfs:label "boardsPartOfNewspaper"@en .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#categoryAwardRefersTo
+:categoryAwardRefersTo rdf:type owl:ObjectProperty ,
+                                owl:FunctionalProperty ;
+                       rdfs:domain :CategoryGameAward ;
+                       rdfs:range :Genre ;
+                       rdfs:comment "Relazione che permette al categoryGameAward di riferirsi ad un genere specifico."@it ;
+                       rdfs:label "categoryAwardRefersTo"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#gameHasAward
+:gameHasAward rdf:type owl:ObjectProperty ;
+              owl:propertyChainAxiom ( :hasAwardSet
+                                       :hasMemberAward
+                                     ) ;
+              rdfs:comment "La relazione permette di ricavare i premi di uno specifico gioco. La relazione è realizzata attraverso la property chain \"hasAwarSet o hasMemberAward\"."@it ;
+              rdfs:label "gameHasAward"@en .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAwardSet
 :hasAwardSet rdf:type owl:ObjectProperty ;
-             owl:inverseOf <https://www.wikidata.org/wiki/Q613354#isAwardSetOf> ;
+             owl:inverseOf :isAwardSetOf ;
              rdf:type owl:FunctionalProperty ;
              rdfs:domain :Videogame ;
              rdfs:range :GameAwardSet ;
@@ -81,7 +99,7 @@
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasPlatform
 :hasPlatform rdf:type owl:ObjectProperty ;
-             owl:inverseOf <https://www.wikidata.org/wiki/Q613354#isPlatformFor> ;
+             owl:inverseOf :isPlatformFor ;
              rdfs:domain :Videogame ;
              rdfs:range :Platform ;
              rdfs:comment "Un videogioco viene pubblicato su una piattaforma. È l'inverso di \"isPlatformFor\"."@it ;
@@ -96,12 +114,25 @@
                rdfs:label "hasWorkerRole"@en .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#isAwardSetOf
+:isAwardSetOf rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:comment "Un award set appartiene ad un videogioco. È ottenuto come inverso di \"hasAwardSet\"." ;
+              rdfs:label "isAwardSetOf"@en .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#isMemberOfAwardSet
 :isMemberOfAwardSet rdf:type owl:ObjectProperty ;
                     rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> ;
                     rdf:type owl:FunctionalProperty ;
                     rdfs:comment "Un premio è membro di un award-set (insieme di premi)."@it ;
                     rdfs:label "isMemberOfAwardSet"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#isPlatformFor
+:isPlatformFor rdf:type owl:ObjectProperty ;
+               rdfs:comment "Esprime la piattaforma di un videogioco. È ottenuta come inverso di \"hasPlatform\"." ;
+               rdfs:label "isPlatformFor"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#makeReview
@@ -126,6 +157,12 @@
 :newspaperContainsBoard rdf:type owl:ObjectProperty ;
                         rdfs:comment "Esprime la relazione secondo cui una testata giornalistica (newspaper) contiene diverse redazioni che lavorano per essa." ;
                         rdfs:label "newspaperContainsBoard"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#refersTo
+:refersTo rdf:type owl:ObjectProperty ;
+          rdfs:domain :CategoryGameAward ;
+          rdfs:range :Genre .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#reviewIsAbout
@@ -160,48 +197,11 @@
                     rdfs:label "videogameHasReview"@en .
 
 
-###  https://www.wikidata.org/wiki/Q613354#categoryAwardRefersTo
-<https://www.wikidata.org/wiki/Q613354#categoryAwardRefersTo> rdf:type owl:ObjectProperty ,
-                                                                       owl:FunctionalProperty ;
-                                                              rdfs:domain <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
-                                                              rdfs:range :Genre ;
-                                                              rdfs:comment "Relazione che permette al categoryGameAward di riferirsi ad un genere specifico."@it ;
-                                                              rdfs:label "categoryAwardRefersTo"@en .
-
-
-###  https://www.wikidata.org/wiki/Q613354#gameHasAward
-<https://www.wikidata.org/wiki/Q613354#gameHasAward> rdf:type owl:ObjectProperty ;
-                                                     owl:propertyChainAxiom ( :hasAwardSet
-                                                                              :hasMemberAward
-                                                                            ) ;
-                                                     rdfs:comment "La relazione permette di ricavare i premi di uno specifico gioco. La relazione è realizzata attraverso la property chain \"hasAwarSet o hasMemberAward\"."@it ;
-                                                     rdfs:label "gameHasAward"@en .
-
-
-###  https://www.wikidata.org/wiki/Q613354#isAwardSetOf
-<https://www.wikidata.org/wiki/Q613354#isAwardSetOf> rdf:type owl:ObjectProperty ,
-                                                              owl:FunctionalProperty ;
-                                                     rdfs:comment "Un award set appartiene ad un videogioco. È ottenuto come inverso di \"hasAwardSet\"." ;
-                                                     rdfs:label "isAwardSetOf"@en .
-
-
-###  https://www.wikidata.org/wiki/Q613354#isPlatformFor
-<https://www.wikidata.org/wiki/Q613354#isPlatformFor> rdf:type owl:ObjectProperty ;
-                                                      rdfs:comment "Esprime la piattaforma di un videogioco. È ottenuta come inverso di \"hasPlatform\"." ;
-                                                      rdfs:label "isPlatformFor"@en .
-
-
-###  https://www.wikidata.org/wiki/Q613354#refersTo
-<https://www.wikidata.org/wiki/Q613354#refersTo> rdf:type owl:ObjectProperty ;
-                                                 rdfs:domain <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
-                                                 rdfs:range :Genre .
-
-
-###  https://www.wikidata.org/wiki/Q613354#worksFor
-<https://www.wikidata.org/wiki/Q613354#worksFor> rdf:type owl:ObjectProperty ,
-                                                          owl:TransitiveProperty ;
-                                                 rdfs:comment "Esprime la relazione di lavorare per qualcuno/qualcosa. Ad esempio il redattore lavora per una redazione che a sua volta lavora per una testata giornalistica." ;
-                                                 rdfs:label "worksFor"@en .
+###  http://www.videogamesAwards.org/videogamesAwards2020#worksFor
+:worksFor rdf:type owl:ObjectProperty ,
+                   owl:TransitiveProperty ;
+          rdfs:comment "Esprime la relazione di lavorare per qualcuno/qualcosa. Ad esempio il redattore lavora per una redazione che a sua volta lavora per una testata giornalistica." ;
+          rdfs:label "worksFor"@en .
 
 
 #################################################################
@@ -218,6 +218,12 @@
 :hasAverageRatingExpert rdf:type owl:DatatypeProperty ;
                         rdfs:domain :Videogame ;
                         rdfs:range xsd:decimal .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingVideogamer
+:hasAverageRatingVideogamer rdf:type owl:DatatypeProperty ;
+                            rdfs:domain :Videogame ;
+                            rdfs:range xsd:decimal .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasReleaseDate
@@ -238,6 +244,12 @@
           rdfs:range xsd:string .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#hasUsername
+:hasUsername rdf:type owl:DatatypeProperty ;
+             rdfs:domain :User ;
+             rdfs:range xsd:string .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#platformName
 :platformName rdf:type owl:DatatypeProperty ;
               rdfs:domain :Platform ;
@@ -248,18 +260,6 @@
 :requiredMinBandiwith rdf:type owl:DatatypeProperty ;
                       rdfs:domain :VirtualPlattform ;
                       rdfs:range xsd:integer .
-
-
-###  https://www.wikidata.org/wiki/Q613354#hasAverageRatingVideogamer
-<https://www.wikidata.org/wiki/Q613354#hasAverageRatingVideogamer> rdf:type owl:DatatypeProperty ;
-                                                                   rdfs:domain :Videogame ;
-                                                                   rdfs:range xsd:decimal .
-
-
-###  https://www.wikidata.org/wiki/Q613354#hasUsername
-<https://www.wikidata.org/wiki/Q613354#hasUsername> rdf:type owl:DatatypeProperty ;
-                                                    rdfs:domain :User ;
-                                                    rdfs:range xsd:string .
 
 
 #################################################################
@@ -282,10 +282,71 @@
               rdfs:label "BadVideoGame"@en .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#BestAction
+:BestAction rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                  owl:onProperty :refersTo ;
+                                  owl:hasValue :action
+                                ] ;
+            rdfs:subClassOf :CategoryGameAward ;
+            rdfs:comment "Categoria di premi che si riferisce al genere action. Ad esempio il premio \"bestaction\" si riferisce al genere action. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@en ;
+            rdfs:label "BestAction"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#BestFPS
+:BestFPS rdf:type owl:Class ;
+         owl:equivalentClass [ rdf:type owl:Restriction ;
+                               owl:onProperty :refersTo ;
+                               owl:hasValue :fps
+                             ] ;
+         rdfs:subClassOf :CategoryGameAward ;
+         rdfs:comment "Categoria di premi che si riferisce al genere fps. Ad esempio il premio \"bestfps\" si riferisce al genere fps. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@en ;
+         rdfs:label "BestFPS"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#BestGDR
+:BestGDR rdf:type owl:Class ;
+         owl:equivalentClass [ rdf:type owl:Restriction ;
+                               owl:onProperty :refersTo ;
+                               owl:hasValue :gdr
+                             ] ;
+         rdfs:subClassOf :CategoryGameAward ;
+         rdfs:comment "Categoria di premi che si riferisce al genere gdr. Ad esempio il premio \"bestgdr\" si riferisce al genere gdr. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@it ;
+         rdfs:label "BestGDR"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#BestTPS
+:BestTPS rdf:type owl:Class ;
+         owl:equivalentClass [ rdf:type owl:Restriction ;
+                               owl:onProperty :refersTo ;
+                               owl:hasValue :tps
+                             ] ;
+         rdfs:subClassOf :CategoryGameAward ;
+         rdfs:comment "Categoria di premi che si riferisce al genere tps. Ad esempio il premio \"besttps\" si riferisce al genere tps. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@it ;
+         rdfs:label "BestTPS"@en .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Board
 :Board rdf:type owl:Class ;
        rdfs:comment "Rappresenta la redazione che lavora per una testata giornalistica. Essa è di solito formata da un team di lavoratori, ognuno con uno specifico ruolo. Più redazioni confluiscono in una testata giornalistica. Solitamente ogni redazione è specializzata in un settore."@it ;
        rdfs:label "Board"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#CategoryGameAward
+:CategoryGameAward rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Restriction ;
+                                         owl:onProperty :refersTo ;
+                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                         owl:onClass :Genre
+                                       ] ;
+                   rdfs:subClassOf :GameAward ;
+                   owl:disjointUnionOf ( :BestAction
+                                         :BestFPS
+                                         :BestGDR
+                                         :BestTPS
+                                       ) ;
+                   rdfs:comment "Premio assegnato in base al genere del videogioco. In questa categoria rientrano i premi del tipo \"Miglior sparatutto\", \"Miglior action\" ecc..."@it ;
+                   rdfs:label "CategoryGameAward"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Computer
@@ -383,6 +444,13 @@
               rdfs:label "GameAwardSet"@en .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#GameOfTheYear
+:GameOfTheYear rdf:type owl:Class ;
+               rdfs:subClassOf :SpecialGameAward ;
+               rdfs:comment "Premio speciale assegnato al migliior gioco di un certo anno, scelto tra tutti i giochi usciti nel medesimo anno."@it ;
+               rdfs:label "GameOfTheYear"@en .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#GameReviewer
 :GameReviewer rdf:type owl:Class ;
               rdfs:subClassOf :WorkerRole ;
@@ -470,6 +538,24 @@
                rdfs:subClassOf :Videogame ;
                rdfs:comment "per multipiattaforma si intende un vidieogioco che viene rilasciato su più di una piattaforma di gioco, ad esempio può essere acquistato e giocato sia su Playstation4 che Xbox S."@it ;
                rdfs:label "Mltiplatform"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#MustHave
+:MustHave rdf:type owl:Class ;
+          owl:equivalentClass [ rdf:type owl:Class ;
+                                owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                owl:onProperty :gameHasAward ;
+                                                owl:someValuesFrom :SpecialGameAward
+                                              ]
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty :hasAwardSet ;
+                                                owl:someValuesFrom :Min5GameAwardSet
+                                              ]
+                                            )
+                              ] ;
+          rdfs:subClassOf :Videogame ;
+          rdfs:comment "Un gioco è classificato come \"musthave\" quando ha vinto almento 5 premi generici oppure un solo premio speciale. Questi tipi di giochi sono quindi consigliati."@it ;
+          rdfs:label "MustHave"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#NegativeReview
@@ -575,6 +661,25 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                    rdfs:label "ReviewdVideGame"@en .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#SpecialGameAward
+:SpecialGameAward rdf:type owl:Class ;
+                  rdfs:subClassOf :GameAward ;
+                  rdfs:comment "È un premio speciale, separato dagli altri premi in quanto ha importanza maggiore. Tra questi premi rientrano ad esempio quelli come \"Miglior gioco dell'anno\", \"Miglior gioco della generazione\"; \"Miglior gioco su console\" ecc"@it ;
+                  rdfs:label "SpecialGameAward"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#SuccessPlatform
+:SuccessPlatform rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty :isPlatformFor ;
+                                       owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                       owl:onClass :MustHave
+                                     ] ;
+                 rdfs:subClassOf :Platform ;
+                 rdfs:comment "Piattaforma (fisica o virtuale) che ha come gioco almeno 3 giochi classificati come must have. Si tratta di piattaforme imprescindibili per qualsiasi appassionato del media."@it ;
+                 rdfs:label "SuccessPlatform"@en .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#User
 :User rdf:type owl:Class ;
       rdfs:comment "Persona iscritta alla piattaforma che ne visualizza i contenuti e partecipa attivamente rilasciando recensioni sui videogiochi."@en ;
@@ -612,7 +717,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 :VirtualPlattform rdf:type owl:Class ;
                   rdfs:subClassOf :Platform ,
                                   [ rdf:type owl:Restriction ;
-                                    owl:onProperty <https://www.wikidata.org/wiki/Q613354#isPlatformFor> ;
+                                    owl:onProperty :isPlatformFor ;
                                     owl:allValuesFrom :Digital
                                   ] ;
                   rdfs:comment "Componente esclusivamente software dedicato all'esecuzione di un videogioco. Non si è vincolati all'acquisto di un hardware dedicato esclusivamente al videogioco. Esempi di piattaforma virtuale sono google stadia, geforce now, playstation now e xcloud."@it ;
@@ -631,117 +736,154 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
             rdfs:label "WorkerRole"@en .
 
 
-###  https://www.wikidata.org/wiki/Q613354#BestAction
-<https://www.wikidata.org/wiki/Q613354#BestAction> rdf:type owl:Class ;
-                                                   owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                                         owl:onProperty <https://www.wikidata.org/wiki/Q613354#refersTo> ;
-                                                                         owl:hasValue :action
-                                                                       ] ;
-                                                   rdfs:subClassOf <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
-                                                   rdfs:comment "Categoria di premi che si riferisce al genere action. Ad esempio il premio \"bestaction\" si riferisce al genere action. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@en ;
-                                                   rdfs:label "BestAction"@en .
-
-
-###  https://www.wikidata.org/wiki/Q613354#BestFPS
-<https://www.wikidata.org/wiki/Q613354#BestFPS> rdf:type owl:Class ;
-                                                owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                                      owl:onProperty <https://www.wikidata.org/wiki/Q613354#refersTo> ;
-                                                                      owl:hasValue :fps
-                                                                    ] ;
-                                                rdfs:subClassOf <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
-                                                rdfs:comment "Categoria di premi che si riferisce al genere fps. Ad esempio il premio \"bestfps\" si riferisce al genere fps. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@en ;
-                                                rdfs:label "BestFPS"@en .
-
-
-###  https://www.wikidata.org/wiki/Q613354#BestGDR
-<https://www.wikidata.org/wiki/Q613354#BestGDR> rdf:type owl:Class ;
-                                                owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                                      owl:onProperty <https://www.wikidata.org/wiki/Q613354#refersTo> ;
-                                                                      owl:hasValue :gdr
-                                                                    ] ;
-                                                rdfs:subClassOf <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
-                                                rdfs:comment "Categoria di premi che si riferisce al genere gdr. Ad esempio il premio \"bestgdr\" si riferisce al genere gdr. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@it ;
-                                                rdfs:label "BestGDR"@en .
-
-
-###  https://www.wikidata.org/wiki/Q613354#BestTPS
-<https://www.wikidata.org/wiki/Q613354#BestTPS> rdf:type owl:Class ;
-                                                owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                                      owl:onProperty <https://www.wikidata.org/wiki/Q613354#refersTo> ;
-                                                                      owl:hasValue :tps
-                                                                    ] ;
-                                                rdfs:subClassOf <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> ;
-                                                rdfs:comment "Categoria di premi che si riferisce al genere tps. Ad esempio il premio \"besttps\" si riferisce al genere tps. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@it ;
-                                                rdfs:label "BestTPS"@en .
-
-
-###  https://www.wikidata.org/wiki/Q613354#CategoryGameAward
-<https://www.wikidata.org/wiki/Q613354#CategoryGameAward> rdf:type owl:Class ;
-                                                          owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                                                owl:onProperty <https://www.wikidata.org/wiki/Q613354#refersTo> ;
-                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                                                owl:onClass :Genre
-                                                                              ] ;
-                                                          rdfs:subClassOf :GameAward ;
-                                                          owl:disjointUnionOf ( <https://www.wikidata.org/wiki/Q613354#BestAction>
-                                                                                <https://www.wikidata.org/wiki/Q613354#BestFPS>
-                                                                                <https://www.wikidata.org/wiki/Q613354#BestGDR>
-                                                                                <https://www.wikidata.org/wiki/Q613354#BestTPS>
-                                                                              ) ;
-                                                          rdfs:comment "Premio assegnato in base al genere del videogioco. In questa categoria rientrano i premi del tipo \"Miglior sparatutto\", \"Miglior action\" ecc..."@it ;
-                                                          rdfs:label "CategoryGameAward"@en .
-
-
-###  https://www.wikidata.org/wiki/Q613354#GameOfTheYear
-<https://www.wikidata.org/wiki/Q613354#GameOfTheYear> rdf:type owl:Class ;
-                                                      rdfs:subClassOf <https://www.wikidata.org/wiki/Q613354#SpecialGameAward> ;
-                                                      rdfs:comment "Premio speciale assegnato al migliior gioco di un certo anno, scelto tra tutti i giochi usciti nel medesimo anno."@it ;
-                                                      rdfs:label "GameOfTheYear"@en .
-
-
-###  https://www.wikidata.org/wiki/Q613354#MustHave
-<https://www.wikidata.org/wiki/Q613354#MustHave> rdf:type owl:Class ;
-                                                 owl:equivalentClass [ rdf:type owl:Class ;
-                                                                       owl:unionOf ( [ rdf:type owl:Restriction ;
-                                                                                       owl:onProperty :hasAwardSet ;
-                                                                                       owl:someValuesFrom :Min5GameAwardSet
-                                                                                     ]
-                                                                                     [ rdf:type owl:Restriction ;
-                                                                                       owl:onProperty <https://www.wikidata.org/wiki/Q613354#gameHasAward> ;
-                                                                                       owl:someValuesFrom <https://www.wikidata.org/wiki/Q613354#SpecialGameAward>
-                                                                                     ]
-                                                                                   )
-                                                                     ] ;
-                                                 rdfs:subClassOf :Videogame ;
-                                                 rdfs:comment "Un gioco è classificato come \"musthave\" quando ha vinto almento 5 premi generici oppure un solo premio speciale. Questi tipi di giochi sono quindi consigliati."@it ;
-                                                 rdfs:label "MustHave"@en .
-
-
-###  https://www.wikidata.org/wiki/Q613354#SpecialGameAward
-<https://www.wikidata.org/wiki/Q613354#SpecialGameAward> rdf:type owl:Class ;
-                                                         rdfs:subClassOf :GameAward ;
-                                                         rdfs:comment "È un premio speciale, separato dagli altri premi in quanto ha importanza maggiore. Tra questi premi rientrano ad esempio quelli come \"Miglior gioco dell'anno\", \"Miglior gioco della generazione\"; \"Miglior gioco su console\" ecc"@it ;
-                                                         rdfs:label "SpecialGameAward"@en .
-
-
-###  https://www.wikidata.org/wiki/Q613354#SuccessPlatform
-<https://www.wikidata.org/wiki/Q613354#SuccessPlatform> rdf:type owl:Class ;
-                                                        owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                                              owl:onProperty <https://www.wikidata.org/wiki/Q613354#isPlatformFor> ;
-                                                                              owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
-                                                                              owl:onClass <https://www.wikidata.org/wiki/Q613354#MustHave>
-                                                                            ] ;
-                                                        rdfs:subClassOf :Platform ;
-                                                        rdfs:comment "Piattaforma (fisica o virtuale) che ha come gioco almeno 3 giochi classificati come must have. Si tratta di piattaforme imprescindibili per qualsiasi appassionato del media."@it ;
-                                                        rdfs:label "SuccessPlatform"@en .
-
-
 #################################################################
 #    Individuals
 #################################################################
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#action
 :action rdf:type owl:NamedIndividual .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_aranzulla.it
+:ex1_aranzulla.it rdf:type owl:NamedIndividual ;
+                  :newspaperContainsBoard :ex1_redazione2 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_best_year_metin
+:ex1_best_year_metin rdf:type owl:NamedIndividual ,
+                              :GameOfTheYear ;
+                     :isMemberOfAwardSet :ex1_metin2_award_set .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_cyberpunk
+:ex1_cyberpunk rdf:type owl:NamedIndividual ,
+                        :Videogame ;
+               :hasGenre :gdr ;
+               :hasTitle "cyberpunk 2077" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_franco
+:ex1_franco rdf:type owl:NamedIndividual ,
+                     :Expert ,
+                     :Worker ;
+            :hasWorkerRole :ex1_recensore ;
+            :makeReview :ex1_review_franco_ghost ,
+                        :ex1_review_franco_metin ,
+                        :ex1_review_franco_normal_cyberpunk ;
+            :worksFor :ex1_redazione ;
+            :hasUsername "franco" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_gamesvillage
+:ex1_gamesvillage rdf:type owl:NamedIndividual ,
+                           :Newspaper ;
+                  :newspaperContainsBoard :ex1_redazione .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_ghostRecon
+:ex1_ghostRecon rdf:type owl:NamedIndividual ,
+                         :Videogame ;
+                :hasGenre :gdr ,
+                          :tps ;
+                :hasPlatform :pc_gaming ,
+                             :playstation4 ;
+                :hasAverageRatingExpert 5 ;
+                :hasAverageRatingVideogamer 6 ;
+                :hasTitle "ghost recon wildlands" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_metin2
+:ex1_metin2 rdf:type owl:NamedIndividual ,
+                     :Digital ;
+            :hasGenre :gdr ;
+            :hasPlatform :pc_gaming ;
+            :hasAverageRatingExpert 9.5 ;
+            :hasAverageRatingVideogamer 9 ;
+            :hasTitle "metin2" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_metin2_award_set
+:ex1_metin2_award_set rdf:type owl:NamedIndividual ;
+                      :hasMemberAward :ex1_best_year_metin ;
+                      :isAwardSetOf :ex1_metin2 ;
+                      <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 1 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_peppe
+:ex1_peppe rdf:type owl:NamedIndividual ;
+           :hasWorkerRole :ex1_recensore2 ;
+           :makeReview :ex1_review_peppe_metin ;
+           :worksFor :ex1_redazione2 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_recensore
+:ex1_recensore rdf:type owl:NamedIndividual ;
+               :roleFor :ex1_redazione .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_recensore2
+:ex1_recensore2 rdf:type owl:NamedIndividual ;
+                :roleFor :ex1_redazione2 ;
+                :hasScore 9.5 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_redazione
+:ex1_redazione rdf:type owl:NamedIndividual ;
+               :boardAssignAward :ex1_best_year_metin ;
+               :worksFor :ex1_gamesvillage .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_redazione2
+:ex1_redazione2 rdf:type owl:NamedIndividual ;
+                :worksFor :ex1_aranzulla.it .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_review_franco_ghost
+:ex1_review_franco_ghost rdf:type owl:NamedIndividual ,
+                                  :ExpertReview ;
+                         :reviewIsAbout :ex1_ghostRecon ;
+                         :hasScore 5 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_review_franco_metin
+:ex1_review_franco_metin rdf:type owl:NamedIndividual ,
+                                  :ExpertReview ;
+                         :reviewIsAbout :ex1_metin2 ;
+                         :hasScore 10 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_review_franco_normal_cyberpunk
+:ex1_review_franco_normal_cyberpunk rdf:type owl:NamedIndividual ;
+                                    :reviewIsAbout :ex1_cyberpunk .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_review_peppe_metin
+:ex1_review_peppe_metin rdf:type owl:NamedIndividual ,
+                                 :ExpertReview ;
+                        :reviewIsAbout :ex1_metin2 ;
+                        :hasScore 9 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_review_utente_ghost
+:ex1_review_utente_ghost rdf:type owl:NamedIndividual ,
+                                  :VideoGamerReview ;
+                         :reviewIsAbout :ex1_ghostRecon ;
+                         :hasScore 6 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_review_utente_metin
+:ex1_review_utente_metin rdf:type owl:NamedIndividual ,
+                                  :VideoGamerReview ;
+                         :reviewIsAbout :ex1_metin2 ;
+                         :hasScore 9 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex1_utente_normale
+:ex1_utente_normale rdf:type owl:NamedIndividual ,
+                             :Videogamer ;
+                    :makeReview :ex1_review_utente_ghost ,
+                                :ex1_review_utente_metin ;
+                    :hasUsername "user01" .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#fps
@@ -752,176 +894,34 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 :gdr rdf:type owl:NamedIndividual .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#google_stadia
+:google_stadia rdf:type owl:NamedIndividual ,
+                        :VirtualPlattform ;
+               :platformName "google stadia" ;
+               :requiredMinBandiwith 35 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#nintendo_switch
+:nintendo_switch rdf:type owl:NamedIndividual ,
+                          :HomeConsole ,
+                          :PortableConsole ;
+                 :platformName "Nintendo Switch" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#pc_gaming
+:pc_gaming rdf:type owl:NamedIndividual ,
+                    :Computer ;
+           :platformName "HP Omen 15" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#playstation4
+:playstation4 rdf:type owl:NamedIndividual ,
+                       :HomeConsole ;
+              :platformName "Playstation 4" .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#tps
 :tps rdf:type owl:NamedIndividual .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_aranzulla.it
-<https://www.wikidata.org/wiki/Q613354#ex1_aranzulla.it> rdf:type owl:NamedIndividual ;
-                                                         :newspaperContainsBoard <https://www.wikidata.org/wiki/Q613354#ex1_redazione2> .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_best_year_metin
-<https://www.wikidata.org/wiki/Q613354#ex1_best_year_metin> rdf:type owl:NamedIndividual ,
-                                                                     <https://www.wikidata.org/wiki/Q613354#GameOfTheYear> ;
-                                                            :isMemberOfAwardSet <https://www.wikidata.org/wiki/Q613354#ex1_metin2_award_set> .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_cyberpunk
-<https://www.wikidata.org/wiki/Q613354#ex1_cyberpunk> rdf:type owl:NamedIndividual ,
-                                                               :Videogame ;
-                                                      :hasGenre :gdr ;
-                                                      :hasTitle "cyberpunk 2077" .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_franco
-<https://www.wikidata.org/wiki/Q613354#ex1_franco> rdf:type owl:NamedIndividual ,
-                                                            :Expert ,
-                                                            :Worker ;
-                                                   :hasWorkerRole <https://www.wikidata.org/wiki/Q613354#ex1_recensore> ;
-                                                   :makeReview <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_ghost> ,
-                                                               <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_metin> ,
-                                                               <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_normal_cyberpunk> ;
-                                                   <https://www.wikidata.org/wiki/Q613354#worksFor> <https://www.wikidata.org/wiki/Q613354#ex1_redazione> ;
-                                                   <https://www.wikidata.org/wiki/Q613354#hasUsername> "franco" .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_gamesvillage
-<https://www.wikidata.org/wiki/Q613354#ex1_gamesvillage> rdf:type owl:NamedIndividual ,
-                                                                  :Newspaper ;
-                                                         :newspaperContainsBoard <https://www.wikidata.org/wiki/Q613354#ex1_redazione> .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_ghostRecon
-<https://www.wikidata.org/wiki/Q613354#ex1_ghostRecon> rdf:type owl:NamedIndividual ,
-                                                                :Videogame ;
-                                                       :hasGenre :gdr ,
-                                                                 :tps ;
-                                                       :hasPlatform <https://www.wikidata.org/wiki/Q613354#pc_gaming> ,
-                                                                    <https://www.wikidata.org/wiki/Q613354#playstation4> ;
-                                                       :hasAverageRatingExpert 5 ;
-                                                       :hasTitle "ghost recon wildlands" ;
-                                                       <https://www.wikidata.org/wiki/Q613354#hasAverageRatingVideogamer> 6 .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_metin2
-<https://www.wikidata.org/wiki/Q613354#ex1_metin2> rdf:type owl:NamedIndividual ,
-                                                            :Digital ;
-                                                   :hasGenre :gdr ;
-                                                   :hasPlatform <https://www.wikidata.org/wiki/Q613354#pc_gaming> ;
-                                                   :hasAverageRatingExpert 9.5 ;
-                                                   :hasTitle "metin2" ;
-                                                   <https://www.wikidata.org/wiki/Q613354#hasAverageRatingVideogamer> 9 .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_metin2_award_set
-<https://www.wikidata.org/wiki/Q613354#ex1_metin2_award_set> rdf:type owl:NamedIndividual ;
-                                                             :hasMemberAward <https://www.wikidata.org/wiki/Q613354#ex1_best_year_metin> ;
-                                                             <https://www.wikidata.org/wiki/Q613354#isAwardSetOf> <https://www.wikidata.org/wiki/Q613354#ex1_metin2> ;
-                                                             <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 1 .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_peppe
-<https://www.wikidata.org/wiki/Q613354#ex1_peppe> rdf:type owl:NamedIndividual ;
-                                                  :hasWorkerRole <https://www.wikidata.org/wiki/Q613354#ex1_recensore2> ;
-                                                  :makeReview <https://www.wikidata.org/wiki/Q613354#ex1_review_peppe_metin> ;
-                                                  <https://www.wikidata.org/wiki/Q613354#worksFor> <https://www.wikidata.org/wiki/Q613354#ex1_redazione2> .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_recensore
-<https://www.wikidata.org/wiki/Q613354#ex1_recensore> rdf:type owl:NamedIndividual ;
-                                                      :roleFor <https://www.wikidata.org/wiki/Q613354#ex1_redazione> .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_recensore2
-<https://www.wikidata.org/wiki/Q613354#ex1_recensore2> rdf:type owl:NamedIndividual ;
-                                                       :roleFor <https://www.wikidata.org/wiki/Q613354#ex1_redazione2> ;
-                                                       :hasScore 9.5 .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_redazione
-<https://www.wikidata.org/wiki/Q613354#ex1_redazione> rdf:type owl:NamedIndividual ;
-                                                      :boardAssignAward <https://www.wikidata.org/wiki/Q613354#ex1_best_year_metin> ;
-                                                      <https://www.wikidata.org/wiki/Q613354#worksFor> <https://www.wikidata.org/wiki/Q613354#ex1_gamesvillage> .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_redazione2
-<https://www.wikidata.org/wiki/Q613354#ex1_redazione2> rdf:type owl:NamedIndividual ;
-                                                       <https://www.wikidata.org/wiki/Q613354#worksFor> <https://www.wikidata.org/wiki/Q613354#ex1_aranzulla.it> .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_review_franco_ghost
-<https://www.wikidata.org/wiki/Q613354#ex1_review_franco_ghost> rdf:type owl:NamedIndividual ,
-                                                                         :ExpertReview ;
-                                                                :reviewIsAbout <https://www.wikidata.org/wiki/Q613354#ex1_ghostRecon> ;
-                                                                :hasScore 5 .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_review_franco_metin
-<https://www.wikidata.org/wiki/Q613354#ex1_review_franco_metin> rdf:type owl:NamedIndividual ,
-                                                                         :ExpertReview ;
-                                                                :reviewIsAbout <https://www.wikidata.org/wiki/Q613354#ex1_metin2> ;
-                                                                :hasScore 10 .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_review_franco_normal_cyberpunk
-<https://www.wikidata.org/wiki/Q613354#ex1_review_franco_normal_cyberpunk> rdf:type owl:NamedIndividual ;
-                                                                           :reviewIsAbout <https://www.wikidata.org/wiki/Q613354#ex1_cyberpunk> .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_review_peppe_metin
-<https://www.wikidata.org/wiki/Q613354#ex1_review_peppe_metin> rdf:type owl:NamedIndividual ,
-                                                                        :ExpertReview ;
-                                                               :reviewIsAbout <https://www.wikidata.org/wiki/Q613354#ex1_metin2> ;
-                                                               :hasScore 9 .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_review_utente_ghost
-<https://www.wikidata.org/wiki/Q613354#ex1_review_utente_ghost> rdf:type owl:NamedIndividual ,
-                                                                         :VideoGamerReview ;
-                                                                :reviewIsAbout <https://www.wikidata.org/wiki/Q613354#ex1_ghostRecon> ;
-                                                                :hasScore 6 .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_review_utente_metin
-<https://www.wikidata.org/wiki/Q613354#ex1_review_utente_metin> rdf:type owl:NamedIndividual ,
-                                                                         :VideoGamerReview ;
-                                                                :reviewIsAbout <https://www.wikidata.org/wiki/Q613354#ex1_metin2> ;
-                                                                :hasScore 9 .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ex1_utente_normale
-<https://www.wikidata.org/wiki/Q613354#ex1_utente_normale> rdf:type owl:NamedIndividual ,
-                                                                    :Videogamer ;
-                                                           :makeReview <https://www.wikidata.org/wiki/Q613354#ex1_review_utente_ghost> ,
-                                                                       <https://www.wikidata.org/wiki/Q613354#ex1_review_utente_metin> ;
-                                                           <https://www.wikidata.org/wiki/Q613354#hasUsername> "user01" .
-
-
-###  https://www.wikidata.org/wiki/Q613354#google_stadia
-<https://www.wikidata.org/wiki/Q613354#google_stadia> rdf:type owl:NamedIndividual ,
-                                                               :VirtualPlattform ;
-                                                      :platformName "google stadia" ;
-                                                      :requiredMinBandiwith 35 .
-
-
-###  https://www.wikidata.org/wiki/Q613354#nintendo_switch
-<https://www.wikidata.org/wiki/Q613354#nintendo_switch> rdf:type owl:NamedIndividual ,
-                                                                 :HomeConsole ,
-                                                                 :PortableConsole ;
-                                                        :platformName "Nintendo Switch" .
-
-
-###  https://www.wikidata.org/wiki/Q613354#pc_gaming
-<https://www.wikidata.org/wiki/Q613354#pc_gaming> rdf:type owl:NamedIndividual ,
-                                                           :Computer ;
-                                                  :platformName "HP Omen 15" .
-
-
-###  https://www.wikidata.org/wiki/Q613354#playstation4
-<https://www.wikidata.org/wiki/Q613354#playstation4> rdf:type owl:NamedIndividual ,
-                                                              :HomeConsole ;
-                                                     :platformName "Playstation 4" .
 
 
 #################################################################
@@ -929,10 +929,10 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 #################################################################
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( <https://www.wikidata.org/wiki/Q613354#BestAction>
-                <https://www.wikidata.org/wiki/Q613354#BestFPS>
-                <https://www.wikidata.org/wiki/Q613354#BestGDR>
-                <https://www.wikidata.org/wiki/Q613354#BestTPS>
+  owl:members ( :BestAction
+                :BestFPS
+                :BestGDR
+                :BestTPS
               )
 ] .
 
@@ -953,43 +953,43 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 
 [ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( <https://www.wikidata.org/wiki/Q613354#ex1_franco>
-                        <https://www.wikidata.org/wiki/Q613354#ex1_utente_normale>
+  owl:distinctMembers ( :ex1_franco
+                        :ex1_utente_normale
                       )
 ] .
 
 
 [ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( <https://www.wikidata.org/wiki/Q613354#ex1_ghostRecon>
-                        <https://www.wikidata.org/wiki/Q613354#ex1_metin2>
+  owl:distinctMembers ( :ex1_ghostRecon
+                        :ex1_metin2
                       )
 ] .
 
 
 [ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_ghost>
-                        <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_metin>
-                        <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_normal_cyberpunk>
-                        <https://www.wikidata.org/wiki/Q613354#ex1_review_utente_ghost>
-                        <https://www.wikidata.org/wiki/Q613354#ex1_review_utente_metin>
+  owl:distinctMembers ( :ex1_review_franco_ghost
+                        :ex1_review_franco_metin
+                        :ex1_review_franco_normal_cyberpunk
+                        :ex1_review_utente_ghost
+                        :ex1_review_utente_metin
                       )
 ] .
 
 
 [ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_ghost>
-                        <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_metin>
-                        <https://www.wikidata.org/wiki/Q613354#ex1_review_utente_ghost>
-                        <https://www.wikidata.org/wiki/Q613354#ex1_review_utente_metin>
+  owl:distinctMembers ( :ex1_review_franco_ghost
+                        :ex1_review_franco_metin
+                        :ex1_review_utente_ghost
+                        :ex1_review_utente_metin
                       )
 ] .
 
 
 [ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( <https://www.wikidata.org/wiki/Q613354#google_stadia>
-                        <https://www.wikidata.org/wiki/Q613354#nintendo_switch>
-                        <https://www.wikidata.org/wiki/Q613354#pc_gaming>
-                        <https://www.wikidata.org/wiki/Q613354#playstation4>
+  owl:distinctMembers ( :google_stadia
+                        :nintendo_switch
+                        :pc_gaming
+                        :playstation4
                       )
 ] .
 

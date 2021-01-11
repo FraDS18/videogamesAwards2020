@@ -21,7 +21,7 @@
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardAssignedByBoard
 :awardAssignedByBoard rdf:type owl:ObjectProperty ;
                       owl:inverseOf :boardAssignAward ;
-                      rdf:type owl:InverseFunctionalProperty ;
+                      rdf:type owl:FunctionalProperty ;
                       rdfs:comment "Un premio è assegnato da una redazione. È l'inverso di \"boardAssignAward\"."@it ;
                       rdfs:label "awardAssignedByBoard"@en .
 
@@ -34,8 +34,7 @@
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#boardAssignAward
-:boardAssignAward rdf:type owl:ObjectProperty ,
-                           owl:FunctionalProperty ;
+:boardAssignAward rdf:type owl:ObjectProperty ;
                   rdfs:domain :Board ;
                   rdfs:range :GameAward ;
                   rdfs:comment "Una redazione può assegnare un premio ad un gioco. È l'inverso della property \"awardAssignedByBoard\"."@it ;
@@ -215,23 +214,23 @@
               rdfs:range xsd:positiveInteger .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRating
-:hasAverageRating rdf:type owl:DatatypeProperty ;
-                  rdfs:domain :Videogame ;
-                  rdfs:range xsd:integer .
+###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingExpert
+:hasAverageRatingExpert rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Videogame ;
+                        rdfs:range xsd:decimal .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasReleaseDate
 :hasReleaseDate rdf:type owl:DatatypeProperty ;
                 rdfs:domain :Videogame ;
-                rdfs:range xsd:dateTime .
+                rdfs:range xsd:string .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasScore
 :hasScore rdf:type owl:DatatypeProperty ;
           rdfs:subPropertyOf owl:topDataProperty ;
           rdfs:domain :Review ;
-          rdfs:range xsd:integer .
+          rdfs:range xsd:decimal .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasTitle
@@ -252,16 +251,16 @@
                       rdfs:range xsd:integer .
 
 
-###  https://www.wikidata.org/wiki/Q613354#hasWorkerName
-<https://www.wikidata.org/wiki/Q613354#hasWorkerName> rdf:type owl:DatatypeProperty ;
-                                                      rdfs:domain :Worker ;
-                                                      rdfs:range xsd:string .
+###  https://www.wikidata.org/wiki/Q613354#hasUsername
+<https://www.wikidata.org/wiki/Q613354#hasUsername> rdf:type owl:DatatypeProperty ;
+                                                    rdfs:domain :User ;
+                                                    rdfs:range xsd:string .
 
 
-###  https://www.wikidata.org/wiki/Q613354#hasWorkerSurname
-<https://www.wikidata.org/wiki/Q613354#hasWorkerSurname> rdf:type owl:DatatypeProperty ;
-                                                         rdfs:domain :Worker ;
-                                                         rdfs:range xsd:string .
+###  https://www.wikidata.org/wiki/Q613354#hasVerageRatingVideogamer
+<https://www.wikidata.org/wiki/Q613354#hasVerageRatingVideogamer> rdf:type owl:DatatypeProperty ;
+                                                                  rdfs:domain :Videogame ;
+                                                                  rdfs:range xsd:decimal .
 
 
 #################################################################
@@ -271,9 +270,9 @@
 ###  http://www.videogamesAwards.org/videogamesAwards2020#BadVideoGame
 :BadVideoGame rdf:type owl:Class ;
               owl:equivalentClass [ rdf:type owl:Restriction ;
-                                    owl:onProperty :hasAverageRating ;
+                                    owl:onProperty :hasAverageRatingExpert ;
                                     owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                         owl:onDatatype xsd:integer ;
+                                                         owl:onDatatype xsd:decimal ;
                                                          owl:withRestrictions ( [ xsd:maxExclusive 6
                                                                                 ]
                                                                               )
@@ -307,9 +306,9 @@
 ###  http://www.videogamesAwards.org/videogamesAwards2020#DecentVideogame
 :DecentVideogame rdf:type owl:Class ;
                  owl:equivalentClass [ rdf:type owl:Restriction ;
-                                       owl:onProperty :hasAverageRating ;
+                                       owl:onProperty :hasAverageRatingExpert ;
                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                            owl:onDatatype xsd:integer ;
+                                                            owl:onDatatype xsd:decimal ;
                                                             owl:withRestrictions ( [ xsd:minExclusive 6
                                                                                    ]
                                                                                    [ xsd:maxExclusive 7.5
@@ -364,7 +363,7 @@
 :ExpertReview rdf:type owl:Class ;
               owl:equivalentClass [ rdf:type owl:Restriction ;
                                     owl:onProperty :reviewMadeBy ;
-                                    owl:allValuesFrom :Expert
+                                    owl:someValuesFrom :Expert
                                   ] ;
               rdfs:subClassOf :Review ;
               owl:disjointWith :VideoGamerReview ;
@@ -408,9 +407,9 @@
 ###  http://www.videogamesAwards.org/videogamesAwards2020#GoodVideoGame
 :GoodVideoGame rdf:type owl:Class ;
                owl:equivalentClass [ rdf:type owl:Restriction ;
-                                     owl:onProperty :hasAverageRating ;
+                                     owl:onProperty :hasAverageRatingExpert ;
                                      owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                          owl:onDatatype xsd:integer ;
+                                                          owl:onDatatype xsd:decimal ;
                                                           owl:withRestrictions ( [ xsd:minExclusive 7.5
                                                                                  ]
                                                                                  [ xsd:maxExclusive 9
@@ -432,16 +431,16 @@
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Masterpiece
 :Masterpiece rdf:type owl:Class ;
-             owl:equivalentClass [ rdf:type owl:Restriction ;
-                                   owl:onProperty :hasAverageRating ;
-                                   owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                        owl:onDatatype xsd:integer ;
-                                                        owl:withRestrictions ( [ xsd:minInclusive 9
-                                                                               ]
-                                                                             )
-                                                      ]
-                                 ] ;
-             rdfs:subClassOf :ReviewedVideoGame ;
+             rdfs:subClassOf :ReviewedVideoGame ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasAverageRatingExpert ;
+                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                    owl:onDatatype xsd:integer ;
+                                                    owl:withRestrictions ( [ xsd:minInclusive 9
+                                                                           ]
+                                                                         )
+                                                  ]
+                             ] ;
              rdfs:comment "Un videogioco è classificato come \"masterpiece\" se ha un voto maggiore di 9"@it ;
              rdfs:label "Masterpiece"@en .
 
@@ -569,7 +568,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 :ReviewedVideoGame rdf:type owl:Class ;
                    owl:equivalentClass [ rdf:type owl:Restriction ;
                                          owl:onProperty :videogameHasReview ;
-                                         owl:minQualifiedCardinality "5"^^xsd:nonNegativeInteger ;
+                                         owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
                                          owl:onClass :Review
                                        ] ;
                    rdfs:subClassOf :Videogame ;
@@ -612,11 +611,11 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#VirtualPlattform
 :VirtualPlattform rdf:type owl:Class ;
-                  owl:equivalentClass [ rdf:type owl:Restriction ;
-                                        owl:onProperty <https://www.wikidata.org/wiki/Q613354#isPlatformFor> ;
-                                        owl:allValuesFrom :Digital
-                                      ] ;
-                  rdfs:subClassOf :Platform ;
+                  rdfs:subClassOf :Platform ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty <https://www.wikidata.org/wiki/Q613354#isPlatformFor> ;
+                                    owl:allValuesFrom :Digital
+                                  ] ;
                   rdfs:comment "Componente esclusivamente software dedicato all'esecuzione di un videogioco. Non si è vincolati all'acquisto di un hardware dedicato esclusivamente al videogioco. Esempi di piattaforma virtuale sono google stadia, geforce now, playstation now e xcloud."@it ;
                   rdfs:label "VirtualPlatform"@en .
 
@@ -681,7 +680,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 <https://www.wikidata.org/wiki/Q613354#CategoryGameAward> rdf:type owl:Class ;
                                                           owl:equivalentClass [ rdf:type owl:Restriction ;
                                                                                 owl:onProperty <https://www.wikidata.org/wiki/Q613354#refersTo> ;
-                                                                                owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                                                                 owl:onClass :Genre
                                                                               ] ;
                                                           rdfs:subClassOf :GameAward ;
@@ -758,36 +757,172 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 :tps rdf:type owl:NamedIndividual .
 
 
+###  https://www.wikidata.org/wiki/Q613354#ex1_aranzulla.it
+<https://www.wikidata.org/wiki/Q613354#ex1_aranzulla.it> rdf:type owl:NamedIndividual ;
+                                                         :newspaperContainsBoard <https://www.wikidata.org/wiki/Q613354#ex1_redazione2> .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_best_year_metin
+<https://www.wikidata.org/wiki/Q613354#ex1_best_year_metin> rdf:type owl:NamedIndividual ,
+                                                                     <https://www.wikidata.org/wiki/Q613354#GameOfTheYear> ;
+                                                            :isMemberOfAwardSet <https://www.wikidata.org/wiki/Q613354#ex1_metin2_award_set> .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_cyberpunk
+<https://www.wikidata.org/wiki/Q613354#ex1_cyberpunk> rdf:type owl:NamedIndividual ,
+                                                               :Videogame ;
+                                                      :hasGenre :gdr ;
+                                                      :hasTitle "cyberpunk 2077" .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_franco
+<https://www.wikidata.org/wiki/Q613354#ex1_franco> rdf:type owl:NamedIndividual ,
+                                                            :Expert ,
+                                                            :Worker ;
+                                                   :hasWorkerRole <https://www.wikidata.org/wiki/Q613354#ex1_recensore> ;
+                                                   :makeReview <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_ghost> ,
+                                                               <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_metin> ,
+                                                               <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_normal_cyberpunk> ;
+                                                   <https://www.wikidata.org/wiki/Q613354#worksFor> <https://www.wikidata.org/wiki/Q613354#ex1_redazione> ;
+                                                   <https://www.wikidata.org/wiki/Q613354#hasUsername> "franco" .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_gamesvillage
+<https://www.wikidata.org/wiki/Q613354#ex1_gamesvillage> rdf:type owl:NamedIndividual ,
+                                                                  :Newspaper ;
+                                                         :newspaperContainsBoard <https://www.wikidata.org/wiki/Q613354#ex1_redazione> .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_ghostRecon
+<https://www.wikidata.org/wiki/Q613354#ex1_ghostRecon> rdf:type owl:NamedIndividual ,
+                                                                :Videogame ;
+                                                       :hasGenre :gdr ,
+                                                                 :tps ;
+                                                       :hasPlatform <https://www.wikidata.org/wiki/Q613354#pc_gaming> ,
+                                                                    <https://www.wikidata.org/wiki/Q613354#playstation4> ;
+                                                       :hasAverageRatingExpert 5 ;
+                                                       :hasTitle "ghost recon wildlands" ;
+                                                       <https://www.wikidata.org/wiki/Q613354#hasVerageRatingVideogamer> 6 .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_metin2
+<https://www.wikidata.org/wiki/Q613354#ex1_metin2> rdf:type owl:NamedIndividual ,
+                                                            :Digital ;
+                                                   :hasGenre :gdr ;
+                                                   :hasPlatform <https://www.wikidata.org/wiki/Q613354#pc_gaming> ;
+                                                   :hasAverageRatingExpert 9.5 ;
+                                                   :hasTitle "metin2" ;
+                                                   <https://www.wikidata.org/wiki/Q613354#hasVerageRatingVideogamer> 9 .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_metin2_award_set
+<https://www.wikidata.org/wiki/Q613354#ex1_metin2_award_set> rdf:type owl:NamedIndividual ;
+                                                             :hasMemberAward <https://www.wikidata.org/wiki/Q613354#ex1_best_year_metin> ;
+                                                             <https://www.wikidata.org/wiki/Q613354#isAwardSetOf> <https://www.wikidata.org/wiki/Q613354#ex1_metin2> ;
+                                                             <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 1 .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_peppe
+<https://www.wikidata.org/wiki/Q613354#ex1_peppe> rdf:type owl:NamedIndividual ;
+                                                  :hasWorkerRole <https://www.wikidata.org/wiki/Q613354#ex1_recensore2> ;
+                                                  :makeReview <https://www.wikidata.org/wiki/Q613354#ex1_review_peppe_metin> ;
+                                                  <https://www.wikidata.org/wiki/Q613354#worksFor> <https://www.wikidata.org/wiki/Q613354#ex1_redazione2> .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_recensore
+<https://www.wikidata.org/wiki/Q613354#ex1_recensore> rdf:type owl:NamedIndividual ;
+                                                      :roleFor <https://www.wikidata.org/wiki/Q613354#ex1_redazione> .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_recensore2
+<https://www.wikidata.org/wiki/Q613354#ex1_recensore2> rdf:type owl:NamedIndividual ;
+                                                       :roleFor <https://www.wikidata.org/wiki/Q613354#ex1_redazione2> ;
+                                                       :hasScore 9.5 .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_redazione
+<https://www.wikidata.org/wiki/Q613354#ex1_redazione> rdf:type owl:NamedIndividual ;
+                                                      :boardAssignAward <https://www.wikidata.org/wiki/Q613354#ex1_best_year_metin> ;
+                                                      <https://www.wikidata.org/wiki/Q613354#worksFor> <https://www.wikidata.org/wiki/Q613354#ex1_gamesvillage> .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_redazione2
+<https://www.wikidata.org/wiki/Q613354#ex1_redazione2> rdf:type owl:NamedIndividual ;
+                                                       <https://www.wikidata.org/wiki/Q613354#worksFor> <https://www.wikidata.org/wiki/Q613354#ex1_aranzulla.it> .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_review_franco_ghost
+<https://www.wikidata.org/wiki/Q613354#ex1_review_franco_ghost> rdf:type owl:NamedIndividual ,
+                                                                         :ExpertReview ;
+                                                                :reviewIsAbout <https://www.wikidata.org/wiki/Q613354#ex1_ghostRecon> ;
+                                                                :hasScore 5 .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_review_franco_metin
+<https://www.wikidata.org/wiki/Q613354#ex1_review_franco_metin> rdf:type owl:NamedIndividual ,
+                                                                         :ExpertReview ;
+                                                                :reviewIsAbout <https://www.wikidata.org/wiki/Q613354#ex1_metin2> ;
+                                                                :hasScore 10 .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_review_franco_normal_cyberpunk
+<https://www.wikidata.org/wiki/Q613354#ex1_review_franco_normal_cyberpunk> rdf:type owl:NamedIndividual ;
+                                                                           :reviewIsAbout <https://www.wikidata.org/wiki/Q613354#ex1_cyberpunk> .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_review_peppe_metin
+<https://www.wikidata.org/wiki/Q613354#ex1_review_peppe_metin> rdf:type owl:NamedIndividual ,
+                                                                        :ExpertReview ;
+                                                               :reviewIsAbout <https://www.wikidata.org/wiki/Q613354#ex1_metin2> ;
+                                                               :hasScore 9 .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_review_utente_ghost
+<https://www.wikidata.org/wiki/Q613354#ex1_review_utente_ghost> rdf:type owl:NamedIndividual ,
+                                                                         :VideoGamerReview ;
+                                                                :reviewIsAbout <https://www.wikidata.org/wiki/Q613354#ex1_ghostRecon> ;
+                                                                :hasScore 6 .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_review_utente_metin
+<https://www.wikidata.org/wiki/Q613354#ex1_review_utente_metin> rdf:type owl:NamedIndividual ,
+                                                                         :VideoGamerReview ;
+                                                                :reviewIsAbout <https://www.wikidata.org/wiki/Q613354#ex1_metin2> ;
+                                                                :hasScore 9 .
+
+
+###  https://www.wikidata.org/wiki/Q613354#ex1_utente_normale
+<https://www.wikidata.org/wiki/Q613354#ex1_utente_normale> rdf:type owl:NamedIndividual ,
+                                                                    :Videogamer ;
+                                                           :makeReview <https://www.wikidata.org/wiki/Q613354#ex1_review_utente_ghost> ,
+                                                                       <https://www.wikidata.org/wiki/Q613354#ex1_review_utente_metin> ;
+                                                           <https://www.wikidata.org/wiki/Q613354#hasUsername> "user01" .
+
+
 ###  https://www.wikidata.org/wiki/Q613354#google_stadia
-<https://www.wikidata.org/wiki/Q613354#google_stadia> rdf:type owl:NamedIndividual .
-
-
-###  https://www.wikidata.org/wiki/Q613354#ign
-<https://www.wikidata.org/wiki/Q613354#ign> rdf:type owl:NamedIndividual .
+<https://www.wikidata.org/wiki/Q613354#google_stadia> rdf:type owl:NamedIndividual ,
+                                                               :VirtualPlattform ;
+                                                      :platformName "google stadia" ;
+                                                      :requiredMinBandiwith 35 .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#nintendo_switch
-<https://www.wikidata.org/wiki/Q613354#nintendo_switch> rdf:type owl:NamedIndividual .
+<https://www.wikidata.org/wiki/Q613354#nintendo_switch> rdf:type owl:NamedIndividual ,
+                                                                 :HomeConsole ,
+                                                                 :PortableConsole ;
+                                                        :platformName "Nintendo Switch" .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#pc_gaming
-<https://www.wikidata.org/wiki/Q613354#pc_gaming> rdf:type owl:NamedIndividual .
+<https://www.wikidata.org/wiki/Q613354#pc_gaming> rdf:type owl:NamedIndividual ,
+                                                           :Computer ;
+                                                  :platformName "HP Omen 15" .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#playstation4
-<https://www.wikidata.org/wiki/Q613354#playstation4> rdf:type owl:NamedIndividual .
-
-
-###  https://www.wikidata.org/wiki/Q613354#recensore1
-<https://www.wikidata.org/wiki/Q613354#recensore1> rdf:type owl:NamedIndividual .
-
-
-###  https://www.wikidata.org/wiki/Q613354#redazione1_ign
-<https://www.wikidata.org/wiki/Q613354#redazione1_ign> rdf:type owl:NamedIndividual .
-
-
-###  https://www.wikidata.org/wiki/Q613354#skyrim
-<https://www.wikidata.org/wiki/Q613354#skyrim> rdf:type owl:NamedIndividual .
+<https://www.wikidata.org/wiki/Q613354#playstation4> rdf:type owl:NamedIndividual ,
+                                                              :HomeConsole ;
+                                                     :platformName "Playstation 4" .
 
 
 #################################################################
@@ -814,6 +949,39 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                         :fps
                         :gdr
                         :tps
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://www.wikidata.org/wiki/Q613354#ex1_franco>
+                        <https://www.wikidata.org/wiki/Q613354#ex1_utente_normale>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://www.wikidata.org/wiki/Q613354#ex1_ghostRecon>
+                        <https://www.wikidata.org/wiki/Q613354#ex1_metin2>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_ghost>
+                        <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_metin>
+                        <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_normal_cyberpunk>
+                        <https://www.wikidata.org/wiki/Q613354#ex1_review_utente_ghost>
+                        <https://www.wikidata.org/wiki/Q613354#ex1_review_utente_metin>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_ghost>
+                        <https://www.wikidata.org/wiki/Q613354#ex1_review_franco_metin>
+                        <https://www.wikidata.org/wiki/Q613354#ex1_review_utente_ghost>
+                        <https://www.wikidata.org/wiki/Q613354#ex1_review_utente_metin>
                       )
 ] .
 

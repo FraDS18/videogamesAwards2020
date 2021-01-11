@@ -218,38 +218,26 @@
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRating
 :hasAverageRating rdf:type owl:DatatypeProperty ;
                   rdfs:domain :Videogame ;
-                  rdfs:range xsd:decimal .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingVideogamer
-:hasAverageRatingVideogamer rdf:type owl:DatatypeProperty ;
-                            rdfs:domain :Videogame ;
-                            rdfs:range xsd:decimal .
+                  rdfs:range xsd:integer .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasReleaseDate
 :hasReleaseDate rdf:type owl:DatatypeProperty ;
                 rdfs:domain :Videogame ;
-                rdfs:range xsd:string .
+                rdfs:range xsd:dateTime .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasScore
 :hasScore rdf:type owl:DatatypeProperty ;
           rdfs:subPropertyOf owl:topDataProperty ;
           rdfs:domain :Review ;
-          rdfs:range xsd:decimal .
+          rdfs:range xsd:integer .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasTitle
 :hasTitle rdf:type owl:DatatypeProperty ;
           rdfs:domain :Videogame ;
           rdfs:range xsd:string .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#hasUsername
-:hasUsername rdf:type owl:DatatypeProperty ;
-             rdfs:domain :User ;
-             rdfs:range xsd:string .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#platformName
@@ -747,6 +735,109 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 :action rdf:type owl:NamedIndividual .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_edge
+:ex4_edge rdf:type owl:NamedIndividual ,
+                   :Newspaper .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_famitsu
+:ex4_famitsu rdf:type owl:NamedIndividual ,
+                      :Newspaper .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_gamespot
+:ex4_gamespot rdf:type owl:NamedIndividual ,
+                       :Newspaper .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_recensore1
+:ex4_recensore1 rdf:type owl:NamedIndividual ;
+                :worksFor :ex4_redazioneGaming1 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_recensore2
+:ex4_recensore2 rdf:type owl:NamedIndividual ;
+                :worksFor :ex4_redazioneGaming2 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_recensore3
+:ex4_recensore3 rdf:type owl:NamedIndividual ;
+                :worksFor :ex4_redazioneGaming1 ,
+                          :ex4_redazioneGaming3 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_recensore4
+:ex4_recensore4 rdf:type owl:NamedIndividual ;
+                :worksFor :ex4_redazioneGaming4 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_redazioneGaming1
+:ex4_redazioneGaming1 rdf:type owl:NamedIndividual ,
+                               :Board ;
+                      :worksFor :ex4_edge .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_redazioneGaming2
+:ex4_redazioneGaming2 rdf:type owl:NamedIndividual ,
+                               :Board ;
+                      :worksFor :ex4_famitsu .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_redazioneGaming3
+:ex4_redazioneGaming3 rdf:type owl:NamedIndividual ,
+                               :Board ;
+                      :worksFor :ex4_gamespot .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_redazioneGaming4
+:ex4_redazioneGaming4 rdf:type owl:NamedIndividual ,
+                               :Board ;
+                      :worksFor :ex4_edge .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_review1
+:ex4_review1 rdf:type owl:NamedIndividual ;
+             :reviewIsAbout :ex4_videogame1 ;
+             :reviewMadeBy :ex4_recensore1 ;
+             :hasScore 9 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_review2
+:ex4_review2 rdf:type owl:NamedIndividual ;
+             :reviewIsAbout :ex4_videogame1 ;
+             :reviewMadeBy :ex4_recensore2 ;
+             :hasScore 10 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_review3
+:ex4_review3 rdf:type owl:NamedIndividual ;
+             :reviewIsAbout :ex4_videogame1 ;
+             :reviewMadeBy :ex4_recensore3 ;
+             :hasScore 9 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_review4
+:ex4_review4 rdf:type owl:NamedIndividual ;
+             :reviewIsAbout :ex4_videogame1 ;
+             :reviewMadeBy :ex4_recensore4 ;
+             :hasScore 10 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_review5
+:ex4_review5 rdf:type owl:NamedIndividual ;
+             :reviewIsAbout :ex4_videogame1 ;
+             :reviewMadeBy :ex4_recensore4 ;
+             :hasScore 7 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#ex4_videogame1
+:ex4_videogame1 rdf:type owl:NamedIndividual ;
+                :hasPlatform :pc_gaming ,
+                             :playstation4 ;
+                :hasAverageRating 9 ;
+                :hasTitle "Sekiro: Shadows Die Twice" .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#fps
 :fps rdf:type owl:NamedIndividual .
 
@@ -804,10 +895,36 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 
 [ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( <https://www.wikidata.org/wiki/Q613354#google_stadia>
-                        <https://www.wikidata.org/wiki/Q613354#nintendo_switch>
-                        <https://www.wikidata.org/wiki/Q613354#pc_gaming>
-                        <https://www.wikidata.org/wiki/Q613354#playstation4>
+  owl:distinctMembers ( :ex4_recensore1
+                        :ex4_recensore2
+                        :ex4_recensore3
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :ex4_redazioneGaming1
+                        :ex4_redazioneGaming2
+                        :ex4_redazioneGaming3
+                        :ex4_redazioneGaming4
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :ex4_review1
+                        :ex4_review2
+                        :ex4_review3
+                        :ex4_review4
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :google_stadia
+                        :nintendo_switch
+                        :pc_gaming
+                        :playstation4
                       )
 ] .
 

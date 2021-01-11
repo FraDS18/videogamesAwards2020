@@ -14,7 +14,9 @@
 #################################################################
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingExpert
-:hasAverageRatingExpert rdf:type owl:AnnotationProperty .
+:hasAverageRatingExpert rdf:type owl:AnnotationProperty ;
+                        rdfs:range xsd:decimal ;
+                        rdfs:domain :Videogame .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasVerageRatingVideogamer
@@ -224,9 +226,7 @@
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingExpert
-:hasAverageRatingExpert rdf:type owl:DatatypeProperty ;
-                        rdfs:domain :Videogame ;
-                        rdfs:range xsd:decimal .
+:hasAverageRatingExpert rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingVideogamer
@@ -286,7 +286,7 @@
                                                          [ rdf:type owl:Restriction ;
                                                            owl:onProperty :hasAverageRatingExpert ;
                                                            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                                                owl:onDatatype xsd:integer ;
+                                                                                owl:onDatatype xsd:decimal ;
                                                                                 owl:withRestrictions ( [ xsd:maxExclusive 6
                                                                                                        ]
                                                                                                      )
@@ -391,7 +391,7 @@
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasAverageRatingExpert ;
                                                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                                                   owl:onDatatype xsd:integer ;
+                                                                                   owl:onDatatype xsd:decimal ;
                                                                                    owl:withRestrictions ( [ xsd:minExclusive 6
                                                                                                           ]
                                                                                                           [ xsd:maxExclusive 7.5
@@ -500,7 +500,7 @@
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty :hasAverageRatingExpert ;
                                                             owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                                                 owl:onDatatype xsd:integer ;
+                                                                                 owl:onDatatype xsd:decimal ;
                                                                                  owl:withRestrictions ( [ xsd:minExclusive 7.5
                                                                                                         ]
                                                                                                         [ xsd:maxExclusive 9
@@ -533,7 +533,7 @@
                                                         [ rdf:type owl:Restriction ;
                                                           owl:onProperty :hasAverageRatingExpert ;
                                                           owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                                               owl:onDatatype xsd:integer ;
+                                                                               owl:onDatatype xsd:decimal ;
                                                                                owl:withRestrictions ( [ xsd:minInclusive 9
                                                                                                       ]
                                                                                                     )
@@ -547,20 +547,20 @@
              rdfs:label "Masterpiece"@en .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#Min5GameAwardSet
-:Min5GameAwardSet rdf:type owl:Class ;
+###  http://www.videogamesAwards.org/videogamesAwards2020#Min3GameAwardSet
+:Min3GameAwardSet rdf:type owl:Class ;
                   owl:equivalentClass [ rdf:type owl:Restriction ;
                                         owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> ;
                                         owl:someValuesFrom [ rdf:type rdfs:Datatype ;
                                                              owl:onDatatype xsd:integer ;
-                                                             owl:withRestrictions ( [ xsd:minExclusive 4
+                                                             owl:withRestrictions ( [ xsd:minExclusive 2
                                                                                     ]
                                                                                   )
                                                            ]
                                       ] ;
                   rdfs:subClassOf :GameAwardSet ;
                   rdfs:comment "È un gameawardset con almeno 5 premi. Esso viene usato per classificare un gioco come \"must-have\", ossia un videogioco da avere per forza se si è appassionati."@it ;
-                  rdfs:label "Min5GameAwardSet"@en .
+                  rdfs:label "Min3GameAwardSet"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Multiplatform
@@ -572,7 +572,7 @@
                                    ] ;
                rdfs:subClassOf :Videogame ;
                rdfs:comment "per multipiattaforma si intende un vidieogioco che viene rilasciato su più di una piattaforma di gioco, ad esempio può essere acquistato e giocato sia su Playstation4 che Xbox S."@it ;
-               rdfs:label "Mltiplatform"@en .
+               rdfs:label "Multiplatform"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#MustHave
@@ -580,11 +580,11 @@
           owl:equivalentClass [ rdf:type owl:Class ;
                                 owl:unionOf ( [ rdf:type owl:Restriction ;
                                                 owl:onProperty :owns ;
-                                                owl:someValuesFrom :Min5GameAwardSet
+                                                owl:someValuesFrom :Min3GameAwardSet
                                               ]
                                               [ rdf:type owl:Restriction ;
                                                 owl:onProperty :owns ;
-                                                owl:someValuesFrom :SpecialGameAward
+                                                owl:someValuesFrom :SpecialGameAwardSet
                                               ]
                                             )
                               ] ;
@@ -691,6 +691,15 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                   rdfs:label "SpecialGameAward"@en .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#SpecialGameAwardSet
+:SpecialGameAwardSet rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                           owl:onProperty :owns ;
+                                           owl:someValuesFrom :SpecialGameAward
+                                         ] ;
+                     rdfs:subClassOf :GameAwardSet .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#SuccessPlatform
 :SuccessPlatform rdf:type owl:Class ;
                  owl:equivalentClass [ rdf:type owl:Restriction ;
@@ -767,6 +776,116 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 #    Individuals
 #################################################################
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#award1
+:award1 rdf:type owl:NamedIndividual ,
+                 :CategoryGameAward ;
+        :isOwnedBy :awardSet1 ;
+        :refersTo :genere_action ;
+        :awardHasYear 2019 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#award2
+:award2 rdf:type owl:NamedIndividual ,
+                 :CategoryGameAward ;
+        :isOwnedBy :awardSet1 ;
+        :refersTo :genere_action ;
+        :awardHasYear 2019 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#award3
+:award3 rdf:type owl:NamedIndividual ,
+                 :CategoryGameAward ;
+        :isOwnedBy :awardSet1 ;
+        :refersTo :genere_action ;
+        :awardHasYear 2019 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#award4
+:award4 rdf:type owl:NamedIndividual ,
+                 :CategoryGameAward ;
+        :isOwnedBy :awardSet3 ;
+        :refersTo :genere_fps ;
+        :awardHasYear 2020 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#award5Goty1
+:award5Goty1 rdf:type owl:NamedIndividual ,
+                      :GameOfTheYear ;
+             :isOwnedBy :awardSet2 ;
+             :awardHasYear 2018 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#award6Goty2
+:award6Goty2 rdf:type owl:NamedIndividual ,
+                      :GameOfTheYear ;
+             :isOwnedBy :awardSet5 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet1
+:awardSet1 rdf:type owl:NamedIndividual ,
+                    :GameAwardSet ;
+           :isOwnedBy :videogioco1 ;
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 3 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet2
+:awardSet2 rdf:type owl:NamedIndividual ,
+                    :GameAwardSet ;
+           :isOwnedBy :videogioco2 ;
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 1 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet3
+:awardSet3 rdf:type owl:NamedIndividual ,
+                    :GameAwardSet ;
+           :isOwnedBy :videogioco3 ;
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 1 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet4
+:awardSet4 rdf:type owl:NamedIndividual ,
+                    :GameAwardSet ;
+           :isOwnedBy :videogioco4 ;
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet5
+:awardSet5 rdf:type owl:NamedIndividual ,
+                    :GameAwardSet ;
+           :isOwnedBy :videogioco5 ;
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 1 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#board1
+:board1 rdf:type owl:NamedIndividual ,
+                 :Board ;
+        :boardAssignAward :award1 ,
+                          :award5Goty1 ;
+        :boardIsPartOfNewspaper :newspaper1 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#board2
+:board2 rdf:type owl:NamedIndividual ,
+                 :Board ;
+        :boardAssignAward :award2 ;
+        :boardIsPartOfNewspaper :newspaper2 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#board3
+:board3 rdf:type owl:NamedIndividual ,
+                 :Board ;
+        :boardAssignAward :award3 ,
+                          :award4 ;
+        :boardIsPartOfNewspaper :newspaper3 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#board4
+:board4 rdf:type owl:NamedIndividual ,
+                 :Board ;
+        :boardAssignAward :award6Goty2 ;
+        :boardIsPartOfNewspaper :newspaper4 .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_action
 :genere_action rdf:type owl:NamedIndividual .
 
@@ -781,6 +900,261 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_tps
 :genere_tps rdf:type owl:NamedIndividual .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper1
+:newspaper1 rdf:type owl:NamedIndividual ,
+                     :Newspaper .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper2
+:newspaper2 rdf:type owl:NamedIndividual ,
+                     :Newspaper .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper3
+:newspaper3 rdf:type owl:NamedIndividual ,
+                     :Newspaper .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper4
+:newspaper4 rdf:type owl:NamedIndividual ,
+                     :Newspaper .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma1
+:piattaforma1 rdf:type owl:NamedIndividual ,
+                       :HomeConsole ;
+              :isPlatformFor :videogioco1 ,
+                             :videogioco2 ,
+                             :videogioco3 ,
+                             :videogioco4 ,
+                             :videogioco5 ;
+              :platformName "Playstation 4" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma2
+:piattaforma2 rdf:type owl:NamedIndividual ,
+                       :HomeConsole ,
+                       :PortableConsole ;
+              :isPlatformFor :videogioco5 ;
+              :platformName "Nintendo Switch" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma3
+:piattaforma3 rdf:type owl:NamedIndividual ,
+                       :VirtualPlattform ;
+              :isPlatformFor :videogioco1 ,
+                             :videogioco2 ;
+              :platformName "Google Stadia" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma4
+:piattaforma4 rdf:type owl:NamedIndividual ,
+                       :Computer ;
+              :isPlatformFor :videogioco1 ,
+                             :videogioco2 ,
+                             :videogioco5 ;
+              :platformName "Hp Omen 17" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#recensore1
+:recensore1 rdf:type owl:NamedIndividual ,
+                     :GameReviewer ;
+            :roleFor :board1 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#recensore2
+:recensore2 rdf:type owl:NamedIndividual ,
+                     :GameReviewer ;
+            :roleFor :board2 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#recensore3
+:recensore3 rdf:type owl:NamedIndividual ,
+                     :GameReviewer ;
+            :roleFor :board3 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#recensore4
+:recensore4 rdf:type owl:NamedIndividual ,
+                     :GameReviewer ;
+            :roleFor :board4 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#recensore5
+:recensore5 rdf:type owl:NamedIndividual ,
+                     :GameReviewer ;
+            :roleFor :board1 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#review1
+:review1 rdf:type owl:NamedIndividual ;
+         :reviewIsAbout :videogioco1 ;
+         :hasScore 9 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#review2
+:review2 rdf:type owl:NamedIndividual ;
+         :reviewIsAbout :videogioco2 ;
+         :hasScore 10 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#review3
+:review3 rdf:type owl:NamedIndividual ;
+         :reviewIsAbout :videogioco3 ;
+         :hasScore 7.5 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#review4
+:review4 rdf:type owl:NamedIndividual ;
+         :reviewIsAbout :videogioco1 ;
+         :hasScore 8.5 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#review5
+:review5 rdf:type owl:NamedIndividual ;
+         :reviewIsAbout :videogioco5 ;
+         :hasScore 9.5 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#review6
+:review6 rdf:type owl:NamedIndividual ;
+         :reviewIsAbout :videogioco4 ;
+         :hasScore 8.5 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#review7
+:review7 rdf:type owl:NamedIndividual ;
+         :reviewIsAbout :videogioco1 ;
+         :hasScore 9 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#review8
+:review8 rdf:type owl:NamedIndividual ;
+         :reviewIsAbout :videogioco2 ;
+         :hasScore 10 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#review9
+:review9 rdf:type owl:NamedIndividual ;
+         :reviewIsAbout :videogioco2 ;
+         :hasScore 9 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#user1
+:user1 rdf:type owl:NamedIndividual ;
+       :hasWorkerRole :recensore2 ,
+                      :recensore5 ;
+       :makeReview :review1 ,
+                   :review7 ;
+       :hasUsername "Aldo" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#user2
+:user2 rdf:type owl:NamedIndividual ;
+       :hasWorkerRole :recensore2 ;
+       :makeReview :review2 ,
+                   :review9 ;
+       :hasUsername "Giovanni" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#user3
+:user3 rdf:type owl:NamedIndividual ;
+       :hasWorkerRole :recensore1 ,
+                      :recensore3 ;
+       :makeReview :review3 ,
+                   :review8 ;
+       :hasUsername "Giacomo" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#user4
+:user4 rdf:type owl:NamedIndividual ;
+       :hasWorkerRole :recensore4 ;
+       :makeReview :review4 ;
+       :hasUsername "Giuseppe" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#user5
+:user5 rdf:type owl:NamedIndividual ,
+                :Videogamer ;
+       :makeReview :review5 ;
+       :hasUsername "Francesco" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#user6
+:user6 rdf:type owl:NamedIndividual ,
+                :Videogamer ;
+       :makeReview :review6 ;
+       :hasUsername "Daniele" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco1
+:videogioco1 rdf:type owl:NamedIndividual ;
+             :hasAverageRatingExpert 8.83 ;
+             :hasTitle "Sekiro: Shadows die Twice" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco2
+:videogioco2 rdf:type owl:NamedIndividual ;
+             :hasAverageRatingExpert 9.67 ;
+             :hasTitle "God of War 2018" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco3
+:videogioco3 rdf:type owl:NamedIndividual ;
+             :hasTitle "Call of Duty: Cold War" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco4
+:videogioco4 rdf:type owl:NamedIndividual ;
+             :hasAverageRatingVideogamer 8.5 ;
+             :hasTitle "Control" .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco5
+:videogioco5 rdf:type owl:NamedIndividual ;
+             :hasAverageRatingVideogamer 9.5 ;
+             :hasTitle "Dark Souls" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :review1
+                        :review2
+                        :review3
+                        :review4
+                        :review5
+                        :review6
+                        :review7
+                        :review8
+                        :review9
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :user1
+                        :user2
+                        :user3
+                        :user4
+                        :user5
+                        :user6
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :videogioco1
+                        :videogioco2
+                        :videogioco3
+                        :videogioco4
+                        :videogioco5
+                      )
+] .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

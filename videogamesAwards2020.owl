@@ -200,8 +200,9 @@ dc:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#reviewMadeBy
-:reviewMadeBy rdf:type owl:ObjectProperty ,
-                       owl:FunctionalProperty ;
+:reviewMadeBy rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasAttributedTo> ;
+              rdf:type owl:FunctionalProperty ;
               rdfs:comment "Una review è effettuata da un utente. È l'inverso di \"makeReview\"."@it ;
               rdfs:label "reviewMadeBy"@en .
 
@@ -248,6 +249,10 @@ dc:title rdf:type owl:AnnotationProperty .
                                           ) ;
                    rdfs:comment "Un lavoratore lavora indirettamente per una testata giornalistica. Questo si ottiene dalla proprietà 'worksForBoard' che specifica la redazione per cui lavora."@it ;
                    rdfs:label "worksForNewspaper"@en .
+
+
+###  http://www.w3.org/ns/prov#wasAttributedTo
+<http://www.w3.org/ns/prov#wasAttributedTo> rdf:type owl:ObjectProperty .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#colleague
@@ -744,6 +749,7 @@ dc:title rdf:type owl:AnnotationProperty .
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Newspaper
 :Newspaper rdf:type owl:Class ;
+           rdfs:subClassOf <http://www.w3.org/ns/prov#Organization> ;
            rdfs:comment "È la testata giornalistica che, tra le varie cose, è responsabile delle redazioni che pubblicano recensioni o attribuiscono premi ad un videogioco."@it ;
            rdfs:label "Newspaper"@en .
 
@@ -791,6 +797,7 @@ Un esempio di console portatile è il Nintendo ds, oppure playstation vita."""@i
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Review
 :Review rdf:type owl:Class ;
+        rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> ;
         owl:disjointUnionOf ( :ExpertReview
                               :VideoGamerReview
                             ) ;
@@ -831,7 +838,8 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#User
 :User rdf:type owl:Class ;
-      rdfs:subClassOf <http://schema.org/Person> ;
+      rdfs:subClassOf <http://schema.org/Person> ,
+                      <http://www.w3.org/ns/prov#Person> ;
       rdfs:comment "Persona iscritta alla piattaforma che ne visualizza i contenuti e partecipa attivamente rilasciando recensioni sui videogiochi."@it ;
       rdfs:label "User"@en .
 
@@ -849,6 +857,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Videogame
 :Videogame rdf:type owl:Class ;
+           rdfs:subClassOf <http://www.w3.org/ns/prov#SoftwareAgent> ;
            owl:disjointUnionOf ( :Exclusive
                                  :Multiplatform
                                ) ;
@@ -880,16 +889,38 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Worker
 :Worker rdf:type owl:Class ;
-        rdfs:subClassOf <http://schema.org/Person> ;
+        rdfs:subClassOf <http://schema.org/Person> ,
+                        <http://www.w3.org/ns/prov#Person> ;
         rdfs:comment "Per worker di intende una persona che lavora per una o più redazioni di una qualche testata giornalistica. Esso potrà svolgere un ruolo specifico a seconda della redazione in cui lavoriamo."@it ;
         rdfs:label "Worker"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#WorkerRole
 :WorkerRole rdf:type owl:Class ;
-            rdfs:subClassOf <http://schema.org/Role> ;
+            rdfs:subClassOf <http://schema.org/Role> ,
+                            <http://www.w3.org/ns/prov#Role> ;
             rdfs:comment "Questa classe rappresenta i ruoli che si possono avere all'interno di una testata giornalistica, ad esempio: giornalista, recensore di videogame, redattore, ecc..."@it ;
             rdfs:label "WorkerRole"@en .
+
+
+###  http://www.w3.org/ns/prov#Entity
+<http://www.w3.org/ns/prov#Entity> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Organization
+<http://www.w3.org/ns/prov#Organization> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Person
+<http://www.w3.org/ns/prov#Person> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Role
+<http://www.w3.org/ns/prov#Role> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#SoftwareAgent
+<http://www.w3.org/ns/prov#SoftwareAgent> rdf:type owl:Class .
 
 
 #################################################################

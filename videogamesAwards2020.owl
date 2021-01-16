@@ -1051,22 +1051,26 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper1
 :newspaper1 rdf:type owl:NamedIndividual ,
-                     :Newspaper .
+                     :Newspaper ;
+            <https://www.wikidata.org/wiki/Q613354#legalName> "Spaziogames" .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper2
 :newspaper2 rdf:type owl:NamedIndividual ,
-                     :Newspaper .
+                     :Newspaper ;
+            <https://www.wikidata.org/wiki/Q613354#legalName> "Multiplayer"^^xsd:string .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper3
 :newspaper3 rdf:type owl:NamedIndividual ,
-                     :Newspaper .
+                     :Newspaper ;
+            <https://www.wikidata.org/wiki/Q613354#legalName> "IGN"^^xsd:string .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper4
 :newspaper4 rdf:type owl:NamedIndividual ,
-                     :Newspaper .
+                     :Newspaper ;
+            <https://www.wikidata.org/wiki/Q613354#legalName> "Eurogamer"^^xsd:string .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma1

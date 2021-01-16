@@ -305,7 +305,7 @@ dc:title rdf:type owl:AnnotationProperty .
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasReleaseDate
 :hasReleaseDate rdf:type owl:DatatypeProperty ;
                 rdfs:domain :Videogame ;
-                rdfs:range xsd:string ;
+                rdfs:range xsd:dateTime ;
                 rdfs:comment "Un vidieogioco viene rilasciato al pubblico nella data specificata"@it ;
                 rdfs:label "hasReleaseDate"@en .
 
@@ -1241,6 +1241,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco1
 :videogioco1 rdf:type owl:NamedIndividual ;
              :hasAwardSet :awardSet1 ;
+             :hasReleaseDate "2019-03-22T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "Sekiro: Shadows die Twice" ;
              :hasAverageRatingExpert 8.83 .
 
@@ -1248,6 +1249,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco2
 :videogioco2 rdf:type owl:NamedIndividual ;
              :hasAwardSet :awardSet2 ;
+             :hasReleaseDate "2018-04-20T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "God of War 2018" ;
              :hasAverageRatingExpert 9.67 .
 
@@ -1255,6 +1257,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco3
 :videogioco3 rdf:type owl:NamedIndividual ;
              :hasAwardSet :awardSet3 ;
+             :hasReleaseDate "2020-11-13T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "Call of Duty: Cold War" .
 
 
@@ -1262,6 +1265,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 :videogioco4 rdf:type owl:NamedIndividual ;
              :hasAwardSet :awardSet4 ;
              :hasAverageRatingVideogamer 8.5 ;
+             :hasReleaseDate "2019-08-27T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "Control" .
 
 
@@ -1269,6 +1273,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 :videogioco5 rdf:type owl:NamedIndividual ;
              :hasAwardSet :awardSet5 ;
              :hasAverageRatingVideogamer 9.5 ;
+             :hasReleaseDate "2011-10-06T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "Dark Souls" .
 
 

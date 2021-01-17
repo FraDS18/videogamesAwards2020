@@ -331,7 +331,8 @@ It is extracted from DOLCE-UltraLite by partial clone of elements.""" ;
 
 
 ###  http://www.w3.org/2002/07/owl#topObjectProperty
-owl:topObjectProperty owl:inverseOf owl:topObjectProperty ;
+owl:topObjectProperty rdf:type owl:ObjectProperty ;
+                      owl:inverseOf owl:topObjectProperty ;
                       rdf:type owl:SymmetricProperty ,
                                owl:TransitiveProperty .
 
@@ -363,6 +364,12 @@ owl:topObjectProperty owl:inverseOf owl:topObjectProperty ;
               rdfs:range xsd:positiveInteger ;
               rdfs:comment "anno in cui il premio viene assegnato ad un certo videogioco"@it ;
               rdfs:label "awardHasYear"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingExpert
+:hasAverageRatingExpert rdf:type owl:DatatypeProperty ;
+                        rdfs:comment "Un videogioco ha un voto medio calcolato come la media dei voti delle recensioni rilasciciate dagli utenti esperti"@it ;
+                        rdfs:label "hasAverageRatingExpert"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingVideogamer
@@ -1357,6 +1364,17 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
          :hasScore 9 .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#review10
+:review10 rdf:type owl:NamedIndividual ,
+                   <http://schema.org/UserReview> ,
+                   :PositiveReview ,
+                   :VideoGamerReview ;
+          :reviewIsAbout :videogioco1 ;
+          :reviewMadeBy :user6 ;
+          <http://www.w3.org/ns/prov#wasAttributedTo> :user6 ;
+          :hasScore 8 .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review2
 :review2 rdf:type owl:NamedIndividual ,
                   <http://schema.org/CriticReview> ,
@@ -1553,7 +1571,8 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                 :User ,
                 :Videogamer ,
                 <http://www.w3.org/ns/prov#Person> ;
-       :makeReview :review6 ;
+       :makeReview :review10 ,
+                   :review6 ;
        :hasUsername "Daniele" .
 
 
@@ -1609,11 +1628,11 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :videogameHasReview :review2 ,
                                  :review8 ,
                                  :review9 ;
-             :hasAverageRatingExpert 9.66 ;
+             :hasAverageRatingExpert 9.66 ,
+                                     9.67 ;
              :hasAverageRatingVideogamer 9.5 ;
              :hasReleaseDate "2018-04-20T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "God of War 2018" ;
-             :hasAverageRatingExpert 9.67 .
+             :hasTitle "God of War 2018" .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco3
@@ -1687,10 +1706,6 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 :gameHasAward rdfs:comment "La relazione permette di ricavare i premi di uno specifico gioco. La relazione è realizzata attraverso la property chain \"hasAwarSet o hasMemberAward\"."@it ;
               rdfs:label "gameHasAward"@en .
-
-
-:hasAverageRatingExpert rdfs:label "hasAverageRatingExpert"@en ;
-                        rdfs:comment "Un videogioco ha un voto medio calcolato come la media dei voti delle recensioni rilasciciate dagli utenti esperti"@it .
 
 
 #################################################################

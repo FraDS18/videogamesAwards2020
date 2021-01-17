@@ -1150,6 +1150,12 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
          :hasScore 9 .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#review10
+:review10 rdf:type owl:NamedIndividual ;
+          :reviewIsAbout :videogioco1 ;
+          :hasScore 8 .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review2
 :review2 rdf:type owl:NamedIndividual ;
          :reviewIsAbout :videogioco2 ;
@@ -1243,7 +1249,8 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user6
 :user6 rdf:type owl:NamedIndividual ,
                 :Videogamer ;
-       :makeReview :review6 ;
+       :makeReview :review10 ,
+                   :review6 ;
        :hasUsername "Daniele" .
 
 

@@ -99,7 +99,7 @@ dc:title rdf:type owl:AnnotationProperty .
                         rdfs:domain :Board ;
                         rdfs:range :Newspaper ;
                         rdfs:comment "Una redazione (board) appartiene ad una testata giornalistica (newspaper). È l'inverso di \"newspaperContainersBoard\""@it ;
-                        rdfs:label "boardsPartOfNewspaper"@en .
+                        rdfs:label "boardIsPartOfNewspaper"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#categoryAwardRefersTo

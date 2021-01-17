@@ -1,56 +1,105 @@
 @prefix : <http://www.videogamesAwards.org/videogamesAwards2020#> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix vann: <http://purl.org/vocab/vann/> .
 @base <http://www.videogamesAwards.org/videogamesAwards2020> .
 
 <http://www.videogamesAwards.org/videogamesAwards2020> rdf:type owl:Ontology ;
-                                                        owl:imports <http://www.ontologydesignpatterns.org/cp/owl/set.owl> ;
-                                                        dc:creator "Francesco Di Sario"@en ,
-                                                                   "Giuseppe Ignone"@en ;
-                                                        dc:date "04-01-2021"@en ;
-                                                        dc:description "Questa ontologia ha l'obiettivo di fornire una panoramica generale sui videogames con particolare riferimento ai risultati ottenuti da ciascun gioco in termini di recensioni svolte sia dalla critica esperta che dall'utenza (comuni videogiocatori) e premi ottenuti, assegnati dalle varie redazioni che lavorano per le testate giornalistiche."@it ;
-                                                        dc:label "videogamesAwards2020"@en ;
-                                                        dc:title "videogames critics and awards 2020"@en ;
+                                                        <http://purl.org/dc/elements/1.1/creator> "Francesco Di Sario"@en ,
+                                                                                                  "Giuseppe Ignone"@en ;
+                                                        <http://purl.org/dc/elements/1.1/date> "04-01-2021"@en ;
+                                                        <http://purl.org/dc/elements/1.1/description> "Questa ontologia ha l'obiettivo di fornire una panoramica generale sui videogames con particolare riferimento ai risultati ottenuti da ciascun gioco in termini di recensioni svolte sia dalla critica esperta che dall'utenza (comuni videogiocatori) e premi ottenuti, assegnati dalle varie redazioni che lavorano per le testate giornalistiche."@it ;
+                                                        <http://purl.org/dc/elements/1.1/label> "videogamesAwards2020"@en ;
+                                                        <http://purl.org/dc/elements/1.1/title> "videogames critics and awards 2020"@en ;
+                                                        <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#coversRequirements> "What are the elements in this set?"^^xsd:string ,
+                                                                                                                                                  "What is the cardinality (size) of this set?"^^xsd:string ,
+                                                                                                                                                  "What things are contained in this collection (community, collective)? What collections this thing is member of?" ;
+                                                        <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#extractedFrom> "http://swan.mindinformatics.org/ontologies/1.2/collections.owl"^^xsd:string ,
+                                                                                                                                             "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl" ;
+                                                        <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasAuthor> "Aldo Gangemi" ,
+                                                                                                                                         "PaoloCiccarese"^^xsd:string ;
+                                                        <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasConsequences> "Collections and their members can be associated. Time-indexed membership cannot be represented though (you need a situation-based pattern)." ;
+                                                        <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasIntent> "To model sets of things (elements). A Set is a collection that cannot contain duplicate elements. "^^xsd:string ,
+                                                                                                                                         "To represent domain (not set theory) membership." ;
+                                                        <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#reengineeredFrom> "http://swan.mindinformatics.org/ontologies/1.2/collections.owl"^^xsd:string ;
+                                                        <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#relatedCPs> "TimeIndexedMembership" ,
+                                                                                                                                          "http://www.ontologydesignpatterns.org/cp/owl/bag.owl"^^xsd:string ,
+                                                                                                                                          "http://www.ontologydesignpatterns.org/cp/owl/list.owl"^^xsd:string ;
+                                                        <http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#scenarios> "My saxophone collection includes a Mark VI tenor, a Balanced Action alto, and a Conn Transitional bari." ;
                                                         :vann:preferredNamespacePrefix "vgaw"@en ;
-                                                        :vann:preferredNamespaceUri "http://www.videogamesAwards.org/videogamesAwards2020"@en .
+                                                        :vann:preferredNamespaceUri "http://www.videogamesAwards.org/videogamesAwards2020"@en ;
+                                                        rdfs:comment "A Set is a collection that cannot contain duplicate elements. A Set is expressed by linking to it directly all the members (elements), multiple identical values of members (elements) will be eliminated because by default they are treated as a set."^^xsd:string ,
+                                                                     """The collection entity pattern. 
+It is extracted from DOLCE-UltraLite by partial clone of elements.""" ;
+                                                        rdfs:label "collection entity" ,
+                                                                   "membership" ;
+                                                        owl:versionInfo "1.1 added rdfs:isDefinedBy for all named entities"^^xsd:string ,
+                                                                        "Created by Aldo Gangemi and Valentina Presutti"^^xsd:string ,
+                                                                        "Created with TopBraid Composer"^^xsd:string .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
 ###  http://purl.org/dc/elements/1.1/creator
-dc:creator rdf:type owl:AnnotationProperty .
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/date
-dc:date rdf:type owl:AnnotationProperty .
+<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/description
-dc:description rdf:type owl:AnnotationProperty .
+<http://purl.org/dc/elements/1.1/description> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/label
-dc:label rdf:type owl:AnnotationProperty .
+<http://purl.org/dc/elements/1.1/label> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/elements/1.1/title
-dc:title rdf:type owl:AnnotationProperty .
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingExpert
-:hasAverageRatingExpert rdf:type owl:AnnotationProperty ;
-                        rdfs:range xsd:decimal ;
-                        rdfs:domain :Videogame .
+###  http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#coversRequirements
+<http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#coversRequirements> rdf:type owl:AnnotationProperty ;
+                                                                                          rdfs:comment "This annotation property is used for exemplifying possible requirements the content pattern provides a solution for. Requirements are expressed as natural language competency questions." .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#hasVerageRatingVideogamer
-:hasVerageRatingVideogamer rdf:type owl:AnnotationProperty .
+###  http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#extractedFrom
+<http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#extractedFrom> rdf:type owl:AnnotationProperty ;
+                                                                                     rdfs:comment "This annotation property should be assigned with a URI, which points to the possible reference ontology which the annotated pattern was extracted from (i.e. the reference ontology that the ontology elements have been deeply or partially cloned by). The range is not explicit in the definition of the annotation property because it would turn the ontology to OWL Full. E.g. The participation pattern is extracted from the Dolce Ultra Lite ontology, hence the value for this annotation property is http://www.ontologydesignpatterns.org/ont/dul/DUL.owl" .
+
+
+###  http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasAuthor
+<http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasAuthor> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasConsequences
+<http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasConsequences> rdf:type owl:AnnotationProperty ;
+                                                                                       rdfs:comment "This annotation property is used for briefly describing the benefits and/or possible trade-offs when using the CP." .
+
+
+###  http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasIntent
+<http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasIntent> rdf:type owl:AnnotationProperty ;
+                                                                                 rdfs:comment "This annotation property is used in order to describe the intent of the content pattern." .
+
+
+###  http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#reengineeredFrom
+<http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#reengineeredFrom> rdf:type owl:AnnotationProperty ;
+                                                                                        rdfs:comment "This annotation property should be assigned with a URI, which points to the concept schema, page, or anything else from which the annotated pattern was reengineered.  If the source does not have any URI e.g., a printed book, this property value should provide information as precise as possible in order to identify the source. This property is alternative to the extractedFrom property because it is used when the pattern come from a concept schema which is not an owl ontology. For example content ontology design patterns, which are reengineered from data model patterns, rdf schemas, etc. should be annotatd with this property. E.g. The basicpersonalfoaf pattern is extracted from the rdf FOAF specification, hence the value for this annotation property is http://xmlns.com/foaf/spec/20071002.rdf" .
+
+
+###  http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#relatedCPs
+<http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#relatedCPs> rdf:type owl:AnnotationProperty ;
+                                                                                  rdfs:comment "This annotation property can be used to indicate other CPs (if any) that specialize, generalize, inlcude, or are components of the CP. Furthermore, this field may indicate other CPs that are typically used in conjunction with the described one. Important similarities and differences with other patterns can be also described here." .
+
+
+###  http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#scenarios
+<http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#scenarios> rdf:type owl:AnnotationProperty ;
+                                                                                 rdfs:comment "This annotation property is used for describing examples of instantiation of the Content OP. For example, for the part-of Content OP (which represents part-whole relations) a possible scenario is the sentence: \"the brain is part of the human body\". Scenarios are expressed as natural language sentences." .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#vann:preferredNamespacePrefix
@@ -65,9 +114,25 @@ dc:title rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
+###  http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember
+<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> rdf:type owl:ObjectProperty ;
+                                                                              owl:inverseOf <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> ;
+                                                                              rdfs:domain <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ;
+                                                                              rdfs:range owl:Thing ;
+                                                                              rdfs:comment "A relation between collections and entities, e.g. 'my collection of saxophones includes an old Adolphe Sax original alto' (i.e. my collection has member an Adolphe Sax alto)." ,
+                                                                                           "The link to the members of a Set"^^xsd:string ;
+                                                                              rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl> ;
+                                                                              rdfs:label "has member"@en .
+
+
 ###  http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf
-<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> rdf:type owl:FunctionalProperty ;
-                                                                               rdfs:comment "qualsiasi cosa può essere membro di una collezione."@it .
+<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> rdf:type owl:ObjectProperty ,
+                                                                                        owl:FunctionalProperty ;
+                                                                               rdfs:domain owl:Thing ;
+                                                                               rdfs:range <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ;
+                                                                               rdfs:comment "qualsiasi cosa può essere membro di una collezione."@it ;
+                                                                               rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl> ;
+                                                                               rdfs:label "is member of"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardAssignedByBoard
@@ -99,7 +164,7 @@ dc:title rdf:type owl:AnnotationProperty .
                         rdfs:domain :Board ;
                         rdfs:range :Newspaper ;
                         rdfs:comment "Una redazione (board) appartiene ad una testata giornalistica (newspaper). È l'inverso di \"newspaperContainersBoard\""@it ;
-                        rdfs:label "boardsPartOfNewspaper"@en .
+                        rdfs:label "boardIsPartOfNewspaper"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#categoryAwardRefersTo
@@ -118,12 +183,6 @@ dc:title rdf:type owl:AnnotationProperty .
            rdfs:range :Worker ;
            rdfs:comment "Proprietà che definisce il rapporto tra due Lavoratori della stessa Redaizione."@it ;
            rdfs:label "colleague"@en .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#gameHasAward
-:gameHasAward rdf:type owl:ObjectProperty ;
-              rdfs:comment "La relazione permette di ricavare i premi di uno specifico gioco. La relazione è realizzata attraverso la property chain \"hasAwarSet o hasMemberAward\"."@it ;
-              rdfs:label "gameHasAward"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAwardSet
@@ -168,6 +227,8 @@ dc:title rdf:type owl:AnnotationProperty .
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#makeReview
 :makeReview rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf [ owl:inverseOf <http://www.w3.org/ns/prov#wasAttributedTo>
+                               ] ;
             owl:inverseOf :reviewMadeBy ;
             rdfs:domain :User ;
             rdfs:range :Review ;
@@ -269,6 +330,12 @@ dc:title rdf:type owl:AnnotationProperty .
                    rdfs:label "worksForNewspaper"@en .
 
 
+###  http://www.w3.org/2002/07/owl#topObjectProperty
+owl:topObjectProperty owl:inverseOf owl:topObjectProperty ;
+                      rdf:type owl:SymmetricProperty ,
+                               owl:TransitiveProperty .
+
+
 ###  http://www.w3.org/ns/prov#wasAttributedTo
 <http://www.w3.org/ns/prov#wasAttributedTo> rdf:type owl:ObjectProperty .
 
@@ -282,16 +349,20 @@ dc:title rdf:type owl:AnnotationProperty .
                               owl:equivalentProperty :legalName .
 
 
+###  http://www.ontologydesignpatterns.org/cp/owl/set.owl#size
+<http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> rdf:type owl:DatatypeProperty ;
+                                                            rdfs:domain <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ;
+                                                            rdfs:range xsd:integer ;
+                                                            rdfs:comment "size - The number of items belonging to a collection"^^xsd:string ;
+                                                            rdfs:label "size"^^xsd:string .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardHasYear
 :awardHasYear rdf:type owl:DatatypeProperty ;
               rdfs:domain :GameAward ;
               rdfs:range xsd:positiveInteger ;
               rdfs:comment "anno in cui il premio viene assegnato ad un certo videogioco"@it ;
               rdfs:label "awardHasYear"@en .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingExpert
-:hasAverageRatingExpert rdf:type owl:DatatypeProperty .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingVideogamer
@@ -364,12 +435,14 @@ dc:title rdf:type owl:AnnotationProperty .
 ###  http://schema.org/CriticReview
 <http://schema.org/CriticReview> rdf:type owl:Class ;
                                  owl:equivalentClass :ExpertReview ;
-                                 rdfs:subClassOf <http://schema.org/Review> .
+                                 rdfs:subClassOf <http://schema.org/Review> ,
+                                                 :Review .
 
 
 ###  http://schema.org/NewsMediaOrganization
 <http://schema.org/NewsMediaOrganization> rdf:type owl:Class ;
-                                          owl:equivalentClass :Newspaper .
+                                          owl:equivalentClass :Newspaper ;
+                                          rdfs:subClassOf <http://www.w3.org/ns/prov#Organization> .
 
 
 ###  http://schema.org/Person
@@ -378,7 +451,8 @@ dc:title rdf:type owl:AnnotationProperty .
 
 ###  http://schema.org/Review
 <http://schema.org/Review> rdf:type owl:Class ;
-                           owl:equivalentClass :Review .
+                           owl:equivalentClass :Review ;
+                           rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> .
 
 
 ###  http://schema.org/Role
@@ -388,12 +462,28 @@ dc:title rdf:type owl:AnnotationProperty .
 ###  http://schema.org/UserReview
 <http://schema.org/UserReview> rdf:type owl:Class ;
                                owl:equivalentClass :VideoGamerReview ;
-                               rdfs:subClassOf <http://schema.org/Review> .
+                               rdfs:subClassOf <http://schema.org/Review> ,
+                                               :Review .
 
 
 ###  http://schema.org/VideoGame
 <http://schema.org/VideoGame> rdf:type owl:Class ;
-                              owl:equivalentClass :Videogame .
+                              owl:equivalentClass :Videogame ;
+                              rdfs:subClassOf <http://www.w3.org/ns/prov#SoftwareAgent> .
+
+
+###  http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection
+<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> rdf:type owl:Class ;
+                                                                               rdfs:comment "Any container for entities that share one or more common properties. E.g. \"stone objects\", \"the nurses\", \"the Louvre Aegyptian collection\". A collection is not a logical class: a collection is a first-order entity, while a class is a second-order one." ;
+                                                                               rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl> ;
+                                                                               rdfs:label "Collection"@en .
+
+
+###  http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set
+<http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> rdf:type owl:Class ;
+                                                           rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ;
+                                                           rdfs:comment "Set - A collection that cannot contain duplicate elements."^^xsd:string ;
+                                                           rdfs:label "set"^^xsd:string .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#BadVideoGame
@@ -415,7 +505,8 @@ dc:title rdf:type owl:AnnotationProperty .
                                                        ) ;
                                     rdf:type owl:Class
                                   ] ;
-              rdfs:subClassOf :Videogame ;
+              rdfs:subClassOf <http://schema.org/VideoGame> ,
+                              :Videogame ;
               rdfs:comment "Un videogioco è classificato come bad se ha un voto medio minore di 6"@it ;
               rdfs:label "BadVideoGame"@en .
 
@@ -522,21 +613,24 @@ dc:title rdf:type owl:AnnotationProperty .
                                                           ) ;
                                        rdf:type owl:Class
                                      ] ;
-                 rdfs:subClassOf :Videogame ;
+                 rdfs:subClassOf <http://schema.org/VideoGame> ,
+                                 :Videogame ;
                  rdfs:comment "Un videogioco è classificato come \"decente\" se ha un voto compreso tra 6 e 7.5 esclusi."@it ;
                  rdfs:label "DecentVIdeogame"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Digital
 :Digital rdf:type owl:Class ;
-         rdfs:subClassOf :Videogame ;
+         rdfs:subClassOf <http://schema.org/VideoGame> ,
+                         :Videogame ;
          rdfs:comment "Per digitale si intende un videogiocho che viene venduto  solo in forma digitale. Può essere quindi acquistato su degli store specifici."@it ;
          rdfs:label "Digital"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Exclusive
 :Exclusive rdf:type owl:Class ;
-           rdfs:subClassOf :Videogame ,
+           rdfs:subClassOf <http://schema.org/VideoGame> ,
+                           :Videogame ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :hasPlatform ;
                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -553,7 +647,8 @@ dc:title rdf:type owl:AnnotationProperty .
                               owl:onProperty :hasWorkerRole ;
                               owl:someValuesFrom :GameReviewer
                             ] ;
-        rdfs:subClassOf :User ;
+        rdfs:subClassOf :User ,
+                        :Worker ;
         rdfs:comment "Per utente esperto si intende colui che lavora per una redazione come recensore di videogiochi e che rilascia quindi recensioni esperte."@it ;
         rdfs:label "Expert"@en .
 
@@ -564,7 +659,8 @@ dc:title rdf:type owl:AnnotationProperty .
                                     owl:onProperty :reviewMadeBy ;
                                     owl:someValuesFrom :Expert
                                   ] ;
-              rdfs:subClassOf :Review ;
+              rdfs:subClassOf <http://schema.org/Review> ,
+                              :Review ;
               owl:disjointWith :VideoGamerReview ;
               rdfs:comment "Recensione rilasciata solo dagli utenti esperti, ovvero quelli che lavorano per una redazione come recensori di videogiochi"@it ;
               rdfs:label "ExpertReview"@en .
@@ -631,7 +727,8 @@ dc:title rdf:type owl:AnnotationProperty .
                                                         ) ;
                                      rdf:type owl:Class
                                    ] ;
-               rdfs:subClassOf :Videogame ;
+               rdfs:subClassOf <http://schema.org/VideoGame> ,
+                               :Videogame ;
                rdfs:comment "Un videogioco è classificato come \"good\" se ha un voto compreso tra 7.5 e 9 esclusi"@it ;
                rdfs:label "GoodVideoGame"@en .
 
@@ -662,7 +759,8 @@ dc:title rdf:type owl:AnnotationProperty .
                                                       ) ;
                                    rdf:type owl:Class
                                  ] ;
-             rdfs:subClassOf :Videogame ;
+             rdfs:subClassOf <http://schema.org/VideoGame> ,
+                             :Videogame ;
              rdfs:comment "Un videogioco è classificato come \"masterpiece\" se ha un voto maggiore di 9"@it ;
              rdfs:label "Masterpiece"@en .
 
@@ -690,7 +788,8 @@ dc:title rdf:type owl:AnnotationProperty .
                                      owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
                                      owl:onClass :Platform
                                    ] ;
-               rdfs:subClassOf :Videogame ;
+               rdfs:subClassOf <http://schema.org/VideoGame> ,
+                               :Videogame ;
                rdfs:comment "per multipiattaforma si intende un vidieogioco che viene rilasciato su più di una piattaforma di gioco, ad esempio può essere acquistato e giocato sia su Playstation4 che Xbox S."@it ;
                rdfs:label "Multiplatform"@en .
 
@@ -708,7 +807,8 @@ dc:title rdf:type owl:AnnotationProperty .
                                               ]
                                             )
                               ] ;
-          rdfs:subClassOf :Videogame ;
+          rdfs:subClassOf <http://schema.org/VideoGame> ,
+                          :Videogame ;
           rdfs:comment "Un gioco è classificato come \"musthave\" quando ha vinto almento 5 premi generici oppure un solo premio speciale. Questi tipi di giochi sono quindi consigliati."@it ;
           rdfs:label "MustHave"@en .
 
@@ -724,7 +824,8 @@ dc:title rdf:type owl:AnnotationProperty .
                                                                                 )
                                                          ]
                                     ] ;
-                rdfs:subClassOf :Review ;
+                rdfs:subClassOf <http://schema.org/Review> ,
+                                :Review ;
                 rdfs:comment "Recensione il cui voto è minore di 6"@it ;
                 rdfs:label "NegativeReview"@en .
 
@@ -742,7 +843,8 @@ dc:title rdf:type owl:AnnotationProperty .
                                                                                )
                                                         ]
                                    ] ;
-               rdfs:subClassOf :Review ;
+               rdfs:subClassOf <http://schema.org/Review> ,
+                               :Review ;
                rdfs:comment "Recensione con un voto compreso tra 6 e 7.5 esclusi."@it ;
                rdfs:label "NeutralReview"@en .
 
@@ -790,7 +892,8 @@ Un esempio di console portatile è il Nintendo ds, oppure playstation vita."""@i
                                                                                 )
                                                          ]
                                     ] ;
-                rdfs:subClassOf :Review ;
+                rdfs:subClassOf <http://schema.org/Review> ,
+                                :Review ;
                 rdfs:comment "Recensione con un voto superiore a 7.5"@it ;
                 rdfs:label "PositiveReview"@en .
 
@@ -850,7 +953,8 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                                         owl:onProperty :reviewMadeBy ;
                                         owl:someValuesFrom :Videogamer
                                       ] ;
-                  rdfs:subClassOf :Review ;
+                  rdfs:subClassOf <http://schema.org/Review> ,
+                                  :Review ;
                   rdfs:comment "Recensione rilasciata dai videogiocatori appassionati, che non sono esperti del settore e non lavorano quindi per nessuna testata giornalistica."@it ;
                   rdfs:label "VideoGamerReview"@en .
 
@@ -929,51 +1033,88 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#award1
 :award1 rdf:type owl:NamedIndividual ,
-                 :CategoryGameAward ;
+                 :BestAction ,
+                 :CategoryGameAward ,
+                 :GameAward ;
+        <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet1 ;
+        :awardAssignedByBoard :board1 ;
+        :awardAssignedByNewspaper :newspaper1 ;
         :refersTo :genere_action ;
         :awardHasYear 2019 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#award2
 :award2 rdf:type owl:NamedIndividual ,
-                 :CategoryGameAward ;
+                 :BestAction ,
+                 :CategoryGameAward ,
+                 :GameAward ;
+        <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet1 ;
+        :awardAssignedByBoard :board2 ;
+        :awardAssignedByNewspaper :newspaper2 ;
         :refersTo :genere_action ;
         :awardHasYear 2019 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#award3
 :award3 rdf:type owl:NamedIndividual ,
-                 :CategoryGameAward ;
+                 :BestAction ,
+                 :CategoryGameAward ,
+                 :GameAward ;
+        <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet1 ;
+        :awardAssignedByBoard :board3 ;
+        :awardAssignedByNewspaper :newspaper3 ;
         :refersTo :genere_action ;
         :awardHasYear 2019 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#award4
 :award4 rdf:type owl:NamedIndividual ,
-                 :CategoryGameAward ;
+                 :BestFPS ,
+                 :CategoryGameAward ,
+                 :GameAward ;
+        <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet3 ;
+        :awardAssignedByBoard :board3 ;
+        :awardAssignedByNewspaper :newspaper3 ;
         :refersTo :genere_fps ;
         :awardHasYear 2020 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#award5Goty1
 :award5Goty1 rdf:type owl:NamedIndividual ,
-                      :GameOfTheYear ;
+                      :GameAward ,
+                      :GameOfTheYear ,
+                      :SpecialGameAward ;
+             <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet2 ;
+             :awardAssignedByBoard :board1 ;
+             :awardAssignedByNewspaper :newspaper1 ;
              :awardHasYear 2018 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#award6Goty2
 :award6Goty2 rdf:type owl:NamedIndividual ,
-                      :GameOfTheYear .
+                      :GameAward ,
+                      :GameOfTheYear ,
+                      :SpecialGameAward ;
+             <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet1 ;
+             :awardAssignedByBoard :board4 ;
+             :awardAssignedByNewspaper :newspaper4 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#award7Goty3
 :award7Goty3 rdf:type owl:NamedIndividual ,
-                      :GameOfTheYear .
+                      :GameAward ,
+                      :GameOfTheYear ,
+                      :SpecialGameAward ;
+             <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet5 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet1
 :awardSet1 rdf:type owl:NamedIndividual ,
-                    :GameAwardSet ;
+                    <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ,
+                    <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ,
+                    :GameAwardSet ,
+                    :Min3GameAwardSet ,
+                    :SpecialGameAwardSet ;
            <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> :award1 ,
                                                                                          :award2 ,
                                                                                          :award3 ,
@@ -983,13 +1124,18 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet2
 :awardSet2 rdf:type owl:NamedIndividual ,
-                    :GameAwardSet ;
+                    <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ,
+                    <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ,
+                    :GameAwardSet ,
+                    :SpecialGameAwardSet ;
            <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> :award5Goty1 ;
            <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 1 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet3
 :awardSet3 rdf:type owl:NamedIndividual ,
+                    <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ,
+                    <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ,
                     :GameAwardSet ;
            <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> :award4 ;
            <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 1 .
@@ -997,13 +1143,18 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet4
 :awardSet4 rdf:type owl:NamedIndividual ,
+                    <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ,
+                    <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ,
                     :GameAwardSet ;
            <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet5
 :awardSet5 rdf:type owl:NamedIndividual ,
-                    :GameAwardSet ;
+                    <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ,
+                    <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ,
+                    :GameAwardSet ,
+                    :SpecialGameAwardSet ;
            <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> :award7Goty3 ;
            <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 .
 
@@ -1039,48 +1190,74 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_action
-:genere_action rdf:type owl:NamedIndividual .
+:genere_action rdf:type owl:NamedIndividual ,
+                        :Genre .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_fps
-:genere_fps rdf:type owl:NamedIndividual .
+:genere_fps rdf:type owl:NamedIndividual ,
+                     :Genre .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_gdr
-:genere_gdr rdf:type owl:NamedIndividual .
+:genere_gdr rdf:type owl:NamedIndividual ,
+                     :Genre .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_tps
-:genere_tps rdf:type owl:NamedIndividual .
+:genere_tps rdf:type owl:NamedIndividual ,
+                     :Genre .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper1
 :newspaper1 rdf:type owl:NamedIndividual ,
-                     :Newspaper ;
+                     <http://schema.org/NewsMediaOrganization> ,
+                     :Newspaper ,
+                     <http://www.w3.org/ns/prov#Organization> ;
+            :newspaperAssignAward :award1 ,
+                                  :award5Goty1 ;
+            :newspaperContainsBoard :board1 ;
             :legalName "Spaziogames"^^xsd:string .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper2
 :newspaper2 rdf:type owl:NamedIndividual ,
-                     :Newspaper ;
+                     <http://schema.org/NewsMediaOrganization> ,
+                     :Newspaper ,
+                     <http://www.w3.org/ns/prov#Organization> ;
+            :newspaperAssignAward :award2 ;
+            :newspaperContainsBoard :board2 ;
             :legalName "Multiplayer"^^xsd:string .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper3
 :newspaper3 rdf:type owl:NamedIndividual ,
-                     :Newspaper ;
+                     <http://schema.org/NewsMediaOrganization> ,
+                     :Newspaper ,
+                     <http://www.w3.org/ns/prov#Organization> ;
+            :newspaperAssignAward :award3 ,
+                                  :award4 ;
+            :newspaperContainsBoard :board3 ;
             :legalName "IGN"^^xsd:string .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper4
 :newspaper4 rdf:type owl:NamedIndividual ,
-                     :Newspaper ;
+                     <http://schema.org/NewsMediaOrganization> ,
+                     :Newspaper ,
+                     <http://www.w3.org/ns/prov#Organization> ;
+            :newspaperAssignAward :award6Goty2 ;
+            :newspaperContainsBoard :board4 ;
             :legalName "Eurogamer"^^xsd:string .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma1
 :piattaforma1 rdf:type owl:NamedIndividual ,
-                       :HomeConsole ;
+                       :Console ,
+                       :HomeConsole ,
+                       :PhysicalPlatform ,
+                       :Platform ,
+                       :SuccessPlatform ;
               :isPlatformFor :videogioco1 ,
                              :videogioco2 ,
                              :videogioco3 ,
@@ -1091,7 +1268,10 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma2
 :piattaforma2 rdf:type owl:NamedIndividual ,
+                       :Console ,
                        :HomeConsole ,
+                       :PhysicalPlatform ,
+                       :Platform ,
                        :PortableConsole ;
               :isPlatformFor :videogioco5 ;
               :platformName "Nintendo Switch" .
@@ -1099,6 +1279,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma3
 :piattaforma3 rdf:type owl:NamedIndividual ,
+                       :Platform ,
                        :VirtualPlattform ;
               :isPlatformFor :videogioco1 ,
                              :videogioco2 ;
@@ -1107,7 +1288,10 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma4
 :piattaforma4 rdf:type owl:NamedIndividual ,
-                       :Computer ;
+                       :Computer ,
+                       :PhysicalPlatform ,
+                       :Platform ,
+                       :SuccessPlatform ;
               :isPlatformFor :videogioco1 ,
                              :videogioco2 ,
                              :videogioco5 ;
@@ -1116,171 +1300,370 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore1
 :recensore1 rdf:type owl:NamedIndividual ,
-                     :GameReviewer ;
+                     <http://schema.org/Role> ,
+                     :GameReviewer ,
+                     :WorkerRole ,
+                     <http://www.w3.org/ns/prov#Role> ;
             :roleFor :board1 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore2
 :recensore2 rdf:type owl:NamedIndividual ,
-                     :GameReviewer ;
+                     <http://schema.org/Role> ,
+                     :GameReviewer ,
+                     :WorkerRole ,
+                     <http://www.w3.org/ns/prov#Role> ;
             :roleFor :board2 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore3
 :recensore3 rdf:type owl:NamedIndividual ,
-                     :GameReviewer ;
+                     <http://schema.org/Role> ,
+                     :GameReviewer ,
+                     :WorkerRole ,
+                     <http://www.w3.org/ns/prov#Role> ;
             :roleFor :board3 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore4
 :recensore4 rdf:type owl:NamedIndividual ,
-                     :GameReviewer ;
+                     <http://schema.org/Role> ,
+                     :GameReviewer ,
+                     :WorkerRole ,
+                     <http://www.w3.org/ns/prov#Role> ;
             :roleFor :board4 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore5
 :recensore5 rdf:type owl:NamedIndividual ,
-                     :GameReviewer ;
+                     <http://schema.org/Role> ,
+                     :GameReviewer ,
+                     :WorkerRole ,
+                     <http://www.w3.org/ns/prov#Role> ;
             :roleFor :board1 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review1
-:review1 rdf:type owl:NamedIndividual ;
+:review1 rdf:type owl:NamedIndividual ,
+                  <http://schema.org/CriticReview> ,
+                  <http://schema.org/Review> ,
+                  :ExpertReview ,
+                  :PositiveReview ,
+                  :Review ,
+                  <http://www.w3.org/ns/prov#Entity> ;
          :reviewIsAbout :videogioco1 ;
+         :reviewMadeBy :user1 ;
+         <http://www.w3.org/ns/prov#wasAttributedTo> :user1 ;
          :hasScore 9 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review2
-:review2 rdf:type owl:NamedIndividual ;
+:review2 rdf:type owl:NamedIndividual ,
+                  <http://schema.org/CriticReview> ,
+                  <http://schema.org/Review> ,
+                  :ExpertReview ,
+                  :PositiveReview ,
+                  :Review ,
+                  <http://www.w3.org/ns/prov#Entity> ;
          :reviewIsAbout :videogioco2 ;
+         :reviewMadeBy :user2 ;
+         <http://www.w3.org/ns/prov#wasAttributedTo> :user2 ;
          :hasScore 10 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review3
-:review3 rdf:type owl:NamedIndividual ;
+:review3 rdf:type owl:NamedIndividual ,
+                  <http://schema.org/CriticReview> ,
+                  <http://schema.org/Review> ,
+                  :ExpertReview ,
+                  :PositiveReview ,
+                  :Review ,
+                  <http://www.w3.org/ns/prov#Entity> ;
          :reviewIsAbout :videogioco3 ;
+         :reviewMadeBy :user3 ;
+         <http://www.w3.org/ns/prov#wasAttributedTo> :user3 ;
          :hasScore 7.5 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review4
-:review4 rdf:type owl:NamedIndividual ;
+:review4 rdf:type owl:NamedIndividual ,
+                  <http://schema.org/CriticReview> ,
+                  <http://schema.org/Review> ,
+                  :ExpertReview ,
+                  :PositiveReview ,
+                  :Review ,
+                  <http://www.w3.org/ns/prov#Entity> ;
          :reviewIsAbout :videogioco1 ;
+         :reviewMadeBy :user4 ;
+         <http://www.w3.org/ns/prov#wasAttributedTo> :user4 ;
          :hasScore 8.5 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review5
-:review5 rdf:type owl:NamedIndividual ;
+:review5 rdf:type owl:NamedIndividual ,
+                  <http://schema.org/Review> ,
+                  <http://schema.org/UserReview> ,
+                  :PositiveReview ,
+                  :Review ,
+                  :VideoGamerReview ,
+                  <http://www.w3.org/ns/prov#Entity> ;
          :reviewIsAbout :videogioco5 ;
+         :reviewMadeBy :user5 ;
+         <http://www.w3.org/ns/prov#wasAttributedTo> :user5 ;
          :hasScore 9.5 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review6
-:review6 rdf:type owl:NamedIndividual ;
+:review6 rdf:type owl:NamedIndividual ,
+                  <http://schema.org/Review> ,
+                  <http://schema.org/UserReview> ,
+                  :PositiveReview ,
+                  :Review ,
+                  :VideoGamerReview ,
+                  <http://www.w3.org/ns/prov#Entity> ;
          :reviewIsAbout :videogioco4 ;
+         :reviewMadeBy :user6 ;
+         <http://www.w3.org/ns/prov#wasAttributedTo> :user6 ;
          :hasScore 8.5 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review7
-:review7 rdf:type owl:NamedIndividual ;
+:review7 rdf:type owl:NamedIndividual ,
+                  <http://schema.org/CriticReview> ,
+                  <http://schema.org/Review> ,
+                  :ExpertReview ,
+                  :PositiveReview ,
+                  :Review ,
+                  <http://www.w3.org/ns/prov#Entity> ;
          :reviewIsAbout :videogioco1 ;
+         :reviewMadeBy :user1 ;
+         <http://www.w3.org/ns/prov#wasAttributedTo> :user1 ;
          :hasScore 9 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review8
-:review8 rdf:type owl:NamedIndividual ;
+:review8 rdf:type owl:NamedIndividual ,
+                  <http://schema.org/CriticReview> ,
+                  <http://schema.org/Review> ,
+                  :ExpertReview ,
+                  :PositiveReview ,
+                  :Review ,
+                  <http://www.w3.org/ns/prov#Entity> ;
          :reviewIsAbout :videogioco2 ;
+         :reviewMadeBy :user3 ;
+         <http://www.w3.org/ns/prov#wasAttributedTo> :user3 ;
          :hasScore 10 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review9
-:review9 rdf:type owl:NamedIndividual ;
+:review9 rdf:type owl:NamedIndividual ,
+                  <http://schema.org/CriticReview> ,
+                  <http://schema.org/Review> ,
+                  :ExpertReview ,
+                  :PositiveReview ,
+                  :Review ,
+                  <http://www.w3.org/ns/prov#Entity> ;
          :reviewIsAbout :videogioco2 ;
+         :reviewMadeBy :user2 ;
+         <http://www.w3.org/ns/prov#wasAttributedTo> :user2 ;
          :hasScore 9 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user1
-:user1 rdf:type owl:NamedIndividual ;
-       :colleague :user2 ;
+:user1 rdf:type owl:NamedIndividual ,
+                <http://schema.org/Person> ,
+                :Expert ,
+                :User ,
+                :Worker ,
+                <http://www.w3.org/ns/prov#Person> ;
+       :colleague :user2 ,
+                  :user3 ;
        :hasWorkerRole :recensore2 ,
                       :recensore5 ;
        :makeReview :review1 ,
                    :review7 ;
+       :worksForBoard :board1 ,
+                      :board2 ;
+       :worksForNewspaper :newspaper1 ,
+                          :newspaper2 ;
        :hasUsername "Aldo" .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user2
-:user2 rdf:type owl:NamedIndividual ;
+:user2 rdf:type owl:NamedIndividual ,
+                <http://schema.org/Person> ,
+                :Expert ,
+                :User ,
+                :Worker ,
+                <http://www.w3.org/ns/prov#Person> ;
        :colleague :user3 ;
        :hasWorkerRole :recensore2 ;
        :makeReview :review2 ,
                    :review9 ;
+       :worksForBoard :board2 ;
+       :worksForNewspaper :newspaper2 ;
        :hasUsername "Giovanni" .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user3
-:user3 rdf:type owl:NamedIndividual ;
+:user3 rdf:type owl:NamedIndividual ,
+                <http://schema.org/Person> ,
+                :Expert ,
+                :User ,
+                :Worker ,
+                <http://www.w3.org/ns/prov#Person> ;
        :hasWorkerRole :recensore1 ,
                       :recensore3 ;
        :makeReview :review3 ,
                    :review8 ;
+       :worksForBoard :board1 ,
+                      :board3 ;
+       :worksForNewspaper :newspaper1 ,
+                          :newspaper3 ;
        :hasUsername "Giacomo" .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user4
-:user4 rdf:type owl:NamedIndividual ;
+:user4 rdf:type owl:NamedIndividual ,
+                <http://schema.org/Person> ,
+                :Expert ,
+                :User ,
+                :Worker ,
+                <http://www.w3.org/ns/prov#Person> ;
        :hasWorkerRole :recensore4 ;
        :makeReview :review4 ;
+       :worksForBoard :board4 ;
+       :worksForNewspaper :newspaper4 ;
        :hasUsername "Giuseppe" .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user5
 :user5 rdf:type owl:NamedIndividual ,
-                :Videogamer ;
+                <http://schema.org/Person> ,
+                :User ,
+                :Videogamer ,
+                <http://www.w3.org/ns/prov#Person> ;
        :makeReview :review5 ;
        :hasUsername "Francesco" .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user6
 :user6 rdf:type owl:NamedIndividual ,
-                :Videogamer ;
+                <http://schema.org/Person> ,
+                :User ,
+                :Videogamer ,
+                <http://www.w3.org/ns/prov#Person> ;
        :makeReview :review6 ;
        :hasUsername "Daniele" .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco1
-:videogioco1 rdf:type owl:NamedIndividual ;
+:videogioco1 rdf:type owl:NamedIndividual ,
+                      <http://schema.org/VideoGame> ,
+                      :Digital ,
+                      :GoodVideoGame ,
+                      :Multiplatform ,
+                      :MustHave ,
+                      :Videogame ,
+                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
              :hasAwardSet :awardSet1 ;
+             :hasGenre :genere_action ;
+             :hasPlatform :piattaforma1 ,
+                          :piattaforma3 ,
+                          :piattaforma4 ;
+             :reviewedByNewsPaper :newspaper1 ,
+                                  :newspaper2 ,
+                                  :newspaper4 ;
+             :videoGameHasAward :award1 ,
+                                :award2 ,
+                                :award3 ,
+                                :award6Goty2 ;
+             :videogameHasReview :review1 ,
+                                 :review4 ,
+                                 :review7 ;
+             :hasAverageRatingExpert 8.83 ;
+             :hasAverageRatingVideogamer 8.8 ;
              :hasReleaseDate "2019-03-22T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "Sekiro: Shadows die Twice" ;
-             :hasAverageRatingExpert 8.83 .
+             :hasTitle "Sekiro: Shadows die Twice" .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco2
-:videogioco2 rdf:type owl:NamedIndividual ;
+:videogioco2 rdf:type owl:NamedIndividual ,
+                      <http://schema.org/VideoGame> ,
+                      :Digital ,
+                      :Masterpiece ,
+                      :Multiplatform ,
+                      :MustHave ,
+                      :Videogame ,
+                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
              :hasAwardSet :awardSet2 ;
+             :hasGenre :genere_action ,
+                       :genere_gdr ;
+             :hasPlatform :piattaforma1 ,
+                          :piattaforma3 ,
+                          :piattaforma4 ;
+             :reviewedByNewsPaper :newspaper1 ,
+                                  :newspaper2 ,
+                                  :newspaper3 ;
+             :videoGameHasAward :award5Goty1 ;
+             :videogameHasReview :review2 ,
+                                 :review8 ,
+                                 :review9 ;
+             :hasAverageRatingExpert 9.66 ;
+             :hasAverageRatingVideogamer 9.5 ;
              :hasReleaseDate "2018-04-20T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "God of War 2018" ;
              :hasAverageRatingExpert 9.67 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco3
-:videogioco3 rdf:type owl:NamedIndividual ;
+:videogioco3 rdf:type owl:NamedIndividual ,
+                      <http://schema.org/VideoGame> ,
+                      :Videogame ,
+                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
              :hasAwardSet :awardSet3 ;
+             :hasGenre :genere_fps ;
+             :hasPlatform :piattaforma1 ;
+             :reviewedByNewsPaper :newspaper1 ,
+                                  :newspaper3 ;
+             :videoGameHasAward :award4 ;
+             :videogameHasReview :review3 ;
+             :hasAverageRatingExpert 7.5 ;
+             :hasAverageRatingVideogamer 8.4 ;
              :hasReleaseDate "2020-11-13T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "Call of Duty: Cold War" .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco4
-:videogioco4 rdf:type owl:NamedIndividual ;
+:videogioco4 rdf:type owl:NamedIndividual ,
+                      <http://schema.org/VideoGame> ,
+                      :Videogame ,
+                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
              :hasAwardSet :awardSet4 ;
+             :hasGenre :genere_tps ;
+             :hasPlatform :piattaforma1 ;
+             :videogameHasReview :review6 ;
+             :hasAverageRatingExpert 8.6 ;
              :hasAverageRatingVideogamer 8.5 ;
              :hasReleaseDate "2019-08-27T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "Control" .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco5
-:videogioco5 rdf:type owl:NamedIndividual ;
+:videogioco5 rdf:type owl:NamedIndividual ,
+                      <http://schema.org/VideoGame> ,
+                      :Multiplatform ,
+                      :MustHave ,
+                      :Videogame ,
+                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
              :hasAwardSet :awardSet5 ;
+             :hasGenre :genere_gdr ;
+             :hasPlatform :piattaforma1 ,
+                          :piattaforma2 ,
+                          :piattaforma4 ;
+             :videoGameHasAward :award7Goty3 ;
+             :videogameHasReview :review5 ;
+             :hasAverageRatingExpert 9.0 ;
              :hasAverageRatingVideogamer 9.5 ;
              :hasReleaseDate "2011-10-06T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "Dark Souls" .
@@ -1289,6 +1672,22 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 #################################################################
 #    Annotations
 #################################################################
+
+<http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasComponent> rdfs:comment "This annotation property is useful for content ontology design patterns. Its value is a URI, which refers to another content ontology design pattern which is a component of the annotated one." .
+
+
+<http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#hasUnitTest> rdfs:comment "This property can be used to annotate a unit test (e.g. in the form of a SPARQL query) to be launched to evaluate an ontology against a requirement-based task." .
+
+
+<http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#isCloneOf> rdfs:comment "This annotation property is used for referring a cloned ontology entity to its cloning source." .
+
+
+<http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#isSpecializationOf> rdfs:comment "This annotation property is useful for content ontology design patterns and its elements. Its value is a URI, which refers either to a content ontology design pattern that is specialized by the annotated one, or to an ontology element that is specialized by the annotated one." .
+
+
+:gameHasAward rdfs:comment "La relazione permette di ricavare i premi di uno specifico gioco. La relazione è realizzata attraverso la property chain \"hasAwarSet o hasMemberAward\"."@it ;
+              rdfs:label "gameHasAward"@en .
+
 
 :hasAverageRatingExpert rdfs:label "hasAverageRatingExpert"@en ;
                         rdfs:comment "Un videogioco ha un voto medio calcolato come la media dei voti delle recensioni rilasciciate dagli utenti esperti"@it .

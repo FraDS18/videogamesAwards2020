@@ -1204,7 +1204,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
        :colleague :user2 ;
        :hasWorkerRole :recensore1 ;
        :makeReview :review1 ,
-                   :review7 ;
+                   :review9 ;
        :hasUsername "Aldo" .
 
 
@@ -1212,8 +1212,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 :user2 rdf:type owl:NamedIndividual ;
        :colleague :user3 ;
        :hasWorkerRole :recensore2 ;
-       :makeReview :review2 ,
-                   :review9 ;
+       :makeReview :review2 ;
        :hasUsername "Giovanni" .
 
 
@@ -1221,6 +1220,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 :user3 rdf:type owl:NamedIndividual ;
        :hasWorkerRole :recensore3 ;
        :makeReview :review3 ,
+                   :review7 ,
                    :review8 ;
        :hasUsername "Giacomo" .
 

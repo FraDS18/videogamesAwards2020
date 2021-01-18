@@ -212,7 +212,8 @@ It is extracted from DOLCE-UltraLite by partial clone of elements.""" ;
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasWorkerRole
-:hasWorkerRole rdf:type owl:ObjectProperty ;
+:hasWorkerRole rdf:type owl:ObjectProperty ,
+                        owl:FunctionalProperty ;
                rdfs:domain :Worker ;
                rdfs:range :WorkerRole ;
                rdfs:comment "Un lavoratore (worker) ha un ruolo all'interno di una redazione."@it ;
@@ -331,8 +332,7 @@ It is extracted from DOLCE-UltraLite by partial clone of elements.""" ;
 
 
 ###  http://www.w3.org/2002/07/owl#topObjectProperty
-owl:topObjectProperty rdf:type owl:ObjectProperty ;
-                      owl:inverseOf owl:topObjectProperty ;
+owl:topObjectProperty owl:inverseOf owl:topObjectProperty ;
                       rdf:type owl:SymmetricProperty ,
                                owl:TransitiveProperty .
 
@@ -364,12 +364,6 @@ owl:topObjectProperty rdf:type owl:ObjectProperty ;
               rdfs:range xsd:positiveInteger ;
               rdfs:comment "anno in cui il premio viene assegnato ad un certo videogioco"@it ;
               rdfs:label "awardHasYear"@en .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingExpert
-:hasAverageRatingExpert rdf:type owl:DatatypeProperty ;
-                        rdfs:comment "Un videogioco ha un voto medio calcolato come la media dei voti delle recensioni rilasciciate dagli utenti esperti"@it ;
-                        rdfs:label "hasAverageRatingExpert"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingVideogamer
@@ -443,7 +437,9 @@ owl:topObjectProperty rdf:type owl:ObjectProperty ;
 <http://schema.org/CriticReview> rdf:type owl:Class ;
                                  owl:equivalentClass :ExpertReview ;
                                  rdfs:subClassOf <http://schema.org/Review> ,
-                                                 :Review .
+                                                 :Review ;
+                                 owl:disjointWith <http://schema.org/UserReview> ,
+                                                  :VideoGamerReview .
 
 
 ###  http://schema.org/NewsMediaOrganization
@@ -470,7 +466,8 @@ owl:topObjectProperty rdf:type owl:ObjectProperty ;
 <http://schema.org/UserReview> rdf:type owl:Class ;
                                owl:equivalentClass :VideoGamerReview ;
                                rdfs:subClassOf <http://schema.org/Review> ,
-                                               :Review .
+                                               :Review ;
+                               owl:disjointWith :ExpertReview .
 
 
 ###  http://schema.org/VideoGame
@@ -525,6 +522,9 @@ owl:topObjectProperty rdf:type owl:ObjectProperty ;
                                   owl:hasValue :genere_action
                                 ] ;
             rdfs:subClassOf :CategoryGameAward ;
+            owl:disjointWith :BestFPS ,
+                             :BestGDR ,
+                             :BestTPS ;
             rdfs:comment "Categoria di premi che si riferisce al genere action. Ad esempio il premio \"bestaction\" si riferisce al genere action. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@it ;
             rdfs:label "BestAction"@en .
 
@@ -536,6 +536,8 @@ owl:topObjectProperty rdf:type owl:ObjectProperty ;
                                owl:hasValue :genere_fps
                              ] ;
          rdfs:subClassOf :CategoryGameAward ;
+         owl:disjointWith :BestGDR ,
+                          :BestTPS ;
          rdfs:comment "Categoria di premi che si riferisce al genere fps. Ad esempio il premio \"bestfps\" si riferisce al genere fps. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@it ;
          rdfs:label "BestFPS"@en .
 
@@ -547,6 +549,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty ;
                                owl:hasValue :genere_gdr
                              ] ;
          rdfs:subClassOf :CategoryGameAward ;
+         owl:disjointWith :BestTPS ;
          rdfs:comment "Categoria di premi che si riferisce al genere gdr. Ad esempio il premio \"bestgdr\" si riferisce al genere gdr. Il premio sarà quindi assegnato al videogioco migliore di quel genere."@it ;
          rdfs:label "BestGDR"@en .
 
@@ -588,6 +591,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty ;
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Computer
 :Computer rdf:type owl:Class ;
           rdfs:subClassOf :PhysicalPlatform ;
+          owl:disjointWith :VirtualPlattform ;
           rdfs:comment "Macchina automatizzata programmabile in grado di eseguire sia complessi calcoli matematici (calcolatore) sia altri tipi di elaborazioni. Tra le varie elaborazioni risulta anche l'esecuzione di un videogioco."@it ;
           rdfs:label "Computer"@en .
 
@@ -595,6 +599,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty ;
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Console
 :Console rdf:type owl:Class ;
          rdfs:subClassOf :PhysicalPlatform ;
+         owl:disjointWith :VirtualPlattform ;
          rdfs:comment "Hardware dedicato principalmente per l'esecuzione dei videogiochi. Ciò che la distingue da un computer è il fatto che una console non permette di eseguire altri programmi che non siano videogochi, essendo un hardware solitamente altamente specializzato."@it ;
          rdfs:label "Console"@en .
 
@@ -656,6 +661,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty ;
                             ] ;
         rdfs:subClassOf :User ,
                         :Worker ;
+        owl:disjointWith :Videogamer ;
         rdfs:comment "Per utente esperto si intende colui che lavora per una redazione come recensore di videogiochi e che rilascia quindi recensioni esperte."@it ;
         rdfs:label "Expert"@en .
 
@@ -743,6 +749,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty ;
 ###  http://www.videogamesAwards.org/videogamesAwards2020#HomeConsole
 :HomeConsole rdf:type owl:Class ;
              rdfs:subClassOf :Console ;
+             owl:disjointWith :VirtualPlattform ;
              rdfs:comment "Console fissa, che necessita di una postazione e di un collegamento alla presa elettrica e/o al monitor/tv."@it ;
              rdfs:label "HomeConsole"@en .
 
@@ -883,6 +890,7 @@ owl:topObjectProperty rdf:type owl:ObjectProperty ;
 ###  http://www.videogamesAwards.org/videogamesAwards2020#PortableConsole
 :PortableConsole rdf:type owl:Class ;
                  rdfs:subClassOf :Console ;
+                 owl:disjointWith :VirtualPlattform ;
                  rdfs:comment """Console dalle dimensioni ridotte, caratterizzata dal fatto che può essere portata in giro. È possibile dunque giocare in mobilità a differenza delle Home Console.
 Un esempio di console portatile è il Nintendo ds, oppure playstation vita."""@it ;
                  rdfs:label "PortableConsole"@en .
@@ -1341,15 +1349,6 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
             :roleFor :board4 .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#recensore5
-:recensore5 rdf:type owl:NamedIndividual ,
-                     <http://schema.org/Role> ,
-                     :GameReviewer ,
-                     :WorkerRole ,
-                     <http://www.w3.org/ns/prov#Role> ;
-            :roleFor :board1 .
-
-
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review1
 :review1 rdf:type owl:NamedIndividual ,
                   <http://schema.org/CriticReview> ,
@@ -1366,9 +1365,12 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review10
 :review10 rdf:type owl:NamedIndividual ,
+                   <http://schema.org/Review> ,
                    <http://schema.org/UserReview> ,
                    :PositiveReview ,
-                   :VideoGamerReview ;
+                   :Review ,
+                   :VideoGamerReview ,
+                   <http://www.w3.org/ns/prov#Entity> ;
           :reviewIsAbout :videogioco1 ;
           :reviewMadeBy :user6 ;
           <http://www.w3.org/ns/prov#wasAttributedTo> :user6 ;
@@ -1496,14 +1498,11 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                 <http://www.w3.org/ns/prov#Person> ;
        :colleague :user2 ,
                   :user3 ;
-       :hasWorkerRole :recensore2 ,
-                      :recensore5 ;
+       :hasWorkerRole :recensore1 ;
        :makeReview :review1 ,
                    :review7 ;
-       :worksForBoard :board1 ,
-                      :board2 ;
-       :worksForNewspaper :newspaper1 ,
-                          :newspaper2 ;
+       :worksForBoard :board1 ;
+       :worksForNewspaper :newspaper1 ;
        :hasUsername "Aldo" .
 
 
@@ -1530,14 +1529,11 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                 :User ,
                 :Worker ,
                 <http://www.w3.org/ns/prov#Person> ;
-       :hasWorkerRole :recensore1 ,
-                      :recensore3 ;
+       :hasWorkerRole :recensore3 ;
        :makeReview :review3 ,
                    :review8 ;
-       :worksForBoard :board1 ,
-                      :board3 ;
-       :worksForNewspaper :newspaper1 ,
-                          :newspaper3 ;
+       :worksForBoard :board3 ;
+       :worksForNewspaper :newspaper3 ;
        :hasUsername "Giacomo" .
 
 
@@ -1580,7 +1576,6 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 :videogioco1 rdf:type owl:NamedIndividual ,
                       <http://schema.org/VideoGame> ,
                       :Digital ,
-                      :GoodVideoGame ,
                       :Multiplatform ,
                       :MustHave ,
                       :Videogame ,
@@ -1591,26 +1586,25 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                           :piattaforma3 ,
                           :piattaforma4 ;
              :reviewedByNewsPaper :newspaper1 ,
-                                  :newspaper2 ,
                                   :newspaper4 ;
              :videoGameHasAward :award1 ,
                                 :award2 ,
                                 :award3 ,
                                 :award6Goty2 ;
              :videogameHasReview :review1 ,
+                                 :review10 ,
                                  :review4 ,
                                  :review7 ;
-             :hasAverageRatingExpert 8.83 ;
              :hasAverageRatingVideogamer 8.8 ;
              :hasReleaseDate "2019-03-22T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "Sekiro: Shadows die Twice" .
+             :hasTitle "Sekiro: Shadows die Twice" ;
+             :hasAverageRatingExpert 8.83 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco2
 :videogioco2 rdf:type owl:NamedIndividual ,
                       <http://schema.org/VideoGame> ,
                       :Digital ,
-                      :Masterpiece ,
                       :Multiplatform ,
                       :MustHave ,
                       :Videogame ,
@@ -1621,18 +1615,17 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasPlatform :piattaforma1 ,
                           :piattaforma3 ,
                           :piattaforma4 ;
-             :reviewedByNewsPaper :newspaper1 ,
-                                  :newspaper2 ,
+             :reviewedByNewsPaper :newspaper2 ,
                                   :newspaper3 ;
              :videoGameHasAward :award5Goty1 ;
              :videogameHasReview :review2 ,
                                  :review8 ,
                                  :review9 ;
-             :hasAverageRatingExpert 9.66 ,
-                                     9.67 ;
              :hasAverageRatingVideogamer 9.5 ;
              :hasReleaseDate "2018-04-20T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "God of War 2018" .
+             :hasTitle "God of War 2018" ;
+             :hasAverageRatingExpert 9.66 ,
+                                     9.67 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco3
@@ -1643,14 +1636,13 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasAwardSet :awardSet3 ;
              :hasGenre :genere_fps ;
              :hasPlatform :piattaforma1 ;
-             :reviewedByNewsPaper :newspaper1 ,
-                                  :newspaper3 ;
+             :reviewedByNewsPaper :newspaper3 ;
              :videoGameHasAward :award4 ;
              :videogameHasReview :review3 ;
-             :hasAverageRatingExpert 7.5 ;
              :hasAverageRatingVideogamer 8.4 ;
              :hasReleaseDate "2020-11-13T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "Call of Duty: Cold War" .
+             :hasTitle "Call of Duty: Cold War" ;
+             :hasAverageRatingExpert 7.5 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco4
@@ -1662,10 +1654,10 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasGenre :genere_tps ;
              :hasPlatform :piattaforma1 ;
              :videogameHasReview :review6 ;
-             :hasAverageRatingExpert 8.6 ;
              :hasAverageRatingVideogamer 8.5 ;
              :hasReleaseDate "2019-08-27T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "Control" .
+             :hasTitle "Control" ;
+             :hasAverageRatingExpert 8.6 .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco5
@@ -1682,10 +1674,10 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                           :piattaforma4 ;
              :videoGameHasAward :award7Goty3 ;
              :videogameHasReview :review5 ;
-             :hasAverageRatingExpert 9.0 ;
              :hasAverageRatingVideogamer 9.5 ;
              :hasReleaseDate "2011-10-06T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "Dark Souls" .
+             :hasTitle "Dark Souls" ;
+             :hasAverageRatingExpert 9.0 .
 
 
 #################################################################
@@ -1706,6 +1698,10 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 :gameHasAward rdfs:comment "La relazione permette di ricavare i premi di uno specifico gioco. La relazione è realizzata attraverso la property chain \"hasAwarSet o hasMemberAward\"."@it ;
               rdfs:label "gameHasAward"@en .
+
+
+:hasAverageRatingExpert rdfs:label "hasAverageRatingExpert"@en ;
+                        rdfs:comment "Un videogioco ha un voto medio calcolato come la media dei voti delle recensioni rilasciciate dagli utenti esperti"@it .
 
 
 #################################################################

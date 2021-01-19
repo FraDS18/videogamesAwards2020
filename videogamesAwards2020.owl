@@ -1040,19 +1040,23 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_action
-:genere_action rdf:type owl:NamedIndividual .
+:genere_action rdf:type owl:NamedIndividual ;
+               rdfs:label "action"^^rdfs:Literal .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_fps
-:genere_fps rdf:type owl:NamedIndividual .
+:genere_fps rdf:type owl:NamedIndividual ;
+            rdfs:label "fps"^^rdfs:Literal .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_gdr
-:genere_gdr rdf:type owl:NamedIndividual .
+:genere_gdr rdf:type owl:NamedIndividual ;
+            rdfs:label "gdr"^^rdfs:Literal .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_tps
-:genere_tps rdf:type owl:NamedIndividual .
+:genere_tps rdf:type owl:NamedIndividual ;
+            rdfs:label "tps"^^rdfs:Literal .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper1

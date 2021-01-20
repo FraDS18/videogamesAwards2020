@@ -1,0 +1,48 @@
+[PrefixDeclaration]
+:		http://www.videogamesAwards.org/videogamesAwards2020#
+dc:		http://purl.org/dc/elements/1.1/
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+vann:		http://purl.org/vocab/vann/
+
+[MappingDeclaration] @collection [[
+mappingId	mapping--553325724
+target		:videogame_{id} a :Videogame ; :hasReleaseDate {releaseDate} ; :hasAverageRatingExpert {averageRatingExpert} ; :hasAverageRatingVideogamer {averageRatingVideogamer} ; :hasTitle {title} . 
+source		SELECT * from videogame
+
+mappingId	mapping--151113921
+target		:videogame_{videogameID} a :Videogame ; :hasGenre :genere_{name} . 
+source		SELECT videogame.id as videogameID, videogame.title, genre.id as genreID, genre.name
+			FROM videogame join vgG ON videogame.id = vgG.videogame
+			join genre ON genre.id = vgG.genre
+
+mappingId	mapping-622383258
+target		:genere_{genreName} a :Genre . 
+source		SELECT id, name as genreName from genre
+
+mappingId	mapping-1376823699
+target		:videogame_{videogameID} a :Videogame ; :hasPlatform :piattaforma_{platformID} . 
+source		SELECT videogame.id as videogameID, videogame.title as vgTitle, platform.id as platformID, platform.name as platformName
+			FROM videogame join vgP ON videogame.id = vgP.videogame join platform ON platform.id = vgP.platform
+
+mappingId	mapping-1456650938
+target		:worker_{workerID} a :Expert . 
+source		SELECT videogame.id as videogameID, videogame.title, worker.id as workerID, worker.username, review.id as reviewID, review.score
+			FROM
+			review join worker ON review.worker = worker.id join videogame ON review.videogame = videogame.id
+
+mappingId	mapping--472902482
+target		:piattaforma_{id} a :HomeConsole ; :platformName {platformName} . 
+source		SELECT id, name as platformName from platform
+
+mappingId	mapping-1213197377
+target		:review_{reviewID} a :ExpertReview ; :reviewIsAbout :videogame_{videogameID} ; :reviewMadeBy :worker_{workerID} ; :hasScore "9"^^xsd:integer . 
+source		SELECT videogame.id as videogameID, videogame.title, worker.id as workerID, worker.username, review.id as reviewID, review.score
+			FROM
+			review join worker ON review.worker = worker.id join videogame ON review.videogame = videogame.id
+]]
+

@@ -1273,7 +1273,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasAverageRatingExpert "8.8"^^xsd:float ;
              :hasAverageRatingVideogamer "9.5"^^xsd:float ;
              :hasReleaseDate "2018-04-20T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "Death Stranding"^^xsd:string .
+             :hasTitle "Dishonored 2"^^xsd:string .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco3

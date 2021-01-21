@@ -1617,14 +1617,19 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                    <http://schema.org/Person> ,
                    :Expert ,
                    :User ,
+                   :Worker ,
                    <http://www.w3.org/ns/prov#Person> ;
           :hasWorkerRole <https://www.wikidata.org/wiki/Q613354#recensore_worker> ;
           :makeReview :review_1 ,
-                      :review_2 .
+                      :review_2 ;
+          :hasUsername "Gianfranco"^^xsd:string .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#recensore_worker
-<https://www.wikidata.org/wiki/Q613354#recensore_worker> rdf:type owl:NamedIndividual ;
+<https://www.wikidata.org/wiki/Q613354#recensore_worker> rdf:type owl:NamedIndividual ,
+                                                                  <http://schema.org/Role> ,
+                                                                  :WorkerRole ,
+                                                                  <http://www.w3.org/ns/prov#Role> ;
                                                          :roleFor :board1 .
 
 

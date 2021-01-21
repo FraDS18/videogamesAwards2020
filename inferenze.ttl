@@ -1829,7 +1829,8 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
           :makeReview :review_1 ,
                       :review_2 ;
           :worksForBoard :board1 ;
-          :worksForNewspaper :newspaper1 .
+          :worksForNewspaper :newspaper1 ;
+          :hasUsername "Gianfranco"^^xsd:string .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#recensore_worker

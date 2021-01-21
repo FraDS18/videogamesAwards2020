@@ -30,7 +30,7 @@ source		SELECT videogame.id as videogameID, videogame.title as vgTitle, platform
 			FROM videogame join vgP ON videogame.id = vgP.videogame join platform ON platform.id = vgP.platform
 
 mappingId	mapping-1456650938
-target		:worker_{workerID} a :Expert . 
+target		:worker_{workerID} a :Expert ; :hasUsername {username} . 
 source		SELECT videogame.id as videogameID, videogame.title, worker.id as workerID, worker.username, review.id as reviewID, review.score
 			FROM
 			review join worker ON review.worker = worker.id join videogame ON review.videogame = videogame.id

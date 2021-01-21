@@ -44,13 +44,6 @@ dc:label rdf:type owl:AnnotationProperty .
 dc:title rdf:type owl:AnnotationProperty .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingExpert
-:hasAverageRatingExpert rdf:type owl:AnnotationProperty ;
-                        rdfs:range xsd:decimal ,
-                                   xsd:float ;
-                        rdfs:domain :Videogame .
-
-
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasVerageRatingVideogamer
 :hasVerageRatingVideogamer rdf:type owl:AnnotationProperty .
 
@@ -66,11 +59,6 @@ dc:title rdf:type owl:AnnotationProperty .
 #################################################################
 #    Object Properties
 #################################################################
-
-###  http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf
-<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> rdf:type owl:FunctionalProperty ;
-                                                                               rdfs:comment "qualsiasi cosa può essere membro di una collezione."@it .
-
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardAssignedByBoard
 :awardAssignedByBoard rdf:type owl:ObjectProperty ;
@@ -346,6 +334,12 @@ dc:title rdf:type owl:AnnotationProperty .
            rdfs:range xsd:string .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#pippofranco
+:pippofranco rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Videogame ;
+             rdfs:range xsd:float .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#platformName
 :platformName rdf:type owl:DatatypeProperty ;
               rdfs:domain :Platform ;
@@ -411,8 +405,8 @@ dc:title rdf:type owl:AnnotationProperty .
                                                          [ rdf:type owl:Restriction ;
                                                            owl:onProperty :hasAverageRatingExpert ;
                                                            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                                                owl:onDatatype xsd:decimal ;
-                                                                                owl:withRestrictions ( [ xsd:maxExclusive 6
+                                                                                owl:onDatatype xsd:float ;
+                                                                                owl:withRestrictions ( [ xsd:maxExclusive "6.0"^^xsd:float
                                                                                                        ]
                                                                                                      )
                                                                               ]
@@ -516,10 +510,10 @@ dc:title rdf:type owl:AnnotationProperty .
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty :hasAverageRatingExpert ;
                                                               owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                                                   owl:onDatatype xsd:decimal ;
-                                                                                   owl:withRestrictions ( [ xsd:minExclusive 6
+                                                                                   owl:onDatatype xsd:float ;
+                                                                                   owl:withRestrictions ( [ xsd:minExclusive "6.0"^^xsd:float
                                                                                                           ]
-                                                                                                          [ xsd:maxExclusive 7.5
+                                                                                                          [ xsd:maxExclusive "7.5"^^xsd:float
                                                                                                           ]
                                                                                                         )
                                                                                  ]
@@ -534,6 +528,25 @@ dc:title rdf:type owl:AnnotationProperty .
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Digital
 :Digital rdf:type owl:Class ;
+         owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :videogameHasReview ;
+                                                      owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                                      owl:onClass :ExpertReview
+                                                    ]
+                                                    [ rdf:type owl:Restriction ;
+                                                      owl:onProperty :hasAverageRatingExpert ;
+                                                      owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                           owl:onDatatype xsd:float ;
+                                                                           owl:withRestrictions ( [ xsd:minExclusive "7.5"^^xsd:float
+                                                                                                  ]
+                                                                                                  [ xsd:maxExclusive "9.0"^^xsd:float
+                                                                                                  ]
+                                                                                                )
+                                                                         ]
+                                                    ]
+                                                  ) ;
+                               rdf:type owl:Class
+                             ] ;
          rdfs:subClassOf :Videogame ;
          rdfs:comment "Per digitale si intende un videogiocho che viene venduto  solo in forma digitale. Può essere quindi acquistato su degli store specifici."@it ;
          rdfs:label "Digital"@en .
@@ -625,10 +638,10 @@ dc:title rdf:type owl:AnnotationProperty .
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty :hasAverageRatingExpert ;
                                                             owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                                                 owl:onDatatype xsd:decimal ;
-                                                                                 owl:withRestrictions ( [ xsd:minExclusive 7.5
+                                                                                 owl:onDatatype xsd:float ;
+                                                                                 owl:withRestrictions ( [ xsd:minExclusive "7.5"^^xsd:float
                                                                                                         ]
-                                                                                                        [ xsd:maxExclusive 9
+                                                                                                        [ xsd:maxExclusive "9.0"^^xsd:float
                                                                                                         ]
                                                                                                       )
                                                                                ]
@@ -658,8 +671,8 @@ dc:title rdf:type owl:AnnotationProperty .
                                                         [ rdf:type owl:Restriction ;
                                                           owl:onProperty :hasAverageRatingExpert ;
                                                           owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                                               owl:onDatatype xsd:decimal ;
-                                                                               owl:withRestrictions ( [ xsd:minInclusive 9
+                                                                               owl:onDatatype xsd:float ;
+                                                                               owl:withRestrictions ( [ xsd:minInclusive "9.0"^^xsd:float
                                                                                                       ]
                                                                                                     )
                                                                              ]
@@ -1310,8 +1323,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 #    Annotations
 #################################################################
 
-:hasAverageRatingExpert rdfs:label "hasAverageRatingExpert"@en ;
-                        rdfs:comment "Un videogioco ha un voto medio calcolato come la media dei voti delle recensioni rilasciciate dagli utenti esperti"@it .
+<http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> rdfs:comment "qualsiasi cosa può essere membro di una collezione."@it .
 
 
 #################################################################

@@ -1063,6 +1063,22 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
            <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet6
+:awardSet6 rdf:type owl:NamedIndividual ,
+                    <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ,
+                    <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ,
+                    :GameAwardSet ;
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet7
+:awardSet7 rdf:type owl:NamedIndividual ,
+                    <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ,
+                    <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ,
+                    :GameAwardSet ;
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#board1
 :board1 rdf:type owl:NamedIndividual ,
                  :Board ;
@@ -1481,6 +1497,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                       <http://schema.org/VideoGame> ,
                       :Videogame ,
                       <http://www.w3.org/ns/prov#SoftwareAgent> ;
+             :hasAwardSet :awardSet6 ;
              :hasGenre :genere_horror ,
                        :genere_tps ;
              :hasPlatform :piattaforma_1 ,
@@ -1497,6 +1514,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                       <http://schema.org/VideoGame> ,
                       :Videogame ,
                       <http://www.w3.org/ns/prov#SoftwareAgent> ;
+             :hasAwardSet :awardSet7 ;
              :hasGenre :genere_tps ;
              :hasPlatform :piattaforma_1 ,
                           :piattaforma_2 ;

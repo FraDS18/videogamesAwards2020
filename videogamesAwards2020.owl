@@ -294,7 +294,9 @@ dc:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingExpert
-:hasAverageRatingExpert rdf:type owl:DatatypeProperty .
+:hasAverageRatingExpert rdf:type owl:DatatypeProperty ;
+                        rdfs:domain :Videogame ;
+                        rdfs:range xsd:float .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasAverageRatingVideogamer
@@ -1093,7 +1095,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                              :videogioco3 ,
                              :videogioco4 ,
                              :videogioco5 ;
-              :platformName "Playstation 4" .
+              :platformName "PlayStation 4" .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma2

@@ -1140,6 +1140,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_tps
 :genere_tps rdf:type owl:NamedIndividual ,
                      :Genre ;
+            rdfs:comment "genere tps, ovvero sparatutto in terza persona."@it ;
             rdfs:label "tps"^^rdfs:Literal .
 
 
@@ -1236,7 +1237,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                         :Platform ;
                :isPlatformFor :videogame_1 ,
                               :videogame_2 ;
-               :platformName "Xbox 360"^^xsd:string .
+               :platformName "Xbox 360"^^xsd:string ;
+               rdfs:comment "piattaforma di gioco Xbox 360, estrapolata dal database relazione attraverso il mapping di Ontop. Essa è una HomeConsole"@it ;
+               rdfs:label "piattaforma_1"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma_2
@@ -1247,7 +1250,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                         :Platform ;
                :isPlatformFor :videogame_1 ,
                               :videogame_2 ;
-               :platformName "PlayStation 3"^^xsd:string .
+               :platformName "PlayStation 3"^^xsd:string ;
+               rdfs:comment "piattaforma di gioco playstation 3, estrapolata dal database relazione attraverso il mapping di Ontop. Essa è una HomeConsole"@it ;
+               rdfs:label "piattaforma_2"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore1
@@ -1256,7 +1261,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                      :GameReviewer ,
                      :WorkerRole ,
                      <http://www.w3.org/ns/prov#Role> ;
-            :roleFor :board1 .
+            :roleFor :board1 ;
+            rdfs:comment "ruolo ricoperto da user1 all'interno della board1"@it ;
+            rdfs:label "recensore1"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore2
@@ -1265,7 +1272,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                      :GameReviewer ,
                      :WorkerRole ,
                      <http://www.w3.org/ns/prov#Role> ;
-            :roleFor :board2 .
+            :roleFor :board2 ;
+            rdfs:comment "ruolo ricoperto da user2 all'interno della board2"@it ;
+            rdfs:label "recensore2"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore3
@@ -1274,7 +1283,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                      :GameReviewer ,
                      :WorkerRole ,
                      <http://www.w3.org/ns/prov#Role> ;
-            :roleFor :board3 .
+            :roleFor :board3 ;
+            rdfs:comment "ruolo ricoperto da user3 all'interno della board3"@it ;
+            rdfs:label "recensore3"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore4
@@ -1283,7 +1294,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                      :GameReviewer ,
                      :WorkerRole ,
                      <http://www.w3.org/ns/prov#Role> ;
-            :roleFor :board4 .
+            :roleFor :board4 ;
+            rdfs:comment "ruolo ricoperto da user4 all'interno della board4"@it ;
+            rdfs:label "recensore4"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review1
@@ -1294,7 +1307,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
          :reviewIsAbout :videogioco1 ;
          :reviewMadeBy :user1 ;
          <http://www.w3.org/ns/prov#wasAttributedTo> :user1 ;
-         :hasScore 9 .
+         :hasScore 9 ;
+         rdfs:comment "recensione rilasciat da user1 per videogioco1 con punteggio 9"@it ;
+         rdfs:label "review1"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review10
@@ -1305,7 +1320,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
           :reviewIsAbout :videogioco1 ;
           :reviewMadeBy :user6 ;
           <http://www.w3.org/ns/prov#wasAttributedTo> :user6 ;
-          :hasScore 8 .
+          :hasScore 8 ;
+          rdfs:comment "recensione rilasciat da user6 per videogioco1 con punteggio 8"@it ;
+          rdfs:label "review10"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review2
@@ -1316,7 +1333,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
          :reviewIsAbout :videogioco2 ;
          :reviewMadeBy :user2 ;
          <http://www.w3.org/ns/prov#wasAttributedTo> :user2 ;
-         :hasScore 10 .
+         :hasScore 10 ;
+         rdfs:comment "recensione rilasciat da user2 per videogioco2 con punteggio 19"@it ;
+         rdfs:label "review2"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review3
@@ -1327,7 +1346,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
          :reviewIsAbout :videogioco3 ;
          :reviewMadeBy :user3 ;
          <http://www.w3.org/ns/prov#wasAttributedTo> :user3 ;
-         :hasScore 7.5 .
+         :hasScore 7.5 ;
+         rdfs:comment "recensione rilasciat da user3 per videogioco3 con punteggio 7.5"@it ;
+         rdfs:label "review3"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review4
@@ -1338,7 +1359,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
          :reviewIsAbout :videogioco1 ;
          :reviewMadeBy :user4 ;
          <http://www.w3.org/ns/prov#wasAttributedTo> :user4 ;
-         :hasScore 8.5 .
+         :hasScore 8.5 ;
+         rdfs:comment "recensione rilasciat da user4 per videogioco1 con punteggio 8.5"@it ;
+         rdfs:label "review4"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review5
@@ -1349,7 +1372,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
          :reviewIsAbout :videogioco5 ;
          :reviewMadeBy :user5 ;
          <http://www.w3.org/ns/prov#wasAttributedTo> :user5 ;
-         :hasScore 9.5 .
+         :hasScore 9.5 ;
+         rdfs:comment "recensione rilasciat da user5 per videogioco5 con punteggio 9.5"@it ;
+         rdfs:label "review5"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review6
@@ -1360,7 +1385,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
          :reviewIsAbout :videogioco4 ;
          :reviewMadeBy :user6 ;
          <http://www.w3.org/ns/prov#wasAttributedTo> :user6 ;
-         :hasScore 8.5 .
+         :hasScore 8.5 ;
+         rdfs:comment "recensione rilasciat da user6 per videogioco4 con punteggio 8.5"@it ;
+         rdfs:label "review6"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review7
@@ -1371,7 +1398,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
          :reviewIsAbout :videogioco1 ;
          :reviewMadeBy :user3 ;
          <http://www.w3.org/ns/prov#wasAttributedTo> :user3 ;
-         :hasScore 9 .
+         :hasScore 9 ;
+         rdfs:comment "recensione rilasciat da user3 per videogioco1 con punteggio 9"@it ;
+         rdfs:label "review7"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review8
@@ -1382,7 +1411,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
          :reviewIsAbout :videogioco2 ;
          :reviewMadeBy :user3 ;
          <http://www.w3.org/ns/prov#wasAttributedTo> :user3 ;
-         :hasScore 10 .
+         :hasScore 10 ;
+         rdfs:comment "recensione rilasciat da user3 per videogioco2 con punteggio 10"@it ;
+         rdfs:label "review8"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review9
@@ -1393,7 +1424,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
          :reviewIsAbout :videogioco2 ;
          :reviewMadeBy :user1 ;
          <http://www.w3.org/ns/prov#wasAttributedTo> :user1 ;
-         :hasScore 9 .
+         :hasScore 9 ;
+         rdfs:comment "recensione rilasciat da user1 per videogioco2 con punteggio 9"@it ;
+         rdfs:label "review9"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review_1
@@ -1406,7 +1439,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
           :reviewIsAbout :videogame_1 ;
           :reviewMadeBy :worker_1 ;
           <http://www.w3.org/ns/prov#wasAttributedTo> :worker_1 ;
-          :hasScore 9 .
+          :hasScore 9 ;
+          rdfs:comment "recensione rilasciat da worker_1 per videogame_1 con punteggio 9. Questa recensione è stata estrapolata attraverso il mapping con ontop"@it ;
+          rdfs:label "review_1"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review_2
@@ -1419,7 +1454,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
           :reviewIsAbout :videogame_2 ;
           :reviewMadeBy :worker_1 ;
           <http://www.w3.org/ns/prov#wasAttributedTo> :worker_1 ;
-          :hasScore 9 .
+          :hasScore 9 ;
+          rdfs:comment "recensione rilasciat da worker_1 per videogame_2 con punteggio 9. Questa recensione è stata estrapolata attraverso il mapping con ontop"@it ;
+          rdfs:label "review_2"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user1
@@ -1432,7 +1469,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
        :hasWorkerRole :recensore1 ;
        :makeReview :review1 ,
                    :review9 ;
-       :hasUsername "Aldo" .
+       :hasUsername "Aldo" ;
+       rdfs:comment "Utente esperto con username Aldo, esso lavora come recensore1 per la board1"@it ;
+       rdfs:label "user1"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user2
@@ -1444,7 +1483,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
        :colleague :user3 ;
        :hasWorkerRole :recensore2 ;
        :makeReview :review2 ;
-       :hasUsername "Giovanni" .
+       :hasUsername "Giovanni" ;
+       rdfs:comment "Utente esperto con username Giovanni, esso lavora come recensore2 per la board2"@it ;
+       rdfs:label "user2"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user3
@@ -1457,7 +1498,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
        :makeReview :review3 ,
                    :review7 ,
                    :review8 ;
-       :hasUsername "Giacomo" .
+       :hasUsername "Giacomo" ;
+       rdfs:comment "Utente esperto con username Giacomo, esso lavora come recensore3 per la board3"@it ;
+       rdfs:label "user3"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user4
@@ -1468,7 +1511,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                 <http://www.w3.org/ns/prov#Person> ;
        :hasWorkerRole :recensore4 ;
        :makeReview :review4 ;
-       :hasUsername "Giuseppe" .
+       :hasUsername "Giuseppe" ;
+       rdfs:comment "Utente esperto con username Giuseppe, esso lavora come recensore4 per la board4"@it ;
+       rdfs:label "user4"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user5
@@ -1478,7 +1523,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                 :Videogamer ,
                 <http://www.w3.org/ns/prov#Person> ;
        :makeReview :review5 ;
-       :hasUsername "Francesco" .
+       :hasUsername "Francesco" ;
+       rdfs:comment "Utente videogamer con username Francesco"@it ;
+       rdfs:label "user5"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user6
@@ -1489,7 +1536,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                 <http://www.w3.org/ns/prov#Person> ;
        :makeReview :review10 ,
                    :review6 ;
-       :hasUsername "Daniele" .
+       :hasUsername "Daniele" ;
+       rdfs:comment "Utente videogamer con username Daniele"@it ;
+       rdfs:label "user6"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogame_1
@@ -1506,7 +1555,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasAverageRatingExpert "8.8"^^xsd:double ;
              :hasAverageRatingVideogamer "7.7"^^xsd:double ;
              :hasReleaseDate "2008-10-14T00:00:00"^^xsd:dateTime ;
-             :hasTitle "Hellblade: Senua's Sacrifice"^^xsd:string .
+             :hasTitle "Hellblade: Senua's Sacrifice"^^xsd:string ;
+             rdfs:comment "videogioco Hellblade: Senua's Sacrifice, estrapolato dal database relazione attraverso il mapping ontop."@it ;
+             rdfs:label "videogame_1"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogame_2
@@ -1522,7 +1573,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasAverageRatingExpert "8.6"^^xsd:double ;
              :hasAverageRatingVideogamer "5.3"^^xsd:double ;
              :hasReleaseDate "2017-07-21T00:00:00"^^xsd:dateTime ;
-             :hasTitle "Kingdom Come: Deliverance"^^xsd:string .
+             :hasTitle "Kingdom Come: Deliverance"^^xsd:string ;
+             rdfs:comment "videogioco Kingdom Come: Deliverance, estrapolato dal database relazione attraverso il mapping ontop."@it ;
+             rdfs:label "videogame_2"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco1
@@ -1542,7 +1595,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasAverageRatingExpert "9.5"^^xsd:double ;
              :hasAverageRatingVideogamer "8.8"^^xsd:double ;
              :hasReleaseDate "2019-03-22T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "Sekiro: Shadows Die Twice" .
+             :hasTitle "Sekiro: Shadows Die Twice" ;
+             rdfs:comment "videogioco Sekiro: Shadows Die Twice"@it ;
+             rdfs:label "videogioco1"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco2
@@ -1562,7 +1617,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasAverageRatingExpert "8.8"^^xsd:double ;
              :hasAverageRatingVideogamer "9.5"^^xsd:double ;
              :hasReleaseDate "2018-04-20T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "Dishonored 2"^^xsd:string .
+             :hasTitle "Dishonored 2"^^xsd:string ;
+             rdfs:comment "videogioco Dishonored 2"@it ;
+             rdfs:label "videogioco2"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco3
@@ -1577,7 +1634,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasAverageRatingExpert "8.5"^^xsd:double ;
              :hasAverageRatingVideogamer "8.4"^^xsd:double ;
              :hasReleaseDate "2020-11-13T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "Bioshock"^^xsd:string .
+             :hasTitle "Bioshock"^^xsd:string ;
+             rdfs:comment "Bioshock"@it ;
+             rdfs:label "videogioco3"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco4
@@ -1592,7 +1651,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasAverageRatingExpert "8.3"^^xsd:double ;
              :hasAverageRatingVideogamer "8.5"^^xsd:double ;
              :hasReleaseDate "2019-08-27T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "Mass Effect 2"^^xsd:string .
+             :hasTitle "Mass Effect 2"^^xsd:string ;
+             rdfs:comment "videogioco Mass Effect 2"@it ;
+             rdfs:label "videogioco4"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco5
@@ -1609,7 +1670,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasAverageRatingExpert "7.5"^^xsd:double ;
              :hasAverageRatingVideogamer "9.5"^^xsd:double ;
              :hasReleaseDate "2011-10-06T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "The Last of Us"^^xsd:string .
+             :hasTitle "The Last of Us"^^xsd:string ;
+             rdfs:comment "videogioco The Last of Us"@it ;
+             rdfs:label "videogioco5"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#worker_1
@@ -1622,7 +1685,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
           :hasWorkerRole <https://www.wikidata.org/wiki/Q613354#recensore_worker> ;
           :makeReview :review_1 ,
                       :review_2 ;
-          :hasUsername "Gianfranco"^^xsd:string .
+          :hasUsername "Gianfranco"^^xsd:string ;
+          rdfs:comment "utente esperto di nome Gianfranco. Esso lavora come rencesore_worker per la board 1"@it ;
+          rdfs:label "worker_1"@en .
 
 
 ###  https://www.wikidata.org/wiki/Q613354#recensore_worker
@@ -1630,7 +1695,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                                                                   <http://schema.org/Role> ,
                                                                   :WorkerRole ,
                                                                   <http://www.w3.org/ns/prov#Role> ;
-                                                         :roleFor :board1 .
+                                                         :roleFor :board1 ;
+                                                         rdfs:comment "ruolo ricoperto da worker_1 all'interno della board1"@it ;
+                                                         rdfs:label "recensore_worker"@it .
 
 
 #################################################################

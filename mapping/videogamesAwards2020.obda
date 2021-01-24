@@ -1,0 +1,54 @@
+[PrefixDeclaration]
+:		http://www.videogamesAwards.org/videogamesAwards2020#
+dc:		http://purl.org/dc/elements/1.1/
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+obda:		https://w3id.org/obda/vocabulary#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+vann:		http://purl.org/vocab/vann/
+
+[MappingDeclaration] @collection [[
+mappingId	mapping--2070411317
+target		:piattaforma_{id} a :HomeConsole ; :platformName {platformName} . 
+source		SELECT id, name as platformName from platform
+
+mappingId	mapping--59382464
+target		:worker_{workerID} a :Expert . 
+source		SELECT videogame.id as videogameID, videogame.title, worker.id as workerID, worker.username, review.id as reviewID, review.score
+			FROM
+			review join worker ON review.worker = worker.id join videogame ON review.videogame = videogame.id
+
+mappingId	mapping--1910998002
+target		:videogame_{videogameID} a :Videogame ; :hasPlatform :piattaforma_{platformID} . 
+source		SELECT videogame.id as videogameID, videogame.title as vgTitle, platform.id as platformID, platform.name as platformName
+			FROM videogame join vgP ON videogame.id = vgP.videogame join platform ON platform.id = vgP.platform
+
+mappingId	mapping-1049804325
+target		:videogame_{videogameID} a :Videogame ; :hasGenre :genere_{name} . 
+source		SELECT videogame.id as videogameID, videogame.title, genre.id as genreID, genre.name
+			FROM videogame join vgG ON videogame.id = vgG.videogame
+			join genre ON genre.id = vgG.genre
+
+mappingId	mapping--1801418264
+target		:review_{reviewID} a :ExpertReview ; :hasScore "9"^^xsd:integer ; :reviewMadeBy :worker_{workerID} ; :reviewIsAbout :videogame_{videogameID} . 
+source		SELECT videogame.id as videogameID, videogame.title, worker.id as workerID, worker.username, review.id as reviewID, review.score
+			FROM
+			review join worker ON review.worker = worker.id join videogame ON review.videogame = videogame.id
+
+mappingId	mapping--1446599989
+target		:genere_{genreName} a :Genre . 
+source		SELECT id, name as genreName from genre
+
+mappingId	mapping--40737763
+target		:videogame_{id} a :Videogame ; :hasAverageRatingVideogamer {averageRatingVideogamer} ; :hasTitle {title} ; :hasReleaseDate {releaseDate} ; :hasAverageRatingExpert {averageRatingExpert} . 
+source		SELECT * from videogame
+
+mappingId	mapping-1936882317
+target		:worker_{workerID} a :Expert . 
+source		SELECT videogame.id as videogameID, videogame.title, worker.id as workerID, worker.username, review.id as reviewID, review.score
+			FROM
+			review join worker ON review.worker = worker.id join videogame ON review.videogame = videogame.id
+]]
+

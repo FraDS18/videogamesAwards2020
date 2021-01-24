@@ -147,8 +147,7 @@ dc:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#hasWorkerRole
-:hasWorkerRole rdf:type owl:ObjectProperty ,
-                        owl:FunctionalProperty ;
+:hasWorkerRole rdf:type owl:ObjectProperty ;
                rdfs:domain :Worker ;
                rdfs:range :WorkerRole ;
                rdfs:comment "Un lavoratore (worker) ha un ruolo all'interno di una redazione."@it ;
@@ -956,7 +955,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
         <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet1 ;
         :awardAssignedByBoard :board1 ;
         :refersTo :genere_action ;
-        :awardHasYear 2019 .
+        :awardHasYear 2019 ;
+        rdfs:comment "Premio di categoria \"Miglior gioco di azione\""@it ;
+        rdfs:label "award1"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#award2
@@ -966,7 +967,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
         <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet1 ;
         :awardAssignedByBoard :board2 ;
         :refersTo :genere_action ;
-        :awardHasYear 2019 .
+        :awardHasYear 2019 ;
+        rdfs:comment "Premio di categoria \"Miglior gioco di azione\""@it ;
+        rdfs:label "award2"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#award3
@@ -976,7 +979,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
         <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet1 ;
         :awardAssignedByBoard :board3 ;
         :refersTo :genere_action ;
-        :awardHasYear 2019 .
+        :awardHasYear 2019 ;
+        rdfs:comment "Premio di categoria \"Miglior gioco di azione\""@it ;
+        rdfs:label "award3"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#award4
@@ -986,7 +991,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
         <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet3 ;
         :awardAssignedByBoard :board3 ;
         :refersTo :genere_fps ;
-        :awardHasYear 2020 .
+        :awardHasYear 2020 ;
+        rdfs:comment "Premio di categoria \"Miglior sparatutto in prima persona\""@it ;
+        rdfs:label "award4"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#award5Goty1
@@ -996,7 +1003,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                       :SpecialGameAward ;
              <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet2 ;
              :awardAssignedByBoard :board1 ;
-             :awardHasYear 2018 .
+             :awardHasYear 2018 ;
+             rdfs:comment "Premio speciale \"Miglior gioco dell'anno\""@it ;
+             rdfs:label "award5Goty1"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#award6Goty2
@@ -1005,7 +1014,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                       :GameOfTheYear ,
                       :SpecialGameAward ;
              <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet1 ;
-             :awardAssignedByBoard :board4 .
+             :awardAssignedByBoard :board4 ;
+             rdfs:comment "Premio speciale \"Miglior gioco dell'anno\""@it ;
+             rdfs:label "award6Goty2"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#award7Goty3
@@ -1013,7 +1024,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                       :GameAward ,
                       :GameOfTheYear ,
                       :SpecialGameAward ;
-             <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet5 .
+             <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#isMemberOf> :awardSet5 ;
+             rdfs:comment "Premio speciale \"Miglior gioco dell'anno\""@it ;
+             rdfs:label "award7Goty3"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet1
@@ -1025,7 +1038,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                                                                                          :award2 ,
                                                                                          :award3 ,
                                                                                          :award6Goty2 ;
-           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 3 .
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 3 ;
+           rdfs:comment "Insieme dei premi relativi al videogioco 1"@it ;
+           rdfs:label "awardSet1"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet2
@@ -1034,7 +1049,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                     <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ,
                     :GameAwardSet ;
            <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> :award5Goty1 ;
-           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 1 .
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 1 ;
+           rdfs:comment "Insieme dei premi relativi al videogioco 2"@it ;
+           rdfs:label "awardSet2"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet3
@@ -1043,7 +1060,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                     <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ,
                     :GameAwardSet ;
            <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> :award4 ;
-           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 1 .
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 1 ;
+           rdfs:comment "Insieme dei premi relativi al videogioco 3"@it ;
+           rdfs:label "awardSet3"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet4
@@ -1051,7 +1070,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                     <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ,
                     <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ,
                     :GameAwardSet ;
-           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 .
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 ;
+           rdfs:comment "Insieme dei premi relativi al videogioco 4"@it ;
+           rdfs:label "awardSet4"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet5
@@ -1060,7 +1081,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                     <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ,
                     :GameAwardSet ;
            <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> :award7Goty3 ;
-           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 .
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 ;
+           rdfs:comment "Insieme dei premi relativi al videogioco 5"@it ;
+           rdfs:label "awardSet5"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet6
@@ -1068,7 +1091,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                     <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ,
                     <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ,
                     :GameAwardSet ;
-           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 .
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 ;
+           rdfs:comment "Insieme dei premi relativi al videogioco 6"@it ;
+           rdfs:label "awardSet6"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#awardSet7
@@ -1076,7 +1101,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                     <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection> ,
                     <http://www.ontologydesignpatterns.org/cp/owl/set.owl#Set> ,
                     :GameAwardSet ;
-           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 .
+           <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> 0 ;
+           rdfs:comment "Insieme dei premi relativi al videogioco 7"@it ;
+           rdfs:label "awardSet7"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#board1
@@ -1084,14 +1111,18 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                  :Board ;
         :boardAssignAward :award1 ,
                           :award5Goty1 ;
-        :boardIsPartOfNewspaper :newspaper1 .
+        :boardIsPartOfNewspaper :newspaper1 ;
+        rdfs:comment "Redazione appartenente al newspaper 1"@it ;
+        rdfs:label "board1"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#board2
 :board2 rdf:type owl:NamedIndividual ,
                  :Board ;
         :boardAssignAward :award2 ;
-        :boardIsPartOfNewspaper :newspaper2 .
+        :boardIsPartOfNewspaper :newspaper2 ;
+        rdfs:comment "Redazione appartenente al newspaper 2"@it ;
+        rdfs:label "board2"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#board3
@@ -1099,42 +1130,53 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                  :Board ;
         :boardAssignAward :award3 ,
                           :award4 ;
-        :boardIsPartOfNewspaper :newspaper3 .
+        :boardIsPartOfNewspaper :newspaper3 ;
+        rdfs:comment "Redazione appartenente al newspaper 3"@it ;
+        rdfs:label "board3"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#board4
 :board4 rdf:type owl:NamedIndividual ,
                  :Board ;
         :boardAssignAward :award6Goty2 ;
-        :boardIsPartOfNewspaper :newspaper4 .
+        :boardIsPartOfNewspaper :newspaper4 ;
+        rdfs:comment "Redazione appartenente al newspaper 4"@it ;
+        rdfs:label "board4"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_action
 :genere_action rdf:type owl:NamedIndividual ,
                         :Genre ;
+               rdfs:comment "genere di videogioco corrispondente ai giochi di azione."@it ;
                rdfs:label "action"^^rdfs:Literal .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_adventure
 :genere_adventure rdf:type owl:NamedIndividual ,
-                           :Genre .
+                           :Genre ;
+                  rdfs:comment "Genere di gioco \"Avventura\""@it ;
+                  rdfs:label "adventure"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_fps
 :genere_fps rdf:type owl:NamedIndividual ,
                      :Genre ;
+            rdfs:comment "Genere di gioco \"Sparatutto in prima persona\""@it ;
             rdfs:label "fps"^^rdfs:Literal .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_gdr
 :genere_gdr rdf:type owl:NamedIndividual ,
                      :Genre ;
+            rdfs:comment "Genere di gioco \"Gioco di Ruolo\""@it ;
             rdfs:label "gdr"^^rdfs:Literal .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_horror
 :genere_horror rdf:type owl:NamedIndividual ,
-                        :Genre .
+                        :Genre ;
+               rdfs:comment "Genere di gioco \"Horror\""@it ;
+               rdfs:label "horror"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#genere_tps
@@ -1151,7 +1193,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                      <http://www.w3.org/ns/prov#Organization> ;
             :newspaperContainsBoard :board1 ;
             <http://schema.org/legalName> "Spaziogames"^^xsd:string ;
-            :legalName "Spaziogames"^^xsd:string .
+            :legalName "Spaziogames"^^xsd:string ;
+            rdfs:comment "Testata giornalistica 1"@it ;
+            rdfs:label "newspaper1"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper2
@@ -1161,7 +1205,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                      <http://www.w3.org/ns/prov#Organization> ;
             :newspaperContainsBoard :board2 ;
             <http://schema.org/legalName> "Multiplayer"^^xsd:string ;
-            :legalName "Multiplayer"^^xsd:string .
+            :legalName "Multiplayer"^^xsd:string ;
+            rdfs:comment "Testata giornalistica 2"@it ;
+            rdfs:label "newspaper2"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper3
@@ -1171,7 +1217,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                      <http://www.w3.org/ns/prov#Organization> ;
             :newspaperContainsBoard :board3 ;
             <http://schema.org/legalName> "IGN"^^xsd:string ;
-            :legalName "IGN"^^xsd:string .
+            :legalName "IGN"^^xsd:string ;
+            rdfs:comment "Testata giornalistica 3"@it ;
+            rdfs:label "newspaper3"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#newspaper4
@@ -1181,7 +1229,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                      <http://www.w3.org/ns/prov#Organization> ;
             :newspaperContainsBoard :board4 ;
             <http://schema.org/legalName> "Eurogamer"^^xsd:string ;
-            :legalName "Eurogamer"^^xsd:string .
+            :legalName "Eurogamer"^^xsd:string ;
+            rdfs:comment "Testata giornalistica 4"@it ;
+            rdfs:label "newspaper4"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma1
@@ -1195,7 +1245,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                              :videogioco3 ,
                              :videogioco4 ,
                              :videogioco5 ;
-              :platformName "PlayStation 4" .
+              :platformName "PlayStation 4" ;
+              rdfs:comment "Piattaforma di gioco 1, corrispondente alla \"Playstation 4\"."@it ;
+              rdfs:label "piattaforma1"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma2
@@ -1206,7 +1258,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                        :Platform ,
                        :PortableConsole ;
               :isPlatformFor :videogioco5 ;
-              :platformName "Nintendo Switch" .
+              :platformName "Nintendo Switch" ;
+              rdfs:comment "Piattaforma di gioco 2 corrispondente al \"Nintendo Switch\""@it ;
+              rdfs:label "piattaforma2"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma3
@@ -1215,7 +1269,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                        :VirtualPlattform ;
               :isPlatformFor :videogioco1 ,
                              :videogioco2 ;
-              :platformName "Google Stadia" .
+              :platformName "Google Stadia" ;
+              rdfs:comment "Piattaforma di gioco virtuale corrispondente a \"Google Stadia\""@it ;
+              rdfs:label "piattaforma3"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma4
@@ -1226,7 +1282,9 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
               :isPlatformFor :videogioco1 ,
                              :videogioco2 ,
                              :videogioco5 ;
-              :platformName "Hp Omen 17" .
+              :platformName "Hp Omen 17" ;
+              rdfs:comment "Piattaforma di gioco 4, corrispondente ad un pc da gaming"@it ;
+              rdfs:label "piattaforma4"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma_1

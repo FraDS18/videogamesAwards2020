@@ -329,7 +329,8 @@ It is extracted from DOLCE-UltraLite by partial clone of elements.""" ;
 
 
 ###  http://www.w3.org/2002/07/owl#topObjectProperty
-owl:topObjectProperty rdf:type owl:SymmetricProperty ,
+owl:topObjectProperty rdf:type owl:ObjectProperty ,
+                               owl:SymmetricProperty ,
                                owl:TransitiveProperty ,
                                owl:ReflexiveProperty .
 
@@ -1780,7 +1781,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasAverageRatingExpert "8.5"^^xsd:double ;
              :hasAverageRatingVideogamer "8.4"^^xsd:double ;
              :hasReleaseDate "2020-11-13T11:21:42+00:00"^^xsd:dateTime ;
-             :hasTitle "Bioshock"^^xsd:string .
+             :hasTitle "BioShock"^^xsd:string .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco4

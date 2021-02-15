@@ -470,11 +470,6 @@ dc:title rdf:type owl:AnnotationProperty .
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#CategoryGameAward
 :CategoryGameAward rdf:type owl:Class ;
-                   owl:equivalentClass [ rdf:type owl:Restriction ;
-                                         owl:onProperty :refersTo ;
-                                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                         owl:onClass :Genre
-                                       ] ;
                    rdfs:subClassOf :GameAward ;
                    owl:disjointUnionOf ( :BestAction
                                          :BestFPS

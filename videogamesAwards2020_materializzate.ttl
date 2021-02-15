@@ -226,7 +226,7 @@ It is extracted from DOLCE-UltraLite by partial clone of elements.""" ;
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#makeReview
 :makeReview rdf:type owl:ObjectProperty ;
-            rdfs:subPropertyOf [ owl:inverseOf <http://www.w3.org/ns/prov#wasAttributedTo>
+            rdfs:subPropertyOf [ owl:inverseOf <http://www.w3.org/ns/prov#wasAttributedTo> # L'inverso di wasAttributedTo non esiste quindi viene creato il blank node
                                ] ;
             owl:inverseOf :reviewMadeBy ;
             rdfs:domain :User ;

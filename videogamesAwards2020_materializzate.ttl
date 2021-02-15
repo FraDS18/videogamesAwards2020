@@ -1766,7 +1766,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                           :piattaforma_2 ;
              :reviewedByNewsPaper :newspaper1 ;
              :videogameHasReview :review_1 ;
-             :hasAverageRatingExpert "8.8"^^xsd:double ;
+             :hasAverageRatingExpert "9.0"^^xsd:double ;
              :hasAverageRatingVideogamer "7.7"^^xsd:double ;
              :hasReleaseDate "2008-10-14T00:00:00"^^xsd:dateTime ;
              :hasTitle "Hellblade: Senua's Sacrifice"^^xsd:string ;
@@ -1784,7 +1784,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                           :piattaforma_2 ;
              :reviewedByNewsPaper :newspaper1 ;
              :videogameHasReview :review_2 ;
-             :hasAverageRatingExpert "8.6"^^xsd:double ;
+             :hasAverageRatingExpert "9.0"^^xsd:double ;
              :hasAverageRatingVideogamer "5.3"^^xsd:double ;
              :hasReleaseDate "2017-07-21T00:00:00"^^xsd:dateTime ;
              :hasTitle "Kingdom Come: Deliverance"^^xsd:string ;
@@ -1796,7 +1796,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 :videogioco1 rdf:type owl:NamedIndividual ,
                       <http://schema.org/VideoGame> ,
                       :Digital ,
-                      :Masterpiece ,
+                      :GoodVideoGame ,
                       :Multiplatform ,
                       :MustHave ,
                       :Videogame ;
@@ -1816,7 +1816,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                                  :review10 ,
                                  :review4 ,
                                  :review7 ;
-             :hasAverageRatingExpert "9.5"^^xsd:double ;
+             :hasAverageRatingExpert "8.83"^^xsd:double ;
              :hasAverageRatingVideogamer "8.8"^^xsd:double ;
              :hasReleaseDate "2019-03-22T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "Sekiro: Shadows Die Twice" ;
@@ -1846,7 +1846,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                                  :review8 ,
                                  :review9 ;
              :hasAverageRatingExpert "8.8"^^xsd:double ;
-             :hasAverageRatingVideogamer "9.5"^^xsd:double ;
+             :hasAverageRatingVideogamer "9.67"^^xsd:double ;
              :hasReleaseDate "2018-04-20T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "Dishonored 2"^^xsd:string ;
              rdfs:comment "videogioco Dishonored 2"@it ;
@@ -1863,7 +1863,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :reviewedByNewsPaper :newspaper3 ;
              :videoGameHasAward :award4 ;
              :videogameHasReview :review3 ;
-             :hasAverageRatingExpert "8.5"^^xsd:double ;
+             :hasAverageRatingExpert "7.5"^^xsd:double ;
              :hasAverageRatingVideogamer "8.4"^^xsd:double ;
              :hasReleaseDate "2020-11-13T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "Bioshock"^^xsd:string ;
@@ -1879,7 +1879,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasGenre :genere_tps ;
              :hasPlatform :piattaforma1 ;
              :videogameHasReview :review6 ;
-             :hasAverageRatingExpert "8.3"^^xsd:double ;
+             :hasAverageRatingExpert "0.0"^^xsd:double ;
              :hasAverageRatingVideogamer "8.5"^^xsd:double ;
              :hasReleaseDate "2019-08-27T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "Mass Effect 2"^^xsd:string ;
@@ -1900,7 +1900,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                           :piattaforma4 ;
              :videoGameHasAward :award7Goty3 ;
              :videogameHasReview :review5 ;
-             :hasAverageRatingExpert "7.5"^^xsd:double ;
+             :hasAverageRatingExpert "0.0"^^xsd:double ;
              :hasAverageRatingVideogamer "9.5"^^xsd:double ;
              :hasReleaseDate "2011-10-06T11:21:42+00:00"^^xsd:dateTime ;
              :hasTitle "The Last of Us"^^xsd:string ;

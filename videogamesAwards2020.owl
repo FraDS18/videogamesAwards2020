@@ -365,8 +365,7 @@ dc:title rdf:type owl:AnnotationProperty .
 
 ###  http://schema.org/CriticReview
 <http://schema.org/CriticReview> rdf:type owl:Class ;
-                                 owl:equivalentClass :ExpertReview ;
-                                 rdfs:subClassOf <http://schema.org/Review> .
+                                 owl:equivalentClass :ExpertReview .
 
 
 ###  http://schema.org/NewsMediaOrganization
@@ -383,14 +382,9 @@ dc:title rdf:type owl:AnnotationProperty .
                            owl:equivalentClass :Review .
 
 
-###  http://schema.org/Role
-<http://schema.org/Role> rdf:type owl:Class .
-
-
 ###  http://schema.org/UserReview
 <http://schema.org/UserReview> rdf:type owl:Class ;
-                               owl:equivalentClass :VideoGamerReview ;
-                               rdfs:subClassOf <http://schema.org/Review> .
+                               owl:equivalentClass :VideoGamerReview .
 
 
 ###  http://schema.org/VideoGame
@@ -859,7 +853,6 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Videogame
 :Videogame rdf:type owl:Class ;
-           rdfs:subClassOf <http://www.w3.org/ns/prov#SoftwareAgent> ;
            owl:disjointUnionOf ( :Exclusive
                                  :Multiplatform
                                ) ;
@@ -899,8 +892,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#WorkerRole
 :WorkerRole rdf:type owl:Class ;
-            rdfs:subClassOf <http://schema.org/Role> ,
-                            <http://www.w3.org/ns/prov#Role> ;
+            owl:equivalentClass <http://www.w3.org/ns/prov#Role> ;
             rdfs:comment "Questa classe rappresenta i ruoli che si possono avere all'interno di una testata giornalistica, ad esempio: giornalista, recensore di videogame, redattore, ecc..."@it ;
             rdfs:label "WorkerRole"@en .
 
@@ -919,10 +911,6 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.w3.org/ns/prov#Role
 <http://www.w3.org/ns/prov#Role> rdf:type owl:Class .
-
-
-###  http://www.w3.org/ns/prov#SoftwareAgent
-<http://www.w3.org/ns/prov#SoftwareAgent> rdf:type owl:Class .
 
 
 #################################################################
@@ -1296,7 +1284,6 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore1
 :recensore1 rdf:type owl:NamedIndividual ,
-                     <http://schema.org/Role> ,
                      :GameReviewer ,
                      :WorkerRole ,
                      <http://www.w3.org/ns/prov#Role> ;
@@ -1307,7 +1294,6 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore2
 :recensore2 rdf:type owl:NamedIndividual ,
-                     <http://schema.org/Role> ,
                      :GameReviewer ,
                      :WorkerRole ,
                      <http://www.w3.org/ns/prov#Role> ;
@@ -1318,7 +1304,6 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore3
 :recensore3 rdf:type owl:NamedIndividual ,
-                     <http://schema.org/Role> ,
                      :GameReviewer ,
                      :WorkerRole ,
                      <http://www.w3.org/ns/prov#Role> ;
@@ -1329,13 +1314,21 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore4
 :recensore4 rdf:type owl:NamedIndividual ,
-                     <http://schema.org/Role> ,
                      :GameReviewer ,
                      :WorkerRole ,
                      <http://www.w3.org/ns/prov#Role> ;
             :roleFor :board4 ;
             rdfs:comment "ruolo ricoperto da user4 all'interno della board4"@it ;
             rdfs:label "recensore4"@it .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#recensore_worker
+:recensore_worker rdf:type owl:NamedIndividual ,
+                           :WorkerRole ,
+                           <http://www.w3.org/ns/prov#Role> ;
+                  :roleFor :board1 ;
+                  rdfs:comment "ruolo ricoperto da worker_1 all'interno della board1"@it ;
+                  rdfs:label "recensore_worker"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review1
@@ -1583,8 +1576,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogame_1
 :videogame_1 rdf:type owl:NamedIndividual ,
                       <http://schema.org/VideoGame> ,
-                      :Videogame ,
-                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
+                      :Videogame ;
              :hasAwardSet :awardSet6 ;
              :hasGenre :genere_horror ,
                        :genere_tps ;
@@ -1602,8 +1594,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogame_2
 :videogame_2 rdf:type owl:NamedIndividual ,
                       <http://schema.org/VideoGame> ,
-                      :Videogame ,
-                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
+                      :Videogame ;
              :hasAwardSet :awardSet7 ;
              :hasGenre :genere_tps ;
              :hasPlatform :piattaforma_1 ,
@@ -1620,8 +1611,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco1
 :videogioco1 rdf:type owl:NamedIndividual ,
                       <http://schema.org/VideoGame> ,
-                      :Videogame ,
-                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
+                      :Videogame ;
              :hasAwardSet :awardSet1 ;
              :hasGenre :genere_action ;
              :hasPlatform :piattaforma1 ,
@@ -1642,8 +1632,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco2
 :videogioco2 rdf:type owl:NamedIndividual ,
                       <http://schema.org/VideoGame> ,
-                      :Videogame ,
-                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
+                      :Videogame ;
              :hasAwardSet :awardSet2 ;
              :hasGenre :genere_action ,
                        :genere_gdr ;
@@ -1664,8 +1653,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco3
 :videogioco3 rdf:type owl:NamedIndividual ,
                       <http://schema.org/VideoGame> ,
-                      :Videogame ,
-                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
+                      :Videogame ;
              :hasAwardSet :awardSet3 ;
              :hasGenre :genere_fps ;
              :hasPlatform :piattaforma1 ;
@@ -1681,8 +1669,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco4
 :videogioco4 rdf:type owl:NamedIndividual ,
                       <http://schema.org/VideoGame> ,
-                      :Videogame ,
-                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
+                      :Videogame ;
              :hasAwardSet :awardSet4 ;
              :hasGenre :genere_tps ;
              :hasPlatform :piattaforma1 ;
@@ -1698,8 +1685,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco5
 :videogioco5 rdf:type owl:NamedIndividual ,
                       <http://schema.org/VideoGame> ,
-                      :Videogame ,
-                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
+                      :Videogame ;
              :hasAwardSet :awardSet5 ;
              :hasGenre :genere_gdr ;
              :hasPlatform :piattaforma1 ,
@@ -1721,22 +1707,12 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                    :User ,
                    :Worker ,
                    <http://www.w3.org/ns/prov#Person> ;
-          :hasWorkerRole <https://www.wikidata.org/wiki/Q613354#recensore_worker> ;
+          :hasWorkerRole :recensore_worker ;
           :makeReview :review_1 ,
                       :review_2 ;
           :hasUsername "Gianfranco"^^xsd:string ;
           rdfs:comment "utente esperto di nome Gianfranco. Esso lavora come rencesore_worker per la board 1"@it ;
           rdfs:label "worker_1"@en .
-
-
-###  https://www.wikidata.org/wiki/Q613354#recensore_worker
-<https://www.wikidata.org/wiki/Q613354#recensore_worker> rdf:type owl:NamedIndividual ,
-                                                                  <http://schema.org/Role> ,
-                                                                  :WorkerRole ,
-                                                                  <http://www.w3.org/ns/prov#Role> ;
-                                                         :roleFor :board1 ;
-                                                         rdfs:comment "ruolo ricoperto da worker_1 all'interno della board1"@it ;
-                                                         rdfs:label "recensore_worker"@it .
 
 
 #################################################################

@@ -32,7 +32,7 @@ source		SELECT videogame.id as videogameID, videogame.title, genre.id as genreID
 			join genre ON genre.id = vgG.genre
 
 mappingId	mapping--1801418264
-target		:review_{reviewID} a :ExpertReview ; :hasScore "9"^^xsd:integer ; :reviewMadeBy :worker_{workerID} ; :reviewIsAbout :videogame_{videogameID} . 
+target		:review_{reviewID} a :ExpertReview ; :hasScore {score} ; :reviewMadeBy :worker_{workerID} ; :reviewIsAbout :videogame_{videogameID} . 
 source		SELECT videogame.id as videogameID, videogame.title, worker.id as workerID, worker.username, review.id as reviewID, review.score
 			FROM
 			review join worker ON review.worker = worker.id join videogame ON review.videogame = videogame.id
@@ -44,11 +44,5 @@ source		SELECT id, name as genreName from genre
 mappingId	mapping--40737763
 target		:videogame_{id} a :Videogame ; :hasAverageRatingVideogamer {averageRatingVideogamer} ; :hasTitle {title} ; :hasReleaseDate {releaseDate} ; :hasAverageRatingExpert {averageRatingExpert} . 
 source		SELECT * from videogame
-
-mappingId	mapping-1936882317
-target		:worker_{workerID} a :Expert . 
-source		SELECT videogame.id as videogameID, videogame.title, worker.id as workerID, worker.username, review.id as reviewID, review.score
-			FROM
-			review join worker ON review.worker = worker.id join videogame ON review.videogame = videogame.id
 ]]
 

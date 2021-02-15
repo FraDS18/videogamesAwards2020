@@ -466,10 +466,6 @@ owl:topObjectProperty owl:inverseOf owl:topObjectProperty ;
                            rdfs:subClassOf <http://www.w3.org/ns/prov#Entity> .
 
 
-###  http://schema.org/Role
-<http://schema.org/Role> rdf:type owl:Class .
-
-
 ###  http://schema.org/UserReview
 <http://schema.org/UserReview> rdf:type owl:Class ;
                                owl:equivalentClass :VideoGamerReview ;
@@ -479,8 +475,7 @@ owl:topObjectProperty owl:inverseOf owl:topObjectProperty ;
 
 ###  http://schema.org/VideoGame
 <http://schema.org/VideoGame> rdf:type owl:Class ;
-                              owl:equivalentClass :Videogame ;
-                              rdfs:subClassOf <http://www.w3.org/ns/prov#SoftwareAgent> .
+                              owl:equivalentClass :Videogame .
 
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#Collection
@@ -632,26 +627,7 @@ owl:topObjectProperty owl:inverseOf owl:topObjectProperty ;
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Digital
 :Digital rdf:type owl:Class ;
-         owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                      owl:onProperty :videogameHasReview ;
-                                                      owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
-                                                      owl:onClass :ExpertReview
-                                                    ]
-                                                    [ rdf:type owl:Restriction ;
-                                                      owl:onProperty :hasAverageRatingExpert ;
-                                                      owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                                           owl:onDatatype xsd:double ;
-                                                                           owl:withRestrictions ( [ xsd:minExclusive "7.5"^^xsd:double
-                                                                                                  ]
-                                                                                                  [ xsd:maxExclusive "9.0"^^xsd:double
-                                                                                                  ]
-                                                                                                )
-                                                                         ]
-                                                    ]
-                                                  ) ;
-                               rdf:type owl:Class
-                             ] ;
-         rdfs:subClassOf :GoodVideoGame ,
+         rdfs:subClassOf <http://schema.org/VideoGame> ,
                          :Videogame ;
          rdfs:comment "Per digitale si intende un videogiocho che viene venduto  solo in forma digitale. Può essere quindi acquistato su degli store specifici."@it ;
          rdfs:label "Digital"@en .
@@ -718,7 +694,8 @@ owl:topObjectProperty owl:inverseOf owl:topObjectProperty ;
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#GameReviewer
 :GameReviewer rdf:type owl:Class ;
-              rdfs:subClassOf :WorkerRole ;
+              rdfs:subClassOf :WorkerRole ,
+                              <http://www.w3.org/ns/prov#Role> ;
               rdfs:comment "Il recensore di videogame è un ruolo preciso che si può svolgere in una redazione. Questo ruolo prevede di scrivere recensioni per i videogiochi della piattaforma."@it ;
               rdfs:label "GameReviewer"@en .
 
@@ -991,7 +968,6 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Videogame
 :Videogame rdf:type owl:Class ;
-           rdfs:subClassOf <http://www.w3.org/ns/prov#SoftwareAgent> ;
            owl:disjointUnionOf ( :Exclusive
                                  :Multiplatform
                                ) ;
@@ -1031,8 +1007,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#WorkerRole
 :WorkerRole rdf:type owl:Class ;
-            rdfs:subClassOf <http://schema.org/Role> ,
-                            <http://www.w3.org/ns/prov#Role> ;
+            owl:equivalentClass <http://www.w3.org/ns/prov#Role> ;
             rdfs:comment "Questa classe rappresenta i ruoli che si possono avere all'interno di una testata giornalistica, ad esempio: giornalista, recensore di videogame, redattore, ecc..."@it ;
             rdfs:label "WorkerRole"@en .
 
@@ -1051,10 +1026,6 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.w3.org/ns/prov#Role
 <http://www.w3.org/ns/prov#Role> rdf:type owl:Class .
-
-
-###  http://www.w3.org/ns/prov#SoftwareAgent
-<http://www.w3.org/ns/prov#SoftwareAgent> rdf:type owl:Class .
 
 
 #################################################################
@@ -1422,9 +1393,34 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
               rdfs:label "piattaforma4"@en .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma_1
+:piattaforma_1 rdf:type owl:NamedIndividual ,
+                        :Console ,
+                        :HomeConsole ,
+                        :PhysicalPlatform ,
+                        :Platform ;
+               :isPlatformFor :videogame_1 ,
+                              :videogame_2 ;
+               :platformName "Xbox 360"^^xsd:string ;
+               rdfs:comment "piattaforma di gioco Xbox 360, estrapolata dal database relazione attraverso il mapping di Ontop. Essa è una HomeConsole"@it ;
+               rdfs:label "piattaforma_1"@it .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#piattaforma_2
+:piattaforma_2 rdf:type owl:NamedIndividual ,
+                        :Console ,
+                        :HomeConsole ,
+                        :PhysicalPlatform ,
+                        :Platform ;
+               :isPlatformFor :videogame_1 ,
+                              :videogame_2 ;
+               :platformName "PlayStation 3"^^xsd:string ;
+               rdfs:comment "piattaforma di gioco playstation 3, estrapolata dal database relazione attraverso il mapping di Ontop. Essa è una HomeConsole"@it ;
+               rdfs:label "piattaforma_2"@it .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore1
 :recensore1 rdf:type owl:NamedIndividual ,
-                     <http://schema.org/Role> ,
                      :GameReviewer ,
                      :WorkerRole ,
                      <http://www.w3.org/ns/prov#Role> ;
@@ -1435,7 +1431,6 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore2
 :recensore2 rdf:type owl:NamedIndividual ,
-                     <http://schema.org/Role> ,
                      :GameReviewer ,
                      :WorkerRole ,
                      <http://www.w3.org/ns/prov#Role> ;
@@ -1446,7 +1441,6 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore3
 :recensore3 rdf:type owl:NamedIndividual ,
-                     <http://schema.org/Role> ,
                      :GameReviewer ,
                      :WorkerRole ,
                      <http://www.w3.org/ns/prov#Role> ;
@@ -1457,13 +1451,21 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#recensore4
 :recensore4 rdf:type owl:NamedIndividual ,
-                     <http://schema.org/Role> ,
                      :GameReviewer ,
                      :WorkerRole ,
                      <http://www.w3.org/ns/prov#Role> ;
             :roleFor :board4 ;
             rdfs:comment "ruolo ricoperto da user4 all'interno della board4"@it ;
             rdfs:label "recensore4"@it .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#recensore_worker
+:recensore_worker rdf:type owl:NamedIndividual ,
+                           :WorkerRole ,
+                           <http://www.w3.org/ns/prov#Role> ;
+                  :roleFor :board1 ;
+                  rdfs:comment "ruolo ricoperto da worker_1 all'interno della board1"@it ;
+                  rdfs:label "recensore_worker"@it .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#review1
@@ -1626,6 +1628,38 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
          rdfs:label "review9"@it .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#review_1
+:review_1 rdf:type owl:NamedIndividual ,
+                   <http://schema.org/CriticReview> ,
+                   <http://schema.org/Review> ,
+                   :ExpertReview ,
+                   :PositiveReview ,
+                   :Review ,
+                   <http://www.w3.org/ns/prov#Entity> ;
+          :reviewIsAbout :videogame_1 ;
+          :reviewMadeBy :worker_1 ;
+          <http://www.w3.org/ns/prov#wasAttributedTo> :worker_1 ;
+          :hasScore 9 ;
+          rdfs:comment "recensione rilasciat da worker_1 per videogame_1 con punteggio 9. Questa recensione è stata estrapolata attraverso il mapping con ontop"@it ;
+          rdfs:label "review_1"@it .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#review_2
+:review_2 rdf:type owl:NamedIndividual ,
+                   <http://schema.org/CriticReview> ,
+                   <http://schema.org/Review> ,
+                   :ExpertReview ,
+                   :PositiveReview ,
+                   :Review ,
+                   <http://www.w3.org/ns/prov#Entity> ;
+          :reviewIsAbout :videogame_2 ;
+          :reviewMadeBy :worker_1 ;
+          <http://www.w3.org/ns/prov#wasAttributedTo> :worker_1 ;
+          :hasScore 9 ;
+          rdfs:comment "recensione rilasciat da worker_1 per videogame_2 con punteggio 9. Questa recensione è stata estrapolata attraverso il mapping con ontop"@it ;
+          rdfs:label "review_2"@it .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#user1
 :user1 rdf:type owl:NamedIndividual ,
                 <http://schema.org/Person> ,
@@ -1721,16 +1755,51 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
        rdfs:label "user6"@en .
 
 
+###  http://www.videogamesAwards.org/videogamesAwards2020#videogame_1
+:videogame_1 rdf:type owl:NamedIndividual ,
+                      <http://schema.org/VideoGame> ,
+                      :Videogame ;
+             :hasAwardSet :awardSet6 ;
+             :hasGenre :genere_horror ,
+                       :genere_tps ;
+             :hasPlatform :piattaforma_1 ,
+                          :piattaforma_2 ;
+             :reviewedByNewsPaper :newspaper1 ;
+             :videogameHasReview :review_1 ;
+             :hasAverageRatingExpert "8.8"^^xsd:double ;
+             :hasAverageRatingVideogamer "7.7"^^xsd:double ;
+             :hasReleaseDate "2008-10-14T00:00:00"^^xsd:dateTime ;
+             :hasTitle "Hellblade: Senua's Sacrifice"^^xsd:string ;
+             rdfs:comment "videogioco Hellblade: Senua's Sacrifice, estrapolato dal database relazione attraverso il mapping ontop."@it ;
+             rdfs:label "videogame_1"@en .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#videogame_2
+:videogame_2 rdf:type owl:NamedIndividual ,
+                      <http://schema.org/VideoGame> ,
+                      :Videogame ;
+             :hasAwardSet :awardSet7 ;
+             :hasGenre :genere_tps ;
+             :hasPlatform :piattaforma_1 ,
+                          :piattaforma_2 ;
+             :reviewedByNewsPaper :newspaper1 ;
+             :videogameHasReview :review_2 ;
+             :hasAverageRatingExpert "8.6"^^xsd:double ;
+             :hasAverageRatingVideogamer "5.3"^^xsd:double ;
+             :hasReleaseDate "2017-07-21T00:00:00"^^xsd:dateTime ;
+             :hasTitle "Kingdom Come: Deliverance"^^xsd:string ;
+             rdfs:comment "videogioco Kingdom Come: Deliverance, estrapolato dal database relazione attraverso il mapping ontop."@it ;
+             rdfs:label "videogame_2"@en .
+
+
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco1
 :videogioco1 rdf:type owl:NamedIndividual ,
                       <http://schema.org/VideoGame> ,
                       :Digital ,
-                      :GoodVideoGame ,
                       :Masterpiece ,
                       :Multiplatform ,
                       :MustHave ,
-                      :Videogame ,
-                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
+                      :Videogame ;
              :hasAwardSet :awardSet1 ;
              :hasGenre :genere_action ;
              :hasPlatform :piattaforma1 ,
@@ -1762,8 +1831,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                       :GoodVideoGame ,
                       :Multiplatform ,
                       :MustHave ,
-                      :Videogame ,
-                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
+                      :Videogame ;
              :hasAwardSet :awardSet2 ;
              :hasGenre :genere_action ,
                        :genere_gdr ;
@@ -1788,8 +1856,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco3
 :videogioco3 rdf:type owl:NamedIndividual ,
                       <http://schema.org/VideoGame> ,
-                      :Videogame ,
-                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
+                      :Videogame ;
              :hasAwardSet :awardSet3 ;
              :hasGenre :genere_fps ;
              :hasPlatform :piattaforma1 ;
@@ -1807,8 +1874,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 ###  http://www.videogamesAwards.org/videogamesAwards2020#videogioco4
 :videogioco4 rdf:type owl:NamedIndividual ,
                       <http://schema.org/VideoGame> ,
-                      :Videogame ,
-                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
+                      :Videogame ;
              :hasAwardSet :awardSet4 ;
              :hasGenre :genere_tps ;
              :hasPlatform :piattaforma1 ;
@@ -1826,8 +1892,7 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                       <http://schema.org/VideoGame> ,
                       :Multiplatform ,
                       :MustHave ,
-                      :Videogame ,
-                      <http://www.w3.org/ns/prov#SoftwareAgent> ;
+                      :Videogame ;
              :hasAwardSet :awardSet5 ;
              :hasGenre :genere_gdr ;
              :hasPlatform :piattaforma1 ,
@@ -1841,6 +1906,23 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
              :hasTitle "The Last of Us"^^xsd:string ;
              rdfs:comment "videogioco The Last of Us"@it ;
              rdfs:label "videogioco5"@it .
+
+
+###  http://www.videogamesAwards.org/videogamesAwards2020#worker_1
+:worker_1 rdf:type owl:NamedIndividual ,
+                   <http://schema.org/Person> ,
+                   :Expert ,
+                   :User ,
+                   :Worker ,
+                   <http://www.w3.org/ns/prov#Person> ;
+          :hasWorkerRole :recensore_worker ;
+          :makeReview :review_1 ,
+                      :review_2 ;
+          :worksForBoard :board1 ;
+          :worksForNewspaper :newspaper1 ;
+          :hasUsername "Gianfranco"^^xsd:string ;
+          rdfs:comment "utente esperto di nome Gianfranco. Esso lavora come rencesore_worker per la board 1"@it ;
+          rdfs:label "worker_1"@en .
 
 
 #################################################################

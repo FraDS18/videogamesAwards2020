@@ -3,71 +3,36 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<urn:mapping--553325724_1> a rr:TriplesMap;
+<urn:mapping--2070411317_1> a rr:TriplesMap;
   rr:logicalTable [ a rr:R2RMLView;
-      rr:sqlQuery "SELECT * from videogame"
+      rr:sqlQuery "SELECT id, name as platformName from platform"
     ];
   rr:predicateObjectMap [ a rr:PredicateObjectMap;
       rr:objectMap [ a rr:ObjectMap, rr:TermMap;
-          rr:column "releaseDate";
+          rr:column "platformName";
           rr:termType rr:Literal
         ];
-      rr:predicate :hasReleaseDate
-    ], [ a rr:PredicateObjectMap;
-      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
-          rr:column "averageRatingExpert";
-          rr:termType rr:Literal
-        ];
-      rr:predicate :hasAverageRatingExpert
-    ], [ a rr:PredicateObjectMap;
-      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
-          rr:column "averageRatingVideogamer";
-          rr:termType rr:Literal
-        ];
-      rr:predicate :hasAverageRatingVideogamer
-    ], [ a rr:PredicateObjectMap;
-      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
-          rr:column "title";
-          rr:termType rr:Literal
-        ];
-      rr:predicate :hasTitle
+      rr:predicate :platformName
     ];
   rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
-      rr:class :Videogame;
-      rr:template "http://www.videogamesAwards.org/videogamesAwards2020#videogame_{id}";
+      rr:class :HomeConsole;
+      rr:template "http://www.videogamesAwards.org/videogamesAwards2020#piattaforma_{id}";
       rr:termType rr:IRI
     ] .
 
-<urn:mapping--151113921_1> a rr:TriplesMap;
+<urn:mapping--59382464> a rr:TriplesMap;
   rr:logicalTable [ a rr:R2RMLView;
-      rr:sqlQuery """SELECT videogame.id as videogameID, videogame.title, genre.id as genreID, genre.name
-FROM videogame join vgG ON videogame.id = vgG.videogame 
-join genre ON genre.id = vgG.genre"""
-    ];
-  rr:predicateObjectMap [ a rr:PredicateObjectMap;
-      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
-          rr:template "http://www.videogamesAwards.org/videogamesAwards2020#genere_{name}";
-          rr:termType rr:IRI
-        ];
-      rr:predicate :hasGenre
+      rr:sqlQuery """SELECT videogame.id as videogameID, videogame.title, worker.id as workerID, worker.username, review.id as reviewID, review.score
+FROM
+review join worker ON review.worker = worker.id join videogame ON review.videogame = videogame.id"""
     ];
   rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
-      rr:class :Videogame;
-      rr:template "http://www.videogamesAwards.org/videogamesAwards2020#videogame_{videogameID}";
+      rr:class :Expert;
+      rr:template "http://www.videogamesAwards.org/videogamesAwards2020#worker_{workerID}";
       rr:termType rr:IRI
     ] .
 
-<urn:mapping-622383258> a rr:TriplesMap;
-  rr:logicalTable [ a rr:R2RMLView;
-      rr:sqlQuery "SELECT id, name as genreName from genre"
-    ];
-  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
-      rr:class :Genre;
-      rr:template "http://www.videogamesAwards.org/videogamesAwards2020#genere_{genreName}";
-      rr:termType rr:IRI
-    ] .
-
-<urn:mapping-1376823699_1> a rr:TriplesMap;
+<urn:mapping--1910998002_1> a rr:TriplesMap;
   rr:logicalTable [ a rr:R2RMLView;
       rr:sqlQuery """SELECT videogame.id as videogameID, videogame.title as vgTitle, platform.id as platformID, platform.name as platformName
 FROM videogame join vgP ON videogame.id = vgP.videogame join platform ON platform.id = vgP.platform"""
@@ -85,47 +50,37 @@ FROM videogame join vgP ON videogame.id = vgP.videogame join platform ON platfor
       rr:termType rr:IRI
     ] .
 
-<urn:mapping-1456650938> a rr:TriplesMap;
+<urn:mapping-1049804325_1> a rr:TriplesMap;
   rr:logicalTable [ a rr:R2RMLView;
-      rr:sqlQuery """SELECT videogame.id as videogameID, videogame.title, worker.id as workerID, worker.username, review.id as reviewID, review.score
-FROM 
-review join worker ON review.worker = worker.id join videogame ON review.videogame = videogame.id"""
-    ];
-  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
-      rr:class :Expert;
-      rr:template "http://www.videogamesAwards.org/videogamesAwards2020#worker_{workerID}";
-      rr:termType rr:IRI
-    ] .
-
-<urn:mapping--472902482_1> a rr:TriplesMap;
-  rr:logicalTable [ a rr:R2RMLView;
-      rr:sqlQuery "SELECT id, name as platformName from platform"
+      rr:sqlQuery """SELECT videogame.id as videogameID, videogame.title, genre.id as genreID, genre.name
+FROM videogame join vgG ON videogame.id = vgG.videogame
+join genre ON genre.id = vgG.genre"""
     ];
   rr:predicateObjectMap [ a rr:PredicateObjectMap;
       rr:objectMap [ a rr:ObjectMap, rr:TermMap;
-          rr:column "platformName";
-          rr:termType rr:Literal
-        ];
-      rr:predicate :platformName
-    ];
-  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
-      rr:class :HomeConsole;
-      rr:template "http://www.videogamesAwards.org/videogamesAwards2020#piattaforma_{id}";
-      rr:termType rr:IRI
-    ] .
-
-<urn:mapping-1213197377_1> a rr:TriplesMap;
-  rr:logicalTable [ a rr:R2RMLView;
-      rr:sqlQuery """SELECT videogame.id as videogameID, videogame.title, worker.id as workerID, worker.username, review.id as reviewID, review.score
-FROM 
-review join worker ON review.worker = worker.id join videogame ON review.videogame = videogame.id"""
-    ];
-  rr:predicateObjectMap [ a rr:PredicateObjectMap;
-      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
-          rr:template "http://www.videogamesAwards.org/videogamesAwards2020#videogame_{videogameID}";
+          rr:template "http://www.videogamesAwards.org/videogamesAwards2020#genere_{name}";
           rr:termType rr:IRI
         ];
-      rr:predicate :reviewIsAbout
+      rr:predicate :hasGenre
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :Videogame;
+      rr:template "http://www.videogamesAwards.org/videogamesAwards2020#videogame_{videogameID}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:mapping--1801418264_1> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery """SELECT videogame.id as videogameID, videogame.title, worker.id as workerID, worker.username, review.id as reviewID, review.score
+FROM
+review join worker ON review.worker = worker.id join videogame ON review.videogame = videogame.id"""
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "score";
+          rr:termType rr:Literal
+        ];
+      rr:predicate :hasScore
     ], [ a rr:PredicateObjectMap;
       rr:objectMap [ a rr:ObjectMap, rr:TermMap;
           rr:template "http://www.videogamesAwards.org/videogamesAwards2020#worker_{workerID}";
@@ -133,8 +88,11 @@ review join worker ON review.worker = worker.id join videogame ON review.videoga
         ];
       rr:predicate :reviewMadeBy
     ], [ a rr:PredicateObjectMap;
-      rr:object 9;
-      rr:predicate :hasScore
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:template "http://www.videogamesAwards.org/videogamesAwards2020#videogame_{videogameID}";
+          rr:termType rr:IRI
+        ];
+      rr:predicate :reviewIsAbout
     ];
   rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
       rr:class :ExpertReview;
@@ -142,14 +100,47 @@ review join worker ON review.worker = worker.id join videogame ON review.videoga
       rr:termType rr:IRI
     ] .
 
-<urn:mapping-1213197377_2> a rr:TriplesMap;
+<urn:mapping--1446599989> a rr:TriplesMap;
   rr:logicalTable [ a rr:R2RMLView;
-      rr:sqlQuery """SELECT videogame.id as videogameID, videogame.title, worker.id as workerID, worker.username, review.id as reviewID, review.score
-FROM 
-review join worker ON review.worker = worker.id join videogame ON review.videogame = videogame.id"""
+      rr:sqlQuery "SELECT id, name as genreName from genre"
     ];
   rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
-      rr:class :Expert;
-      rr:template "http://www.videogamesAwards.org/videogamesAwards2020#worker_{workerID}";
+      rr:class :Genre;
+      rr:template "http://www.videogamesAwards.org/videogamesAwards2020#genere_{genreName}";
+      rr:termType rr:IRI
+    ] .
+
+<urn:mapping--40737763_1> a rr:TriplesMap;
+  rr:logicalTable [ a rr:R2RMLView;
+      rr:sqlQuery "SELECT * from videogame"
+    ];
+  rr:predicateObjectMap [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "averageRatingVideogamer";
+          rr:termType rr:Literal
+        ];
+      rr:predicate :hasAverageRatingVideogamer
+    ], [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "title";
+          rr:termType rr:Literal
+        ];
+      rr:predicate :hasTitle
+    ], [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "releaseDate";
+          rr:termType rr:Literal
+        ];
+      rr:predicate :hasReleaseDate
+    ], [ a rr:PredicateObjectMap;
+      rr:objectMap [ a rr:ObjectMap, rr:TermMap;
+          rr:column "averageRatingExpert";
+          rr:termType rr:Literal
+        ];
+      rr:predicate :hasAverageRatingExpert
+    ];
+  rr:subjectMap [ a rr:SubjectMap, rr:TermMap;
+      rr:class :Videogame;
+      rr:template "http://www.videogamesAwards.org/videogamesAwards2020#videogame_{id}";
       rr:termType rr:IRI
     ] .

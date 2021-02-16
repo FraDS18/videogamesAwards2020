@@ -658,22 +658,6 @@ dc:title rdf:type owl:AnnotationProperty .
              rdfs:label "Masterpiece"@en .
 
 
-###  http://www.videogamesAwards.org/videogamesAwards2020#Min3GameAwardSet
-:Min3GameAwardSet rdf:type owl:Class ;
-                  owl:equivalentClass [ rdf:type owl:Restriction ;
-                                        owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> ;
-                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
-                                                             owl:onDatatype xsd:integer ;
-                                                             owl:withRestrictions ( [ xsd:minExclusive 2
-                                                                                    ]
-                                                                                  )
-                                                           ]
-                                      ] ;
-                  rdfs:subClassOf :GameAwardSet ;
-                  rdfs:comment "È un gameawardset con almeno 3 premi. Esso viene usato per classificare un gioco come \"must-have\", ossia un videogioco da avere per forza se si è appassionati."@it ;
-                  rdfs:label "Min3GameAwardSet"@en .
-
-
 ###  http://www.videogamesAwards.org/videogamesAwards2020#Multiplatform
 :Multiplatform rdf:type owl:Class ;
                owl:equivalentClass [ rdf:type owl:Restriction ;
@@ -688,17 +672,6 @@ dc:title rdf:type owl:AnnotationProperty .
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#MustHave
 :MustHave rdf:type owl:Class ;
-          owl:equivalentClass [ rdf:type owl:Class ;
-                                owl:unionOf ( [ rdf:type owl:Restriction ;
-                                                owl:onProperty :hasAwardSet ;
-                                                owl:someValuesFrom :Min3GameAwardSet
-                                              ]
-                                              [ rdf:type owl:Restriction ;
-                                                owl:onProperty :hasAwardSet ;
-                                                owl:someValuesFrom :SpecialGameAwardSet
-                                              ]
-                                            )
-                              ] ;
           rdfs:subClassOf :Videogame ;
           rdfs:comment "Un gioco è classificato come \"musthave\" quando ha vinto almento 5 premi generici oppure un solo premio speciale. Questi tipi di giochi sono quindi consigliati."@it ;
           rdfs:label "MustHave"@en .
@@ -802,17 +775,6 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
                   rdfs:subClassOf :GameAward ;
                   rdfs:comment "È un premio speciale, separato dagli altri premi in quanto ha importanza maggiore. Tra questi premi rientrano ad esempio quelli come \"Miglior gioco dell'anno\", \"Miglior gioco della generazione\"; \"Miglior gioco su console\" ecc"@it ;
                   rdfs:label "SpecialGameAward"@en .
-
-
-###  http://www.videogamesAwards.org/videogamesAwards2020#SpecialGameAwardSet
-:SpecialGameAwardSet rdf:type owl:Class ;
-                     owl:equivalentClass [ rdf:type owl:Restriction ;
-                                           owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> ;
-                                           owl:someValuesFrom :SpecialGameAward
-                                         ] ;
-                     rdfs:subClassOf :GameAwardSet ;
-                     rdfs:comment "E' un set contenente almeno un premio di tipo SpecialGameAward."@it ;
-                     rdfs:label "SpecialGameAwardSet"@en .
 
 
 ###  http://www.videogamesAwards.org/videogamesAwards2020#SuccessPlatform
@@ -1713,6 +1675,35 @@ Per recensione si intende un'analisi (solitamente in forma testuale) dei punti d
 #################################################################
 #    General axioms
 #################################################################
+
+[ owl:intersectionOf ( :Videogame
+                       [ rdf:type owl:Class ;
+                         owl:unionOf ( [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasAwardSet ;
+                                         owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl#hasMember> ;
+                                                              owl:someValuesFrom :SpecialGameAward
+                                                            ]
+                                       ]
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasAwardSet ;
+                                         owl:someValuesFrom [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/set.owl#size> ;
+                                                              owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                   owl:onDatatype xsd:integer ;
+                                                                                   owl:withRestrictions ( [ xsd:minInclusive 3
+                                                                                                          ]
+                                                                                                        )
+                                                                                 ]
+                                                            ]
+                                       ]
+                                     )
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf :MustHave
+] .
+
 
 [ rdf:type owl:AllDifferent ;
   owl:distinctMembers ( :award1
